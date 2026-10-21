@@ -58,6 +58,7 @@ function peaksFromBuffer(item: MediaItem, buf: AudioBuffer) {
   for (let i = 0; i < p.length; i++) max = Math.max(max, p[i]);
   if (max > 0) for (let i = 0; i < p.length; i++) p[i] /= max;
   item.peaks = p;
+  item.peakScale = max;
 }
 
 const PEAKS_PER_SECOND = 50;
@@ -74,9 +75,12 @@ function kindOf(file: File): MediaKind | null {
   return null;
 }
 
-export async function importFiles(files: Iterable<File>): Promise<MediaItem[]> {
+/** `restore` (one per file) re-creates saved media with its old id, so saved projects still point at it. */
+export async function importFiles(files: Iterable<File>, restore?: Partial<MediaItem>[]): Promise<MediaItem[]> {
   const items: MediaItem[] = [];
+  let n = 0;
   for (let file of files) {
+    const saved = restore?.[n++];
     const kind = kindOf(file);
     // "Copy media to project": keep our own copy of the bytes instead of a reference to the file on disk.
     if (kind && store.copyMedia) file = new File([await file.arrayBuffer()], file.name, { type: file.type, lastModified: file.lastModified });
@@ -85,6 +89,7 @@ export async function importFiles(files: Iterable<File>): Promise<MediaItem[]> {
       id: uid('med'), kind, name: file.name, file, duration: kind === 'image' ? IMAGE_DEFAULT_DURATION : 0,
       width: 0, height: 0, rotation: 0, hasAudio: false, hasVideo: kind !== 'audio', codec: '', fps: 0,
       thumbs: [], thumbInterval: 1, peaksPerSecond: PEAKS_PER_SECOND, status: 'loading',
+      ...(saved ? { id: saved.id!, name: saved.name ?? file.name, folderId: saved.folderId, deleted: saved.deleted } : {}),
     };
     store.media.set(item.id, item);
     items.push(item);
@@ -272,6 +277,7 @@ async function buildPeaks(item: MediaItem, track: InputAudioTrack) {
   for (let i = 0; i < out.length; i++) max = Math.max(max, out[i]);
   if (max > 0) for (let i = 0; i < out.length; i++) out[i] /= max;
   item.peaks = out;
+  item.peakScale = max;
 }
 
 export function thumbAt(item: MediaItem, srcTime: number): ImageBitmap | null {

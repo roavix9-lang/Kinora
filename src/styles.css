@@ -738,10 +738,10 @@ kbd { font: 11px Inter, sans-serif; background: var(--hover); border: 1px solid 
 .wheel-head { display: flex; align-items: center; justify-content: center; gap: 10px; position: relative; width: 100%; font-size: 13px; color: var(--text); height: 26px; }
 .wheel-head .icon-btn { position: absolute; right: 8px; }
 .wheel-canvas { cursor: pointer; touch-action: none; max-width: 100%; height: auto !important; aspect-ratio: 1; }
-.wheel-nums { display: flex; justify-content: space-between; gap: 8px; width: 100%; max-width: 176px; margin-top: 6px; }
-.wheel-num-wrap { flex: 1; min-width: 0; display: flex; align-items: center; gap: 4px; background: #141416; border-radius: 4px; height: 22px; padding-left: 5px; }
-.wheel-num-wrap i { width: 3px; height: 12px; border-radius: 1.5px; flex: none; }
-.wheel-num { width: 100%; min-width: 0; background: none; border: 0; color: var(--text); font-size: 11px; text-align: center; outline: none; }
+.wheel-nums { position: relative; display: flex; width: 100%; max-width: 176px; margin-top: 14px; background: #141416; border-radius: 6px; height: 26px; }
+.wheel-num-wrap { position: relative; flex: 1; min-width: 0; display: flex; align-items: center; }
+.wheel-num-wrap i { position: absolute; top: -6px; left: 50%; width: 30px; height: 6px; margin-left: -15px; border-radius: 2px 2px 0 0; }
+.wheel-num { width: 100%; min-width: 0; background: none; border: 0; color: var(--text); font-size: 12px; text-align: center; outline: none; }
 .adj-add-mask { display: flex; align-items: center; justify-content: center; gap: 6px; width: 100%; height: 30px; border-radius: 6px; background: #2a2a30; font-size: 12.5px; margin: 4px 0 10px; }
 .adj-add-mask:hover { background: #34343b; }
 .mask-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 8px; }
@@ -812,3 +812,12 @@ kbd { font: 11px Inter, sans-serif; background: var(--hover); border: 1px solid 
 
 /* Clip marker (CapCut): cyan flag on the clip's top strip */
 .clip-marker { position: absolute; top: 0; width: 8px; height: 9px; margin-left: -3px; background: #22d3ee; clip-path: polygon(0 0, 100% 0, 100% 66%, 50% 100%, 0 66%); pointer-events: none; z-index: 2; }
+
+/* Library download badge (CapCut ↓): on tiles not yet saved for offline use */
+.dl-btn { position: absolute; right: 5px; bottom: 5px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: rgba(20, 20, 22, 0.72); color: #fff; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); z-index: 2; }
+.dl-btn.small { width: 20px; height: 20px; right: 4px; bottom: 4px; }
+.dl-btn:hover { background: rgba(40, 40, 44, 0.9); }
+.dl-btn.busy { pointer-events: none; }
+.dl-btn .spinner.small { width: 12px; height: 12px; border-width: 2px; }
+.tpl-dl { right: 8px; bottom: 8px; width: 28px; height: 28px; }
+.sticker, .look-swatch { position: relative; }

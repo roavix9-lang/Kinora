@@ -10,6 +10,7 @@ import { mountInspector } from './ui/inspector';
 import { mountLeftPanel } from './ui/leftpanel';
 import { mountPreview } from './ui/preview';
 import { initAssets, onAssetsChanged } from './engine/assets';
+import { initPersistence } from './engine/persist';
 import { initLibraryPreview } from './ui/libraryPreview';
 import { mountTimeline } from './ui/timeline';
 import { dspBackend, initDsp } from './wasm/dsp';
@@ -88,6 +89,8 @@ async function boot() {
   // Library assets come from Cloudflare (D1 catalog, R2 files); downloaded ones load from the
   // browser cache, so this works offline. Redraw once they're registered.
   void initAssets().then(() => player.invalidate());
+  // Restore the last session (timelines + media) and keep saving it.
+  void initPersistence();
   onAssetsChanged(() => player.invalidate());
   mountLeftPanel(panel, player);
   mountPreview(previewEl, canvas, player);
@@ -135,6 +138,11 @@ async function boot() {
     else handled = false;
     if (handled) e.preventDefault();
   });
+
+  // Offline support (production only: in dev it would cache the hot-reloading modules).
+  if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+    void navigator.serviceWorker.register(`${import.meta.env.BASE_URL}sw.js`).catch(() => {});
+  }
 
   // Dev builds skip the leave-page prompt so hot reloads don't get blocked.
   if (import.meta.env.PROD) {

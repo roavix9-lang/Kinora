@@ -44,7 +44,8 @@ export interface Curves { enabled: boolean; luma: CurvePoints; r: CurvePoints; g
 /** Colour wheel: [r, g, b] offset (-1..1) plus luminance l (-1..1). */
 /** r, g, b colour push; l = brightness (right arc); s = saturation (left arc), optional for older projects. */
 export type Wheel = [number, number, number, number, number?];
-export interface ColorWheels { enabled: boolean; intensity: number; shadows: Wheel; mid: Wheel; high: Wheel; offset: Wheel }
+/** mode: 'primary' = lift/gamma/gain; 'log' = narrower tone ranges (CapCut's Log wheels). */
+export interface ColorWheels { enabled: boolean; intensity: number; shadows: Wheel; mid: Wheel; high: Wheel; offset: Wheel; mode?: 'primary' | 'log' }
 
 export type MaskShape = 'split' | 'filmstrip' | 'circle' | 'rectangle' | 'star' | 'heart';
 /** Limits a clip's adjustments to an area (layer-relative: x/y centre and w/h in 0..1). */
@@ -165,6 +166,8 @@ export interface Project {
 }
 
 export interface MediaItem {
+  /** Real level of the loudest peak (peaks are scaled so the loudest is 1). */
+  peakScale?: number;
   id: string;
   kind: MediaKind;
   name: string;

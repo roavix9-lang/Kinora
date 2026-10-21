@@ -3,7 +3,7 @@ import { curveFn } from '../engine/curves';
 import { lutList } from '../engine/luts';
 import { store } from '../store';
 import {
-  AdjustMask, Clip, ColorWheels, CurvePoints, Curves, defaultAdjust, defaultCurves, defaultHsl, defaultMask,
+  AdjustMask, Clip, CurvePoints, Curves, defaultAdjust, defaultCurves, defaultHsl, defaultMask,
   defaultWheels, identityCurve, MaskShape, Wheel,
 } from '../types';
 import { live, PCT, row, SIGNED, slider } from './controls';
@@ -281,7 +281,7 @@ const colourAt = (phi: number, base: number, bright: number) => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-function wheelCtl(c: Clip, key: keyof Omit<ColorWheels, 'enabled' | 'intensity'>, title: string) {
+function wheelCtl(c: Clip, key: 'shadows' | 'mid' | 'high' | 'offset', title: string) {
   const size = 176, cx = size / 2, cy = size / 2;
   const R = 64, RING = 11, ARC = R + RING / 2 + 9;
   const inner = R - RING / 2;
@@ -440,11 +440,12 @@ function wheelsTab(c: Clip): HTMLElement[] {
   const amt = live(c.id, (x, v) => { x.wheels = { ...(x.wheels ?? defaultWheels()), intensity: v }; });
   return [checkSection('Color wheel', w.enabled, (v) => updateClip(c.id, (x) => { x.wheels = { ...(x.wheels ?? defaultWheels()), enabled: v }; }),
     () => updateClip(c.id, (x) => { x.wheels = defaultWheels(); }),
-    dropdown('primary', [{ id: 'primary', name: 'Primary' }], () => {}),
+    dropdown(w.mode ?? 'primary', [{ id: 'primary', name: 'Primary' }, { id: 'log', name: 'Log' }], (v) => updateClip(c.id, (x) => { x.wheels = { ...(x.wheels ?? defaultWheels()), mode: v as 'primary' | 'log' }; })),
     slider('Intensity', w.intensity, 0, 1, 0.01, PCT, amt.input, amt.end, 1),
     h('div.wheel-grid', null,
-      wheelCtl(c, 'shadows', 'Shadows'), wheelCtl(c, 'mid', 'Middle grey'),
-      wheelCtl(c, 'high', 'Tint'), wheelCtl(c, 'offset', 'Offset')),
+      ...(w.mode === 'log'
+        ? [wheelCtl(c, 'shadows', 'Shadow'), wheelCtl(c, 'mid', 'Middle tone'), wheelCtl(c, 'high', 'Highlight'), wheelCtl(c, 'offset', 'Offset')]
+        : [wheelCtl(c, 'shadows', 'Shadows'), wheelCtl(c, 'mid', 'Middle grey'), wheelCtl(c, 'high', 'Highlights'), wheelCtl(c, 'offset', 'Offset')])),
     h('p.hint', null, 'Drag the dot to tint, drag the arc on the right for brightness. Double-click a wheel to reset it.'),
   )];
 }

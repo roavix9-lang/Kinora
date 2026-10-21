@@ -94,6 +94,7 @@ uniform bool uWheelsOn;
 uniform vec4 uLift, uGammaW, uGain, uOffsetW;
 uniform float uWheelAmt;
 uniform vec4 uSatW; // saturation per wheel: shadows, mid, high, offset
+uniform bool uWheelLog;
 uniform highp sampler3D uLut2;
 uniform bool uLut2On;
 uniform float uLut2Scale, uLut2Offset, uLut2Amt;
@@ -285,8 +286,16 @@ void main() {
     vec3 lift = (uLift.rgb + uLift.a) * 0.3;
     vec3 gain = 1.0 + (uGain.rgb + uGain.a) * 0.5;
     vec3 gam = 1.0 + (uGammaW.rgb + uGammaW.a) * 0.6;
-    vec3 g = (clamp(c, 0.0, 1.0) + lift * (1.0 - clamp(c, 0.0, 1.0))) * gain;
-    g = pow(max(g, vec3(0.0)), 1.0 / max(gam, vec3(0.05)));
+    vec3 g;
+    if (uWheelLog) {
+      // Log: each wheel pushes its own narrow tone band.
+      float L0 = luma(clamp(c, 0.0, 1.0));
+      float bs = 1.0 - smoothstep(0.0, 0.33, L0), bh = smoothstep(0.66, 1.0, L0), bm = clamp(1.0 - bs - bh, 0.0, 1.0);
+      g = c + (uLift.rgb + uLift.a) * 0.25 * bs + (uGammaW.rgb + uGammaW.a) * 0.25 * bm + (uGain.rgb + uGain.a) * 0.25 * bh;
+    } else {
+      g = (clamp(c, 0.0, 1.0) + lift * (1.0 - clamp(c, 0.0, 1.0))) * gain;
+      g = pow(max(g, vec3(0.0)), 1.0 / max(gam, vec3(0.05)));
+    }
     g += (uOffsetW.rgb + uOffsetW.a) * 0.2;
     // Left arcs: saturation weighted by tone range (offset = whole picture).
     float Lw = luma(clamp(g, 0.0, 1.0));
@@ -372,7 +381,7 @@ export class Compositor {
       'uBrightness', 'uContrast', 'uSaturation', 'uExposure', 'uTemp', 'uTint', 'uHue', 'uVignette', 'uSharpen',
       'uLut', 'uLutOn', 'uLutScale', 'uLutOffset', 'uFilterAmt', 'uEffect', 'uEffectAmt', 'uKey', 'uKeyParam',
       'uHighlight', 'uShadow', 'uWhites', 'uBlacks', 'uBrilliance', 'uClarity', 'uParticles', 'uFade', 'uAdjOn',
-      'uHslOn', 'uHsl', 'uCurvesOn', 'uCurves', 'uWheelsOn', 'uLift', 'uGammaW', 'uGain', 'uOffsetW', 'uWheelAmt', 'uSatW',
+      'uHslOn', 'uHsl', 'uCurvesOn', 'uCurves', 'uWheelsOn', 'uLift', 'uGammaW', 'uGain', 'uOffsetW', 'uWheelAmt', 'uSatW', 'uWheelLog',
       'uLut2', 'uLut2On', 'uLut2Scale', 'uLut2Offset', 'uLut2Amt', 'uSkin',
       'uMaskType', 'uMaskRect', 'uMaskScale', 'uMaskRound', 'uMaskRot', 'uMaskFeather', 'uMaskInv',
     ];
@@ -698,6 +707,7 @@ export class Compositor {
       gl.uniform4fv(u.uOffsetW, w!.offset.slice(0, 4) as number[]);
       gl.uniform4f(u.uSatW, w!.shadows[4] ?? 0, w!.mid[4] ?? 0, w!.high[4] ?? 0, w!.offset[4] ?? 0);
       gl.uniform1f(u.uWheelAmt, w!.intensity);
+      gl.uniform1i(u.uWheelLog, w!.mode === 'log' ? 1 : 0);
     }
 
     const lut2 = c.lut && c.lut.id !== 'none' ? this.lutTexture(c.lut.id) : null;

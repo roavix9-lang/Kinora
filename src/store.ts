@@ -77,7 +77,7 @@ export function applyRatio(p: Project, choice: string, media: Map<string, MediaI
 
 export interface Folder { id: string; name: string }
 
-interface Timeline { id: string; project: Project; undo: string[]; redo: string[] }
+export interface Timeline { id: string; project: Project; undo: string[]; redo: string[] }
 
 export function newProject(): Project {
   return {

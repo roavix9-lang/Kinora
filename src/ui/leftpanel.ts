@@ -17,7 +17,7 @@ import { mediaMenu, MediaMenuHooks, renameMedia } from './mediaMenu';
 import { animateEffect, lookPreview } from './lookPreview';
 import { SAMPLE_H, SAMPLE_W } from './sampleImages';
 import { animateInto, PREVIEW_SIZE, supportsTransition } from './transitionPreview';
-import { AssetKind, CatalogItem, catalogOf, download, isDownloaded, isDownloading, thumbUrl } from '../engine/assets';
+import { AssetKind, CatalogItem, catalogOf, download, isDownloaded, isDownloading, onAssetsChanged, thumbUrl } from '../engine/assets';
 
 const TABS = [
   { id: 'media', name: 'Media', icon: 'media' },
@@ -163,6 +163,8 @@ export function mountLeftPanel(panel: HTMLElement, player: Player) {
     else if (['filters', 'effects', 'transitions'].includes(store.leftTab)) renderContent();
   });
   renderAgain = renderContent;
+  // Catalog loaded / an item downloaded: refresh the library tabs (↓ becomes +).
+  onAssetsChanged(() => { if (['stickers', 'effects', 'filters', 'transitions', 'templates'].includes(store.leftTab)) renderContent(); });
   const onClipChange = () => {
     if (['effects', 'filters', 'transitions', 'media'].includes(store.leftTab)) renderContent();
     // The caption list re-renders on edits, except while the user is typing in it.

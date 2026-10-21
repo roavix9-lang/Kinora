@@ -477,7 +477,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
       const band = isAudio ? hgt - 14 : waveH - 3;
       const baseY = hgt - 1;
       if (!isAudio) { ctx.fillStyle = 'rgba(0,0,0,0.45)'; ctx.fillRect(0, picH, vw, waveH); }
-      ctx.fillStyle = isAudio ? 'rgba(160, 255, 210, 0.85)' : 'rgba(140, 230, 255, 0.9)';
+      const wave = isAudio ? 'rgba(160, 255, 210, 0.85)' : 'rgba(140, 230, 255, 0.9)';
       const vol = Math.min(1.5, clip.volume);
       for (let x = 0; x < vw; x++) {
         const src = clip.in + (x / store.zoom) * clip.speed;
@@ -485,7 +485,9 @@ export function mountTimeline(root: HTMLElement, player: Player) {
         const i1 = Math.max(i0 + 1, Math.floor((clip.in + ((x + 1) / store.zoom) * clip.speed) * m.peaksPerSecond));
         let v = 0;
         for (let i = i0; i < i1 && i < m.peaks.length; i++) v = Math.max(v, m.peaks[i]);
-        const bh = Math.max(1, v * band * vol);
+        const bh = Math.max(1, Math.min(1, v * vol) * band);
+        // Peaks near full scale (clipping risk, measured on the real level) show red, as in CapCut.
+        ctx.fillStyle = v * (m.peakScale ?? 1) * clip.volume >= 0.89 ? '#ff4d4f' : wave;
         if (isAudio) ctx.fillRect(x, 12 + (band - bh) / 2, 1, bh);
         else ctx.fillRect(x, baseY - bh, 1, bh);
       }
