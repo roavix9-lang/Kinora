@@ -1,0 +1,1 @@
+{"id":"scan-tear","name":"Scan tear","category":"Glitch","moving":true,"glsl":"\nvec4 effect(vec2 uv) {\n  float t = floor(uTime * 15.0);\n  float row = floor(uv.y * 60.0);\n  float on = step(0.75, hash(vec2(t, row * 0.37)));\n  vec2 u = uv + vec2((hash(vec2(row, t)) - 0.5) * 0.09 * uAmount * on, 0.0);\n  return getColor(u);\n}"}

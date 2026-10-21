@@ -1,0 +1,1 @@
+{"id":"wave","name":"Wave","category":"Distort","moving":true,"glsl":"\nvec4 effect(vec2 uv) {\n  vec2 u = uv;\n  u.x += sin(uv.y * 18.0 + uTime * 3.0) * 0.015 * uAmount;\n  u.y += cos(uv.x * 14.0 + uTime * 2.0) * 0.008 * uAmount;\n  return getColor(u);\n}"}

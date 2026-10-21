@@ -1,0 +1,1 @@
+{"id":"question","name":"Question","category":"Speech","w":200,"h":200,"body":"<circle cx=\"100\" cy=\"100\" r=\"94\" fill=\"{{c}}\"/><text x=\"100\" y=\"140\" text-anchor=\"middle\" font-family=\"Anton, Impact, sans-serif\" font-size=\"120\" fill=\"#fff\">?</text>","color":"#8b5cf6"}

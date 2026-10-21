@@ -1,0 +1,1 @@
+{"id":"arrow-curve","name":"Curved arrow","category":"Arrows","w":220,"h":200,"body":"<path d=\"M30 180C30 90 80 50 150 50\" fill=\"none\" stroke=\"{{c}}\" stroke-width=\"22\" stroke-linecap=\"round\"/><path d=\"m130 10 70 40-70 40z\" fill=\"{{c}}\" stroke=\"{{c}}\" stroke-width=\"10\" stroke-linejoin=\"round\"/>","color":"#ffffff"}

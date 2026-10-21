@@ -1,0 +1,1 @@
+{"id":"mirror-quad","name":"Mirror 4","category":"Distort","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  vec2 u = abs(uv - 0.5) * 2.0;\n  u = 0.5 + (u - 0.5) * 0.5 + 0.25;\n  return mix(getColor(uv), getColor(1.0 - abs(uv * 2.0 - 1.0)), uAmount);\n}"}

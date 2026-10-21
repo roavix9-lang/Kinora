@@ -1,0 +1,1 @@
+{"id":"split-3","name":"Split 3","category":"Party","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  vec2 u = vec2(fract(uv.x * 3.0) / 3.0 + 1.0 / 3.0, uv.y);\n  return mix(getColor(uv), getColor(u), uAmount > 0.01 ? 1.0 : 0.0);\n}"}

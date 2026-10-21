@@ -1,0 +1,1 @@
+{"id":"bubble","name":"Speech bubble","category":"Speech","w":260,"h":200,"body":"<path d=\"M30 10h200a20 20 0 0 1 20 20v100a20 20 0 0 1-20 20H110l-50 40 10-40H30a20 20 0 0 1-20-20V30a20 20 0 0 1 20-20z\" fill=\"{{c}}\" stroke=\"#111\" stroke-width=\"6\" stroke-linejoin=\"round\"/>","color":"#ffffff"}

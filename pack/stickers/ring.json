@@ -1,0 +1,1 @@
+{"id":"ring","name":"Ring","category":"Shapes","w":200,"h":200,"body":"<circle cx=\"100\" cy=\"100\" r=\"80\" fill=\"none\" stroke=\"{{c}}\" stroke-width=\"22\"/>","color":"#ffffff"}

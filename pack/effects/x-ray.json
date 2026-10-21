@@ -1,0 +1,1 @@
+{"id":"x-ray","name":"X-ray","category":"Artistic","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  vec4 c = getColor(uv);\n  float l = 1.0 - luma(c.rgb);\n  vec3 x = vec3(l * 0.7, l * 0.85, l * 1.05);\n  return vec4(mix(c.rgb, x, uAmount), c.a);\n}"}

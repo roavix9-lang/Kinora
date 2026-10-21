@@ -1,0 +1,1 @@
+{"id":"chroma-pulse","name":"Chroma pulse","category":"Glitch","moving":true,"glsl":"\nvec4 effect(vec2 uv) {\n  float o = (0.004 + 0.016 * pow(abs(sin(uTime * 4.0)), 4.0)) * uAmount;\n  vec2 d = normalize(uv - 0.5 + 1e-5) * o;\n  return vec4(getColor(uv + d).r, getColor(uv).g, getColor(uv - d).b, getColor(uv).a);\n}"}

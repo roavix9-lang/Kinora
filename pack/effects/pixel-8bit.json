@@ -1,0 +1,1 @@
+{"id":"pixel-8bit","name":"8-bit","category":"Retro","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  float cols = mix(160.0, 48.0, uAmount);\n  vec2 g = vec2(cols, cols / uRatio);\n  vec2 p = (floor(uv * g) + 0.5) / g;\n  vec3 c = getColor(p).rgb;\n  c = floor(c * 4.0 + 0.5) / 4.0;\n  return vec4(c, getColor(uv).a);\n}"}

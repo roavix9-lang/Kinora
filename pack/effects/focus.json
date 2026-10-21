@@ -1,0 +1,1 @@
+{"id":"focus","name":"Focus","category":"Blur","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  vec2 d = (uv - 0.5) * vec2(uRatio, 1.0);\n  float k = smoothstep(0.15, 0.7, length(d)) * uAmount;\n  return blurAt(uv, 0.02 * k);\n}"}

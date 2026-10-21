@@ -1,0 +1,1 @@
+{"id":"melt","name":"Melt","category":"Glitch","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  vec4 c = getColor(uv);\n  vec4 best = c;\n  float bl = luma(c.rgb);\n  for (int i = 1; i <= 14; i++) {\n    vec4 s = getColor(uv + vec2(0.0, float(i) * 0.006 * uAmount));\n    float l = luma(s.rgb);\n    if (l > bl && l > 0.55) { best = s; bl = l; }\n  }\n  return best;\n}"}

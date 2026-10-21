@@ -1,0 +1,1 @@
+{"id":"badge-sale","name":"SALE tag","category":"Badges","w":260,"h":130,"body":"<path d=\"M8 20a12 12 0 0 1 12-12h170l62 57-62 57H20a12 12 0 0 1-12-12z\" fill=\"{{c}}\"/><circle cx=\"196\" cy=\"65\" r=\"10\" fill=\"#fff\"/><text x=\"92\" y=\"88\" text-anchor=\"middle\" font-family=\"Anton, Impact, sans-serif\" font-size=\"62\" fill=\"#fff\">SALE</text>","color":"#111827"}

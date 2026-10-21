@@ -1,0 +1,1 @@
+{"id":"circle","name":"Circle","category":"Shapes","w":200,"h":200,"body":"<circle cx=\"100\" cy=\"100\" r=\"92\" fill=\"{{c}}\"/>","color":"#22d3ee"}

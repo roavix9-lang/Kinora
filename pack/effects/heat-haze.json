@@ -1,0 +1,1 @@
+{"id":"heat-haze","name":"Heat haze","category":"Distort","moving":true,"glsl":"\nvec4 effect(vec2 uv) {\n  vec2 u = uv;\n  float n = noise(vec2(uv.x * 20.0, uv.y * 12.0 - uTime * 3.0));\n  u += (vec2(n, noise(vec2(uv.y * 18.0, uTime * 2.0))) - 0.5) * 0.02 * uAmount;\n  return getColor(u);\n}"}

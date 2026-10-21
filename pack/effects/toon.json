@@ -1,0 +1,1 @@
+{"id":"toon","name":"Cartoon","category":"Artistic","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  vec4 c = blurAt(uv, 0.002);\n  vec3 p = floor(c.rgb * 5.0 + 0.5) / 5.0;\n  float e = smoothstep(0.25, 0.6, edge(uv));\n  vec3 col = p * (1.0 - e);\n  return vec4(mix(getColor(uv).rgb, col, uAmount), c.a);\n}"}

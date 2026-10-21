@@ -1,0 +1,1 @@
+{"id":"bulge","name":"Bulge","category":"Distort","moving":true,"glsl":"\nvec4 effect(vec2 uv) {\n  vec2 d = uv - 0.5; d.x *= uRatio;\n  float r = length(d);\n  float k = smoothstep(0.45, 0.0, r) * uAmount * (0.45 + 0.1 * sin(uTime * 2.0));\n  d *= 1.0 - k;\n  d.x /= uRatio;\n  return getColor(d + 0.5);\n}"}

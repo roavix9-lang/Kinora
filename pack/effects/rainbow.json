@@ -1,0 +1,1 @@
+{"id":"rainbow","name":"Rainbow","category":"Party","moving":true,"glsl":"\nvec4 effect(vec2 uv) {\n  vec4 c = getColor(uv);\n  return vec4(mix(c.rgb, hueRotate(c.rgb, uTime * 2.5 + uv.x * 3.0), uAmount), c.a);\n}"}

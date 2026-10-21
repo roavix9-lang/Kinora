@@ -1,0 +1,1 @@
+{"id":"play","name":"Play button","category":"Social","w":200,"h":200,"body":"<circle cx=\"100\" cy=\"100\" r=\"94\" fill=\"{{c}}\" fill-opacity=\".9\"/><path d=\"M80 58v84l66-42z\" fill=\"#fff\"/>","color":"#111827"}

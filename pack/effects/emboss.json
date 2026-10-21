@@ -1,0 +1,1 @@
+{"id":"emboss","name":"Emboss","category":"Artistic","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  vec4 c = getColor(uv);\n  float a = luma(getColor(uv - uTexel * 1.5).rgb);\n  float b = luma(getColor(uv + uTexel * 1.5).rgb);\n  vec3 e = vec3(0.5 + (b - a) * 3.0);\n  return vec4(mix(c.rgb, e, uAmount), c.a);\n}"}

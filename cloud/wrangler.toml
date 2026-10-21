@@ -1,0 +1,12 @@
+name = "kinora-api"
+main = "src/index.ts"
+compatibility_date = "2025-09-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kinora"
+database_id = "998d176a-06fd-425f-9c0d-a326b06c4690"
+
+[[r2_buckets]]
+binding = "ASSETS"
+bucket_name = "kinora-assets"

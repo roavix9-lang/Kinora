@@ -1,0 +1,1 @@
+{"id":"square","name":"Rounded square","category":"Shapes","w":200,"h":200,"body":"<rect x=\"8\" y=\"8\" width=\"184\" height=\"184\" rx=\"34\" fill=\"{{c}}\"/>","color":"#a78bfa"}

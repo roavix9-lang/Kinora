@@ -1,0 +1,1 @@
+{"id":"tilt-shift","name":"Tilt shift","category":"Blur","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  float k = smoothstep(0.08, 0.4, abs(uv.y - 0.5)) * uAmount;\n  vec4 b = blurAt(uv, 0.018 * k);\n  vec3 c = b.rgb * (1.0 + 0.15 * uAmount);\n  return vec4(mix(c, (c - 0.5) * 1.1 + 0.5, uAmount * 0.5), b.a);\n}"}

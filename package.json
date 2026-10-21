@@ -1,0 +1,22 @@
+{
+  "name": "kinora-editor",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "asbuild": "asc assembly/index.ts -o src/wasm/kinora.wasm -O3 --runtime stub --noAssert",
+    "dev": "npm run asbuild && vite",
+    "build": "npm run asbuild && tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.3.1",
+    "gl-transitions": "1.71.0",
+    "mediabunny": "1.61.6"
+  },
+  "devDependencies": {
+    "assemblyscript": "0.28.20",
+    "typescript": "5.9.3",
+    "vite": "7.3.7"
+  }
+}

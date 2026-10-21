@@ -1,0 +1,1 @@
+{"id":"motion-blur","name":"Motion blur","category":"Blur","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  vec4 acc = vec4(0.0);\n  for (int i = -10; i <= 10; i++) acc += getColor(uv + vec2(float(i) * 0.0025 * uAmount, 0.0));\n  return acc / 21.0;\n}"}

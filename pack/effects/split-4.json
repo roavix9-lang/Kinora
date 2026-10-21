@@ -1,0 +1,1 @@
+{"id":"split-4","name":"Split 4","category":"Party","moving":false,"glsl":"\nvec4 effect(vec2 uv) {\n  return mix(getColor(uv), getColor(fract(uv * 2.0)), uAmount > 0.01 ? 1.0 : 0.0);\n}"}
