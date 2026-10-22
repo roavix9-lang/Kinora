@@ -1,0 +1,398 @@
+[
+ {
+  "id": "golden-hour",
+  "duration": 13.44,
+  "music": {
+   "fs": 814843,
+   "artist": "Seth_Makes_Sounds",
+   "title": "Wonders",
+   "bpm": 107,
+   "from": 18
+  }
+ },
+ {
+  "id": "dance-night",
+  "duration": 15,
+  "music": {
+   "fs": 593792,
+   "artist": "szegvari",
+   "title": "Neon City",
+   "bpm": 128,
+   "from": 2
+  }
+ },
+ {
+  "id": "city-walk",
+  "duration": 14,
+  "music": {
+   "fs": 634685,
+   "artist": "Cloud-10",
+   "title": "Smoke",
+   "bpm": 90,
+   "from": 0
+  }
+ },
+ {
+  "id": "glow-up",
+  "duration": 16.71,
+  "music": {
+   "fs": 686610,
+   "artist": "Seth_Makes_Sounds",
+   "title": "Bubblegum Pop Song",
+   "bpm": 115,
+   "from": 13
+  }
+ },
+ {
+  "id": "monochrome",
+  "duration": 15,
+  "music": {
+   "fs": 819108,
+   "artist": "jcmbo369",
+   "title": "Soft slow piano",
+   "bpm": 72,
+   "from": 4
+  }
+ },
+ {
+  "id": "soft-love",
+  "duration": 15,
+  "music": {
+   "fs": 584095,
+   "artist": "Bigvegie",
+   "title": "OpusKey Piano",
+   "bpm": 80,
+   "from": 3
+  }
+ },
+ {
+  "id": "beach-days",
+  "duration": 10,
+  "music": {
+   "fs": 607304,
+   "artist": "szegvari",
+   "title": "Beach Dance",
+   "bpm": 120,
+   "from": 0
+  }
+ },
+ {
+  "id": "portrait-reel",
+  "duration": 12.48,
+  "music": {
+   "fs": 593834,
+   "artist": "szegvari",
+   "title": "Sahara Dance",
+   "bpm": 115,
+   "from": 2
+  }
+ },
+ {
+  "id": "smile",
+  "duration": 12.24,
+  "music": {
+   "fs": 575759,
+   "artist": "code_box",
+   "title": "Rabbit Bop",
+   "bpm": 98,
+   "from": 0
+  }
+ },
+ {
+  "id": "fashion-week",
+  "duration": 13.37,
+  "music": {
+   "fs": 500268,
+   "artist": "LilMati",
+   "title": "European Fashion Background",
+   "bpm": 94,
+   "from": 0
+  }
+ },
+ {
+  "id": "afro-beauty",
+  "duration": 21.26,
+  "music": {
+   "fs": 788623,
+   "artist": "kontraamusic",
+   "title": "Kemet",
+   "bpm": 101.5,
+   "from": 9
+  }
+ },
+ {
+  "id": "bookish",
+  "duration": 12.74,
+  "music": {
+   "fs": 699063,
+   "artist": "deadrobotmusic",
+   "title": "In The Clouds",
+   "bpm": 132,
+   "from": 0
+  }
+ },
+ {
+  "id": "night-out",
+  "duration": 13.57,
+  "music": {
+   "fs": 607298,
+   "artist": "szegvari",
+   "title": "New York Club",
+   "bpm": 115,
+   "from": 0
+  }
+ },
+ {
+  "id": "retro-film",
+  "duration": 15.18,
+  "music": {
+   "fs": 699241,
+   "artist": "LulSayer",
+   "title": "Synthwave Loop",
+   "bpm": 95,
+   "from": 0
+  }
+ },
+ {
+  "id": "birthday",
+  "duration": 13.63,
+  "music": {
+   "fs": 614130,
+   "artist": "Touda",
+   "title": "Arcade Aroma",
+   "bpm": 105.5,
+   "from": 0
+  }
+ },
+ {
+  "id": "brand-intro",
+  "duration": 10.9,
+  "music": {
+   "fs": 561190,
+   "artist": "code_box",
+   "title": "Tropicorp Advertisement",
+   "bpm": 110,
+   "from": 0
+  }
+ },
+ {
+  "id": "main-character",
+  "duration": 12,
+  "music": {
+   "fs": 716385,
+   "artist": "MusicByMisterbates",
+   "title": "Above The Sky",
+   "bpm": 120,
+   "from": 3
+  }
+ },
+ {
+  "id": "slow-days",
+  "duration": 12,
+  "music": {
+   "fs": 827095,
+   "artist": "Johnmode",
+   "title": "1990s acoustic guitar tune",
+   "bpm": 100,
+   "from": 3
+  }
+ },
+ {
+  "id": "vhs-tape",
+  "duration": 15.26,
+  "music": {
+   "fs": 623421,
+   "artist": "szegvari",
+   "title": "Retrowave 90s",
+   "bpm": 110,
+   "from": 0
+  }
+ },
+ {
+  "id": "glitch-pop",
+  "duration": 13.72,
+  "music": {
+   "fs": 703568,
+   "artist": "tenxsound",
+   "title": "Dark Time",
+   "bpm": 140,
+   "from": 14
+  }
+ },
+ {
+  "id": "dreamscape",
+  "duration": 17.15,
+  "music": {
+   "fs": 632109,
+   "artist": "BassmanJourney",
+   "title": "Cinematic Ambient",
+   "bpm": 70,
+   "from": 12
+  }
+ },
+ {
+  "id": "comic-strip",
+  "duration": 12.75,
+  "music": {
+   "fs": 435872,
+   "artist": "Teacoma",
+   "title": "Easy Hip-Hop Beat",
+   "bpm": 94,
+   "from": 10
+  }
+ },
+ {
+  "id": "sketchbook",
+  "duration": 12.5,
+  "music": {
+   "fs": 462723,
+   "artist": "Garuda1982",
+   "title": "Acoustic guitar melody",
+   "bpm": 96,
+   "from": 1
+  }
+ },
+ {
+  "id": "neon-nights",
+  "duration": 14,
+  "music": {
+   "fs": 550337,
+   "artist": "Wax_vibe",
+   "title": "Synthwave",
+   "bpm": 120,
+   "from": 10
+  }
+ },
+ {
+  "id": "winter-mood",
+  "duration": 15.8,
+  "music": {
+   "fs": 582038,
+   "artist": "Bigvegie",
+   "title": "MorningDue Piano",
+   "bpm": 76,
+   "from": 13
+  }
+ },
+ {
+  "id": "rainy-day",
+  "duration": 17.69,
+  "music": {
+   "fs": 629176,
+   "artist": "holizna",
+   "title": "Lofi Vinyl E-Piano",
+   "bpm": 95,
+   "from": 0
+  }
+ },
+ {
+  "id": "party-mode",
+  "duration": 17.42,
+  "music": {
+   "fs": 607299,
+   "artist": "szegvari",
+   "title": "Dance Pharao",
+   "bpm": 124,
+   "from": 0
+  }
+ },
+ {
+  "id": "heartbeat",
+  "duration": 15,
+  "music": {
+   "fs": 560894,
+   "artist": "Bigvegie",
+   "title": "Timeflow",
+   "bpm": 80,
+   "from": 7
+  }
+ },
+ {
+  "id": "split-screen",
+  "duration": 16,
+  "music": {
+   "fs": 564794,
+   "artist": "Johnnie_Holiday",
+   "title": "Deep House",
+   "bpm": 120,
+   "from": 0
+  }
+ },
+ {
+  "id": "starry-night",
+  "duration": 15,
+  "music": {
+   "fs": 456102,
+   "artist": "BurghRecords",
+   "title": "Cinematic Dramatic Buildup",
+   "bpm": 80,
+   "from": 19
+  }
+ },
+ {
+  "id": "film-noir",
+  "duration": 17.15,
+  "music": {
+   "fs": 770969,
+   "artist": "nicpressley",
+   "title": "Jazz Chords Gm",
+   "bpm": 84,
+   "from": 5
+  }
+ },
+ {
+  "id": "hype-reel",
+  "duration": 14.05,
+  "music": {
+   "fs": 507747,
+   "artist": "Magmi.Soundtracks",
+   "title": "Hybrid Action Music",
+   "bpm": 128,
+   "from": 3
+  }
+ },
+ {
+  "id": "lofi-study",
+  "duration": 18.37,
+  "music": {
+   "fs": 708776,
+   "artist": "TheWandermiles",
+   "title": "Lofi Hip Hop Loop",
+   "bpm": 85,
+   "from": 0
+  }
+ },
+ {
+  "id": "eight-bit",
+  "duration": 10,
+  "music": {
+   "fs": 656141,
+   "artist": "josefpres",
+   "title": "8 bit game loop",
+   "bpm": 120,
+   "from": 0
+  }
+ },
+ {
+  "id": "scanner",
+  "duration": 12,
+  "music": {
+   "fs": 615546,
+   "artist": "Projecteur",
+   "title": "Cosmic dark synthwave",
+   "bpm": 100,
+   "from": 0
+  }
+ },
+ {
+  "id": "summer-glow",
+  "duration": 16.01,
+  "music": {
+   "fs": 395037,
+   "artist": "Kodack",
+   "title": "Simple relaxing guitar loop",
+   "bpm": 90,
+   "from": 0
+  }
+ }
+]

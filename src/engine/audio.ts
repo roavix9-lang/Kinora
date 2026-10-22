@@ -1,7 +1,8 @@
 import { store } from '../store';
 import { Clip, clipEnd, hasSound, Track } from '../types';
 import { audioGain } from './layout';
-import { audioBuffers, hasAudioSource } from './media';
+import { hasAudioSource } from './media';
+import { clipAudioBuffers } from './isolate';
 
 const LOOKAHEAD = 1.0; // seconds of audio scheduled ahead of the clock
 
@@ -66,7 +67,7 @@ export class AudioEngine {
     for (const track of store.viewProject.tracks) {
       if (track.muted) continue;
       for (const clip of track.clips) {
-        if (clipEnd(clip) <= t || clip.muted) continue;
+        if (clipEnd(clip) <= t || clip.muted || clip.disabled) continue;
         const media = clip.mediaId ? store.media.get(clip.mediaId) : undefined;
         if (!hasSound(clip, media)) continue;
         void this.playClip(clip, track, t, gen);
@@ -133,7 +134,7 @@ export class AudioEngine {
     };
 
     try {
-      for await (const { buffer, timestamp } of audioBuffers(clip.mediaId, srcStart, srcEnd)) {
+      for await (const { buffer, timestamp } of clipAudioBuffers(clip, srcStart, srcEnd)) {
         if (gen !== this.generation) break;
         const ref = pending[0];
         const expected = ref ? pendingTs + pendingLen / ref.sampleRate : timestamp;

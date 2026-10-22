@@ -1,13 +1,17 @@
 import { addTemplateToTimeline } from '../actions';
+import { addTemplateMusic } from '../engine/sampleMedia';
 import { libDrag, previewTemplate } from './libraryPreview';
 import { store } from '../store';
-import { buildTemplateProject, TEMPLATES, TemplateDef, templateDuration } from '../templates';
-import { CatalogItem, catalogOf, download, isDownloaded, isDownloading, thumbUrl } from '../engine/assets';
+import { buildTemplateProject, TEMPLATE_CATEGORIES, TEMPLATES, TemplateDef, templateDuration } from '../templates';
+import { projectToTemplate } from '../engine/makeTemplate';
+import { Player } from '../engine/player';
+import { onContextMenu } from './contextmenu';
+import { CatalogItem, catalogOf, deleteMyTemplate, download, isDownloaded, isDownloading, saveMyTemplate, templateQuota, thumbUrl } from '../engine/assets';
 import { MediaItem } from '../types';
 import { fmtTime, h, icon, toast } from './dom';
 import { importOnly, pickFiles } from './importer';
 import { closePopover, dropdown } from './select';
-import { loadSamples, onSamplesReady, playTemplate, previewSize, refreshTemplateStills, templateStill } from './templatePreview';
+import { loadSamples, onSamplesReady, playTemplate, previewSize, previewVideo, refreshTemplateStills, templateStill } from './templatePreview';
 
 const FAV_KEY = 'kinora.favTemplates';
 const favs = new Set<string>((() => { try { return JSON.parse(localStorage.getItem(FAV_KEY) ?? '[]') as string[]; } catch { return []; } })());
@@ -174,13 +178,14 @@ function card(t: TInfo, refresh: () => void) {
   // Content that doesn't match the card's shape sits over a blurred fill.
   const letterbox = Math.abs(ratioOf(t) - CARD_RATIO[shape]) > 0.05;
   // Covers come pre-rendered from R2; drawing them live froze the app on every tab switch.
-  const still = (def && templateStill(def)) || thumbUrl(t.item);
-  const anim = def ? h('canvas.tpl-anim', { width: previewSize(def)[0], height: previewSize(def)[1] }) as HTMLCanvasElement : null;
+  const still = thumbUrl(t.item) || (def ? templateStill(def) : null);
+  const video = previewVideo(t.item, 'tpl-anim');
+  const anim = def && !video ? h('canvas.tpl-anim', { width: previewSize(def)[0], height: previewSize(def)[1] }) as HTMLCanvasElement : null;
   const busy = isDownloading('templates', t.id);
   const thumb = h(`div.tpl-thumb.${shape}`, { style: { aspectRatio: String(CARD_RATIO[shape]) } },
     still && letterbox ? h('img.tpl-bg', { src: still, alt: '', draggable: false, loading: 'lazy' }) : null,
     still ? h('img.tpl-still', { src: still, alt: '', draggable: false, loading: 'lazy' }) : h('div.spinner'),
-    anim,
+    video?.el ?? anim,
     t.featured ? h('span.tpl-badge', null, 'Featured') : null,
     h('div.tpl-meta', null,
       h('span', { title: 'Clips' }, icon('film', 12), String(t.slots)),
@@ -200,15 +205,23 @@ function card(t: TInfo, refresh: () => void) {
         refresh();
       },
     }, icon('star', 14)));
-  if (def && anim) {
-    let stop: (() => void) | null = null;
-    thumb.addEventListener('pointerenter', () => { stop = playTemplate(anim, def); thumb.classList.add('playing'); });
-    thumb.addEventListener('pointerleave', () => { stop?.(); stop = null; thumb.classList.remove('playing'); });
-  }
+  // Hover plays on the card; once clicked, the template plays in the player instead, so the
+  // card stays still until the pointer leaves it.
+  let stopCard: (() => void) | null = null;
+  const stopHover = () => { stopCard?.(); stopCard = null; thumb.classList.remove('playing'); };
+  thumb.addEventListener('pointerenter', () => {
+    if (inPlayer === t.id) return;
+    if (video) { video.play(); stopCard = () => video.stop(); } else if (def && anim) stopCard = playTemplate(anim, def);
+    else return;
+    thumb.classList.add('playing');
+  });
+  thumb.addEventListener('pointerleave', () => { stopHover(); if (inPlayer === t.id) inPlayer = null; });
   // Click previews in the player (downloading first if needed); double-click opens “Use template”.
   const el: HTMLElement = h('div.tpl-card', {
     role: 'button', tabindex: 0, title: t.name,
     onclick: async () => {
+      inPlayer = t.id;
+      stopHover();
       if (!def && !(await download('templates', t.id))) { toast(`Couldn't download “${t.name}”. Check your connection.`, 'error'); return; }
       const d = TEMPLATES.find((x) => x.id === t.id);
       if (d) void previewTemplate(d, el);
@@ -218,8 +231,17 @@ function card(t: TInfo, refresh: () => void) {
   }, thumb, h('div.tpl-name', null, t.name));
   if (def) libDrag(el, { kind: 'template', id: t.id });
   el.dataset.pkey = `template:${t.id}`;
+  if (t.category === 'Yours') {
+    onContextMenu(el, () => [{
+      label: 'Delete template', danger: true,
+      onSelect: () => void deleteMyTemplate(t.id).then(() => toast(`Deleted “${t.name}”`), () => toast("Couldn't delete it. Check your connection.", 'error')),
+    }]);
+  }
   return el;
 }
+
+/** Template last clicked into the player (its card doesn't also play on hover). */
+let inPlayer: string | null = null;
 
 // ---- "Use template" dialog ----------------------------------------------------------
 
@@ -288,6 +310,9 @@ function openUseTemplate(t: TemplateDef) {
   function create() {
     if (picks.some((p) => !p)) return;
     const p = buildTemplateProject(t, picks);
+    // The template's song comes along on its own track, as long as the edit (user videos can shorten it).
+    const length = p.tracks.find((tr) => tr.main)?.clips.reduce((n, c) => Math.max(n, c.start + c.duration), 0) ?? 0;
+    if (length > 0) addTemplateMusic(p, t, 0, length);
     close();
     store.addTimeline(p);
     toast(`Template “${t.name}” opened as a new timeline. Edit anything you like.`, 'ok');
@@ -310,4 +335,78 @@ function openUseTemplate(t: TemplateDef) {
   render();
   document.body.append(backdrop);
   store.on('media', () => { if (backdrop.isConnected) render(); });
+}
+
+// ---- "Create template" ----------------------------------------------------------------------
+
+/** A small WebP cover from the player's current frame (max 384 px on the long side). */
+async function coverFromPlayer(player: Player): Promise<Blob | null> {
+  try {
+    player.draw(store.currentTime);
+    const src = player.canvas;
+    const k = Math.min(1, 384 / Math.max(src.width, src.height));
+    const c = document.createElement('canvas');
+    c.width = Math.max(1, Math.round(src.width * k));
+    c.height = Math.max(1, Math.round(src.height * k));
+    c.getContext('2d')!.drawImage(src, 0, 0, c.width, c.height);
+    return await new Promise((r) => c.toBlob(r, 'image/webp', 0.7));
+  } catch { return null; }
+}
+
+/** Longest edit that can be saved as a template (the Worker checks this too). */
+const MAX_TEMPLATE_SECONDS = 300;
+
+/** Saves the current timeline's edit as a template (Templates › Yours). */
+export async function openCreateTemplate(player: Player, after: () => void) {
+  const main = store.project.tracks.find((t) => t.main);
+  const clips = (main?.clips ?? []).filter((c) => c.type === 'video' || c.type === 'image').length;
+  if (!clips) { toast('Add videos or photos to the main track first, then save the edit as a template.'); return; }
+  const length = (main?.clips ?? []).reduce((n, c) => Math.max(n, c.start + c.duration), 0);
+  if (length > MAX_TEMPLATE_SECONDS) { toast(`Templates can be at most 5 minutes. This edit is ${fmtTime(length)}; trim it first.`, 'error'); return; }
+  const cover = await coverFromPlayer(player);
+  const coverUrl = cover ? URL.createObjectURL(cover) : '';
+  let category = TEMPLATE_CATEGORIES[0];
+  const name = h('input.text-field', { value: store.projectTitle === 'Untitled project' ? '' : store.projectTitle, placeholder: 'Template name', maxlength: 60, 'aria-label': 'Template name' }) as HTMLInputElement;
+  const saveBtn = h('button.primary-btn', { type: 'button' }, 'Save template') as HTMLButtonElement;
+  // Weekly limit (checked again by the server): show what's left, block saving at 0.
+  const quotaNote = h('p.hint.tpl-quota');
+  void templateQuota().then((q) => {
+    if (!q) return;
+    quotaNote.textContent = q.left > 0 ? `${q.left} of ${q.perWeek} templates left this week.` : `You've created ${q.perWeek} templates this week. You can create more in a few days.`;
+    if (q.left <= 0) saveBtn.disabled = true;
+  });
+  const close = () => { closePopover(); backdrop.remove(); if (coverUrl) URL.revokeObjectURL(coverUrl); };
+  const backdrop = h('div.modal-backdrop', {
+    onpointerdown: (e: Event) => { if (e.target === backdrop) close(); },
+    onkeydown: (e: KeyboardEvent) => { if (e.key === 'Escape') close(); if (e.key === 'Enter' && e.target === name) saveBtn.click(); },
+  }, h('div.modal.small.tpl-create', { role: 'dialog', 'aria-label': 'Create template' },
+    h('div.modal-head', null, h('h2', null, 'Create template'), h('button.icon-btn', { type: 'button', 'aria-label': 'Close', onclick: close }, icon('x'))),
+    h('div.tpl-create-body', null,
+      coverUrl ? h('img.tpl-create-cover', { src: coverUrl, alt: '' }) : null,
+      h('div.tpl-create-fields', null,
+        h('div.ex-field', null, h('label', null, 'Name'), name),
+        h('div.ex-field', null, h('label', null, 'Category'), dropdown(category, TEMPLATE_CATEGORIES.map((c) => ({ id: c, name: c })), (v) => { category = v; })),
+        h('p.hint', null, `Saves the edit (${clips} clip${clips > 1 ? 's' : ''}, timing, transitions, text, stickers and looks), not your videos. Anyone using it fills in their own clips.`),
+        quotaNote)),
+    h('div.modal-foot', null, h('button.ghost-btn', { type: 'button', onclick: close }, 'Cancel'), saveBtn)));
+  saveBtn.addEventListener('click', async () => {
+    const title = name.value.trim();
+    if (!title) { name.focus(); toast('Give the template a name'); return; }
+    const def = projectToTemplate(store.project, title, category);
+    if (!def) return;
+    saveBtn.disabled = true;
+    saveBtn.textContent = 'Saving…';
+    try {
+      await saveMyTemplate(def, cover);
+      toast(`Saved “${title}” to your templates`, 'ok');
+      close();
+      after();
+    } catch (err) {
+      toast(`Couldn't save the template: ${err instanceof Error ? err.message : String(err)}`, 'error');
+      saveBtn.disabled = false;
+      saveBtn.textContent = 'Save template';
+    }
+  });
+  document.body.append(backdrop);
+  name.focus();
 }

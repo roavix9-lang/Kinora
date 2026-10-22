@@ -44,10 +44,15 @@ export function renderText(s: TextStyle, px: number): Rendered {
   if ('letterSpacing' in m) (m as unknown as { letterSpacing: string }).letterSpacing = `${s.letterSpacing * px / 100}px`;
   const lineH = px * s.lineHeight;
   const widths = lines.map((l) => m.measureText(l || ' ').width);
-  const pad = Math.ceil(px * 0.25 + s.strokeWidth * px / 100 + (s.shadow ? px * 0.2 : 0));
-  const textW = Math.max(...widths, 1);
+  const shadowRoom = s.shadow ? px * Math.max(0.2, (s.shadowBlur ?? 0.25) + Math.max(Math.abs(s.shadowX ?? 0), Math.abs(s.shadowY ?? 0))) : 0;
+  const pad = Math.ceil(px * 0.25 + s.strokeWidth * px / 100 + shadowRoom);
+  // Vertical text: each line is a column of stacked characters, columns run left to right.
+  const vChars = s.vertical ? lines.map((l) => [...l]) : [];
+  const colW = px * 1.15, charH = px * Math.max(1, s.lineHeight * 0.95);
+  const longest = s.vertical ? Math.max(...vChars.map((c) => c.length), 1) : 0;
+  const textW = s.vertical ? colW * lines.length : Math.max(...widths, 1);
   const w = Math.ceil(textW + pad * 2);
-  const h = Math.ceil(lineH * lines.length + pad * 2);
+  const h = Math.ceil((s.vertical ? charH * longest : lineH * lines.length) + pad * 2);
 
   const canvas = makeCanvas(w, h);
   const ctx = canvas.getContext('2d') as OffscreenCanvasRenderingContext2D;
@@ -64,17 +69,47 @@ export function renderText(s: TextStyle, px: number): Rendered {
     ctx.fill();
   }
 
+  const applyShadow = () => {
+    if (!s.shadow) return;
+    if (s.shadowColor) {
+      ctx.shadowColor = s.shadowColor;
+      ctx.shadowBlur = px * (s.shadowBlur ?? 0.25);
+      ctx.shadowOffsetX = px * (s.shadowX ?? 0);
+      ctx.shadowOffsetY = px * (s.shadowY ?? 0);
+      return;
+    }
+    ctx.shadowColor = s.color === '#ffffff' ? 'rgba(0,0,0,0.85)' : s.color;
+    ctx.shadowBlur = px * 0.25;
+    ctx.shadowOffsetX = s.color === '#ffffff' ? px * 0.04 : 0;
+    ctx.shadowOffsetY = s.color === '#ffffff' ? px * 0.04 : 0;
+  };
+
+  if (s.vertical) {
+    ctx.textAlign = 'center';
+    vChars.forEach((chars, col) => {
+      const x = pad + colW * (col + 0.5);
+      const top = pad + (s.vertical === 'bottom' ? (longest - chars.length) * charH : s.vertical === 'middle' ? ((longest - chars.length) * charH) / 2 : 0);
+      chars.forEach((ch, i) => {
+        const y = top + charH * (i + 0.5);
+        applyShadow();
+        if (s.strokeWidth > 0) { ctx.strokeStyle = s.strokeColor; ctx.lineWidth = (s.strokeWidth * px) / 50; ctx.strokeText(ch, x, y); }
+        ctx.fillStyle = s.color;
+        ctx.fillText(ch, x, y);
+        ctx.shadowColor = 'transparent';
+      });
+    });
+    const outV = { canvas, width: w, height: h, key };
+    cache.set(key, outV);
+    if (cache.size > 200) cache.delete(cache.keys().next().value!);
+    return outV;
+  }
+
   const hl = new Set(s.highlightWords ?? []);
   lines.forEach((line, i) => {
     const lw = widths[i];
     const x = s.align === 'left' ? pad : s.align === 'right' ? w - pad - lw : (w - lw) / 2;
     const y = pad + lineH * (i + 0.5);
-    if (s.shadow) {
-      ctx.shadowColor = s.color === '#ffffff' ? 'rgba(0,0,0,0.85)' : s.color;
-      ctx.shadowBlur = px * 0.25;
-      ctx.shadowOffsetX = s.color === '#ffffff' ? px * 0.04 : 0;
-      ctx.shadowOffsetY = s.color === '#ffffff' ? px * 0.04 : 0;
-    }
+    applyShadow();
     if (s.strokeWidth > 0) {
       ctx.strokeStyle = s.strokeColor;
       ctx.lineWidth = (s.strokeWidth * px) / 50;

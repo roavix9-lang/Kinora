@@ -86,6 +86,13 @@ export interface TextStyle {
   /** Words drawn in `highlightColor` instead of `color` (auto-highlighted caption keywords). */
   highlightWords?: string[];
   highlightColor?: string;
+  /** Custom shadow / glow (preset styles). Blur and offsets are fractions of the font size. */
+  shadowColor?: string;
+  shadowBlur?: number;
+  shadowX?: number;
+  shadowY?: number;
+  /** Vertical text: characters stacked in columns, aligned to the top, middle or bottom. */
+  vertical?: 'top' | 'middle' | 'bottom';
 }
 
 export interface Clip {
@@ -111,6 +118,8 @@ export interface Clip {
   effect: Look;
   transitionIn: Transition;
   transitionOut: Transition;
+  /** Combo animation (library id) across the clip; replaces In/Out while set. */
+  combo?: Transition;
   text?: TextStyle;
   sticker?: StickerRef;
   /** Adjust tab extras (all optional; absent = neutral). */
@@ -123,6 +132,12 @@ export interface Clip {
   adjMask?: AdjustMask;
   /** Markers, as seconds from the clip's start. */
   markers?: number[];
+  /** Deactivated (CapCut V): stays on the timeline but isn't seen or heard. */
+  disabled?: boolean;
+  /** Isolate voice: 'remove' plays the music only, 'keep' plays the voice only. */
+  isolate?: 'remove' | 'keep';
+  /** Extract audio: the audio clip taken out of this video (the video is then silent). */
+  extractedTo?: string;
   /** Template clip: which template, and the media chosen for each slot (null = sample placeholder). */
   template?: { id: string; media: (string | null)[] };
   /** GL transition from the clip that ends where this one starts (same track), centred on the cut. */
@@ -168,6 +183,8 @@ export interface Project {
 export interface MediaItem {
   /** Real level of the loudest peak (peaks are scaled so the loudest is 1). */
   peakScale?: number;
+  /** Song / sound effect from the Audio library (kept in the offline cache, not the media bin). */
+  library?: boolean;
   id: string;
   kind: MediaKind;
   name: string;

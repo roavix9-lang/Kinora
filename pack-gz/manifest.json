@@ -1,0 +1,6453 @@
+[
+ {
+  "kind": "stickers",
+  "id": "circle",
+  "name": "Circle",
+  "category": "Shapes",
+  "sort": 0,
+  "file": "stickers/circle.json.gz",
+  "thumb": "stickers/circle.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#22d3ee"
+  },
+  "size": 135,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "square",
+  "name": "Rounded square",
+  "category": "Shapes",
+  "sort": 1,
+  "file": "stickers/square.json.gz",
+  "thumb": "stickers/square.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#a78bfa"
+  },
+  "size": 153,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "triangle",
+  "name": "Triangle",
+  "category": "Shapes",
+  "sort": 2,
+  "file": "stickers/triangle.json.gz",
+  "thumb": "stickers/triangle.svg",
+  "meta": {
+   "w": 200,
+   "h": 180,
+   "color": "#fb7185"
+  },
+  "size": 161,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "star",
+  "name": "Star",
+  "category": "Shapes",
+  "sort": 3,
+  "file": "stickers/star.json.gz",
+  "thumb": "stickers/star.svg",
+  "meta": {
+   "w": 200,
+   "h": 190,
+   "color": "#facc15"
+  },
+  "size": 165,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "heart",
+  "name": "Heart",
+  "category": "Shapes",
+  "sort": 4,
+  "file": "stickers/heart.json.gz",
+  "thumb": "stickers/heart.svg",
+  "meta": {
+   "w": 200,
+   "h": 180,
+   "color": "#f43f5e"
+  },
+  "size": 189,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "hexagon",
+  "name": "Hexagon",
+  "category": "Shapes",
+  "sort": 5,
+  "file": "stickers/hexagon.json.gz",
+  "thumb": "stickers/hexagon.svg",
+  "meta": {
+   "w": 200,
+   "h": 180,
+   "color": "#34d399"
+  },
+  "size": 152,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "ring",
+  "name": "Ring",
+  "category": "Shapes",
+  "sort": 6,
+  "file": "stickers/ring.json.gz",
+  "thumb": "stickers/ring.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#ffffff"
+  },
+  "size": 150,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "frame",
+  "name": "Frame",
+  "category": "Shapes",
+  "sort": 7,
+  "file": "stickers/frame.json.gz",
+  "thumb": "stickers/frame.svg",
+  "meta": {
+   "w": 320,
+   "h": 200,
+   "color": "#ffffff"
+  },
+  "size": 165,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "bar",
+  "name": "Lower bar",
+  "category": "Shapes",
+  "sort": 8,
+  "file": "stickers/bar.json.gz",
+  "thumb": "stickers/bar.svg",
+  "meta": {
+   "w": 400,
+   "h": 80,
+   "color": "#111827"
+  },
+  "size": 154,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "blob",
+  "name": "Blob",
+  "category": "Shapes",
+  "sort": 9,
+  "file": "stickers/blob.json.gz",
+  "thumb": "stickers/blob.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#f472b6"
+  },
+  "size": 175,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "sparkle",
+  "name": "Sparkle",
+  "category": "Shapes",
+  "sort": 10,
+  "file": "stickers/sparkle.json.gz",
+  "thumb": "stickers/sparkle.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#fde047"
+  },
+  "size": 173,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "burst",
+  "name": "Burst",
+  "category": "Shapes",
+  "sort": 11,
+  "file": "stickers/burst.json.gz",
+  "thumb": "stickers/burst.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#f97316"
+  },
+  "size": 191,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "arrow-right",
+  "name": "Arrow",
+  "category": "Arrows",
+  "sort": 12,
+  "file": "stickers/arrow-right.json.gz",
+  "thumb": "stickers/arrow-right.svg",
+  "meta": {
+   "w": 240,
+   "h": 140,
+   "color": "#facc15"
+  },
+  "size": 191,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "arrow-curve",
+  "name": "Curved arrow",
+  "category": "Arrows",
+  "sort": 13,
+  "file": "stickers/arrow-curve.json.gz",
+  "thumb": "stickers/arrow-curve.svg",
+  "meta": {
+   "w": 220,
+   "h": 200,
+   "color": "#ffffff"
+  },
+  "size": 209,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "arrow-down",
+  "name": "Arrow down",
+  "category": "Arrows",
+  "sort": 14,
+  "file": "stickers/arrow-down.json.gz",
+  "thumb": "stickers/arrow-down.svg",
+  "meta": {
+   "w": 140,
+   "h": 220,
+   "color": "#ef4444"
+  },
+  "size": 171,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "arrow-double",
+  "name": "Double arrow",
+  "category": "Arrows",
+  "sort": 15,
+  "file": "stickers/arrow-double.json.gz",
+  "thumb": "stickers/arrow-double.svg",
+  "meta": {
+   "w": 260,
+   "h": 120,
+   "color": "#22d3ee"
+  },
+  "size": 165,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "chevrons",
+  "name": "Chevrons",
+  "category": "Arrows",
+  "sort": 16,
+  "file": "stickers/chevrons.json.gz",
+  "thumb": "stickers/chevrons.svg",
+  "meta": {
+   "w": 260,
+   "h": 120,
+   "color": "#ffffff"
+  },
+  "size": 202,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "arrow-hand",
+  "name": "Hand-drawn arrow",
+  "category": "Arrows",
+  "sort": 17,
+  "file": "stickers/arrow-hand.json.gz",
+  "thumb": "stickers/arrow-hand.svg",
+  "meta": {
+   "w": 240,
+   "h": 160,
+   "color": "#ffffff"
+  },
+  "size": 222,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "cursor",
+  "name": "Cursor",
+  "category": "Arrows",
+  "sort": 18,
+  "file": "stickers/cursor.json.gz",
+  "thumb": "stickers/cursor.svg",
+  "meta": {
+   "w": 160,
+   "h": 200,
+   "color": null
+  },
+  "size": 171,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "badge-new",
+  "name": "NEW",
+  "category": "Badges",
+  "sort": 19,
+  "file": "stickers/badge-new.json.gz",
+  "thumb": "stickers/badge-new.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#ef4444"
+  },
+  "size": 264,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "badge-sale",
+  "name": "SALE tag",
+  "category": "Badges",
+  "sort": 20,
+  "file": "stickers/badge-sale.json.gz",
+  "thumb": "stickers/badge-sale.svg",
+  "meta": {
+   "w": 260,
+   "h": 130,
+   "color": "#111827"
+  },
+  "size": 269,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "badge-off",
+  "name": "50% OFF",
+  "category": "Badges",
+  "sort": 21,
+  "file": "stickers/badge-off.json.gz",
+  "thumb": "stickers/badge-off.svg",
+  "meta": {
+   "w": 220,
+   "h": 220,
+   "color": "#f59e0b"
+  },
+  "size": 293,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "badge-live",
+  "name": "LIVE",
+  "category": "Badges",
+  "sort": 22,
+  "file": "stickers/badge-live.json.gz",
+  "thumb": "stickers/badge-live.svg",
+  "meta": {
+   "w": 220,
+   "h": 90,
+   "color": "#ef4444"
+  },
+  "size": 255,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "badge-hot",
+  "name": "HOT",
+  "category": "Badges",
+  "sort": 23,
+  "file": "stickers/badge-hot.json.gz",
+  "thumb": "stickers/badge-hot.svg",
+  "meta": {
+   "w": 180,
+   "h": 220,
+   "color": "#f97316"
+  },
+  "size": 269,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "ribbon",
+  "name": "Ribbon",
+  "category": "Badges",
+  "sort": 24,
+  "file": "stickers/ribbon.json.gz",
+  "thumb": "stickers/ribbon.svg",
+  "meta": {
+   "w": 320,
+   "h": 110,
+   "color": "#8b5cf6"
+  },
+  "size": 285,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "badge-wow",
+  "name": "WOW!",
+  "category": "Badges",
+  "sort": 25,
+  "file": "stickers/badge-wow.json.gz",
+  "thumb": "stickers/badge-wow.svg",
+  "meta": {
+   "w": 240,
+   "h": 200,
+   "color": null
+  },
+  "size": 298,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "check-badge",
+  "name": "Verified",
+  "category": "Badges",
+  "sort": 26,
+  "file": "stickers/check-badge.json.gz",
+  "thumb": "stickers/check-badge.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#3b82f6"
+  },
+  "size": 248,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "subscribe",
+  "name": "Subscribe",
+  "category": "Social",
+  "sort": 27,
+  "file": "stickers/subscribe.json.gz",
+  "thumb": "stickers/subscribe.svg",
+  "meta": {
+   "w": 360,
+   "h": 110,
+   "color": null
+  },
+  "size": 254,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "like",
+  "name": "Like",
+  "category": "Social",
+  "sort": 28,
+  "file": "stickers/like.json.gz",
+  "thumb": "stickers/like.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#2563eb"
+  },
+  "size": 218,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "heart-count",
+  "name": "Heart counter",
+  "category": "Social",
+  "sort": 29,
+  "file": "stickers/heart-count.json.gz",
+  "thumb": "stickers/heart-count.svg",
+  "meta": {
+   "w": 260,
+   "h": 120,
+   "color": "#f43f5e"
+  },
+  "size": 308,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "bell",
+  "name": "Bell",
+  "category": "Social",
+  "sort": 30,
+  "file": "stickers/bell.json.gz",
+  "thumb": "stickers/bell.svg",
+  "meta": {
+   "w": 180,
+   "h": 200,
+   "color": "#facc15"
+  },
+  "size": 200,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "pin",
+  "name": "Location",
+  "category": "Social",
+  "sort": 31,
+  "file": "stickers/pin.json.gz",
+  "thumb": "stickers/pin.svg",
+  "meta": {
+   "w": 160,
+   "h": 220,
+   "color": "#ef4444"
+  },
+  "size": 197,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "play",
+  "name": "Play button",
+  "category": "Social",
+  "sort": 32,
+  "file": "stickers/play.json.gz",
+  "thumb": "stickers/play.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#111827"
+  },
+  "size": 180,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "follow",
+  "name": "Follow",
+  "category": "Social",
+  "sort": 33,
+  "file": "stickers/follow.json.gz",
+  "thumb": "stickers/follow.svg",
+  "meta": {
+   "w": 260,
+   "h": 90,
+   "color": "#fe2c55"
+  },
+  "size": 276,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "share",
+  "name": "Share",
+  "category": "Social",
+  "sort": 34,
+  "file": "stickers/share.json.gz",
+  "thumb": "stickers/share.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#10b981"
+  },
+  "size": 187,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "bubble",
+  "name": "Speech bubble",
+  "category": "Speech",
+  "sort": 35,
+  "file": "stickers/bubble.json.gz",
+  "thumb": "stickers/bubble.svg",
+  "meta": {
+   "w": 260,
+   "h": 200,
+   "color": "#ffffff"
+  },
+  "size": 203,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "thought",
+  "name": "Thought bubble",
+  "category": "Speech",
+  "sort": 36,
+  "file": "stickers/thought.json.gz",
+  "thumb": "stickers/thought.svg",
+  "meta": {
+   "w": 260,
+   "h": 210,
+   "color": "#ffffff"
+  },
+  "size": 199,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "shout",
+  "name": "Shout",
+  "category": "Speech",
+  "sort": 37,
+  "file": "stickers/shout.json.gz",
+  "thumb": "stickers/shout.svg",
+  "meta": {
+   "w": 260,
+   "h": 220,
+   "color": "#fde047"
+  },
+  "size": 223,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "question",
+  "name": "Question",
+  "category": "Speech",
+  "sort": 38,
+  "file": "stickers/question.json.gz",
+  "thumb": "stickers/question.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#8b5cf6"
+  },
+  "size": 214,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "exclaim",
+  "name": "Exclamation",
+  "category": "Speech",
+  "sort": 39,
+  "file": "stickers/exclaim.json.gz",
+  "thumb": "stickers/exclaim.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": "#ef4444"
+  },
+  "size": 215,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "face-smile",
+  "name": "Smile",
+  "category": "Emotes",
+  "sort": 40,
+  "file": "stickers/face-smile.json.gz",
+  "thumb": "stickers/face-smile.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": null
+  },
+  "size": 226,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "face-laugh",
+  "name": "Laugh",
+  "category": "Emotes",
+  "sort": 41,
+  "file": "stickers/face-laugh.json.gz",
+  "thumb": "stickers/face-laugh.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": null
+  },
+  "size": 267,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "face-love",
+  "name": "Love",
+  "category": "Emotes",
+  "sort": 42,
+  "file": "stickers/face-love.json.gz",
+  "thumb": "stickers/face-love.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": null
+  },
+  "size": 278,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "face-cool",
+  "name": "Cool",
+  "category": "Emotes",
+  "sort": 43,
+  "file": "stickers/face-cool.json.gz",
+  "thumb": "stickers/face-cool.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": null
+  },
+  "size": 260,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "face-shock",
+  "name": "Shock",
+  "category": "Emotes",
+  "sort": 44,
+  "file": "stickers/face-shock.json.gz",
+  "thumb": "stickers/face-shock.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": null
+  },
+  "size": 206,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "fire",
+  "name": "Fire",
+  "category": "Emotes",
+  "sort": 45,
+  "file": "stickers/fire.json.gz",
+  "thumb": "stickers/fire.svg",
+  "meta": {
+   "w": 170,
+   "h": 220,
+   "color": null
+  },
+  "size": 227,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "thumbs",
+  "name": "Thumbs up",
+  "category": "Emotes",
+  "sort": 46,
+  "file": "stickers/thumbs.json.gz",
+  "thumb": "stickers/thumbs.svg",
+  "meta": {
+   "w": 200,
+   "h": 200,
+   "color": null
+  },
+  "size": 222,
+  "version": 2
+ },
+ {
+  "kind": "stickers",
+  "id": "hundred",
+  "name": "100",
+  "category": "Emotes",
+  "sort": 47,
+  "file": "stickers/hundred.json.gz",
+  "thumb": "stickers/hundred.svg",
+  "meta": {
+   "w": 220,
+   "h": 160,
+   "color": null
+  },
+  "size": 256,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "bloom",
+  "name": "Bloom",
+  "category": "Light",
+  "sort": 0,
+  "file": "effects/bloom.json.gz",
+  "thumb": "effects/bloom.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 197,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "soft-glow",
+  "name": "Soft glow",
+  "category": "Light",
+  "sort": 1,
+  "file": "effects/soft-glow.json.gz",
+  "thumb": "effects/soft-glow.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 208,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "light-leak",
+  "name": "Light leak",
+  "category": "Light",
+  "sort": 2,
+  "file": "effects/light-leak.json.gz",
+  "thumb": "effects/light-leak.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 327,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "lens-flare",
+  "name": "Lens flare",
+  "category": "Light",
+  "sort": 3,
+  "file": "effects/lens-flare.json.gz",
+  "thumb": "effects/lens-flare.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 381,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "neon-glow",
+  "name": "Neon glow",
+  "category": "Light",
+  "sort": 4,
+  "file": "effects/neon-glow.json.gz",
+  "thumb": "effects/neon-glow.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 237,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "god-rays",
+  "name": "God rays",
+  "category": "Light",
+  "sort": 5,
+  "file": "effects/god-rays.json.gz",
+  "thumb": "effects/god-rays.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 282,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "sparkle",
+  "name": "Sparkle",
+  "category": "Light",
+  "sort": 6,
+  "file": "effects/sparkle.json.gz",
+  "thumb": "effects/sparkle.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 310,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "crt",
+  "name": "CRT TV",
+  "category": "Retro",
+  "sort": 7,
+  "file": "effects/crt.json.gz",
+  "thumb": "effects/crt.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 379,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "old-film",
+  "name": "Old film",
+  "category": "Retro",
+  "sort": 8,
+  "file": "effects/old-film.json.gz",
+  "thumb": "effects/old-film.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 407,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "super8",
+  "name": "Super 8",
+  "category": "Retro",
+  "sort": 9,
+  "file": "effects/super8.json.gz",
+  "thumb": "effects/super8.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 329,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "halftone",
+  "name": "Halftone",
+  "category": "Retro",
+  "sort": 10,
+  "file": "effects/halftone.json.gz",
+  "thumb": "effects/halftone.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 362,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "pixel-8bit",
+  "name": "8-bit",
+  "category": "Retro",
+  "sort": 11,
+  "file": "effects/pixel-8bit.json.gz",
+  "thumb": "effects/pixel-8bit.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 235,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "dither",
+  "name": "Dither",
+  "category": "Retro",
+  "sort": 12,
+  "file": "effects/dither.json.gz",
+  "thumb": "effects/dither.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 332,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "tape-damage",
+  "name": "Tape damage",
+  "category": "Retro",
+  "sort": 13,
+  "file": "effects/tape-damage.json.gz",
+  "thumb": "effects/tape-damage.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 343,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "block-glitch",
+  "name": "Block glitch",
+  "category": "Glitch",
+  "sort": 14,
+  "file": "effects/block-glitch.json.gz",
+  "thumb": "effects/block-glitch.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 284,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "scan-tear",
+  "name": "Scan tear",
+  "category": "Glitch",
+  "sort": 15,
+  "file": "effects/scan-tear.json.gz",
+  "thumb": "effects/scan-tear.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 235,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "digital-noise",
+  "name": "Digital noise",
+  "category": "Glitch",
+  "sort": 16,
+  "file": "effects/digital-noise.json.gz",
+  "thumb": "effects/digital-noise.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 259,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "signal-loss",
+  "name": "Signal loss",
+  "category": "Glitch",
+  "sort": 17,
+  "file": "effects/signal-loss.json.gz",
+  "thumb": "effects/signal-loss.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 290,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "chroma-pulse",
+  "name": "Chroma pulse",
+  "category": "Glitch",
+  "sort": 18,
+  "file": "effects/chroma-pulse.json.gz",
+  "thumb": "effects/chroma-pulse.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 234,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "melt",
+  "name": "Melt",
+  "category": "Glitch",
+  "sort": 19,
+  "file": "effects/melt.json.gz",
+  "thumb": "effects/melt.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 249,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "wave",
+  "name": "Wave",
+  "category": "Distort",
+  "sort": 20,
+  "file": "effects/wave.json.gz",
+  "thumb": "effects/wave.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 193,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "ripple",
+  "name": "Ripple",
+  "category": "Distort",
+  "sort": 21,
+  "file": "effects/ripple.json.gz",
+  "thumb": "effects/ripple.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 227,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "swirl",
+  "name": "Swirl",
+  "category": "Distort",
+  "sort": 22,
+  "file": "effects/swirl.json.gz",
+  "thumb": "effects/swirl.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 273,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "fisheye",
+  "name": "Fisheye",
+  "category": "Distort",
+  "sort": 23,
+  "file": "effects/fisheye.json.gz",
+  "thumb": "effects/fisheye.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 192,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "bulge",
+  "name": "Bulge",
+  "category": "Distort",
+  "sort": 24,
+  "file": "effects/bulge.json.gz",
+  "thumb": "effects/bulge.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 233,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "kaleidoscope",
+  "name": "Kaleidoscope",
+  "category": "Distort",
+  "sort": 25,
+  "file": "effects/kaleidoscope.json.gz",
+  "thumb": "effects/kaleidoscope.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 274,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "mirror-quad",
+  "name": "Mirror 4",
+  "category": "Distort",
+  "sort": 26,
+  "file": "effects/mirror-quad.json.gz",
+  "thumb": "effects/mirror-quad.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 197,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "heat-haze",
+  "name": "Heat haze",
+  "category": "Distort",
+  "sort": 27,
+  "file": "effects/heat-haze.json.gz",
+  "thumb": "effects/heat-haze.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 221,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "liquid",
+  "name": "Liquid",
+  "category": "Distort",
+  "sort": 28,
+  "file": "effects/liquid.json.gz",
+  "thumb": "effects/liquid.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 193,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "zoom-blur",
+  "name": "Zoom blur",
+  "category": "Blur",
+  "sort": 29,
+  "file": "effects/zoom-blur.json.gz",
+  "thumb": "effects/zoom-blur.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 206,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "motion-blur",
+  "name": "Motion blur",
+  "category": "Blur",
+  "sort": 30,
+  "file": "effects/motion-blur.json.gz",
+  "thumb": "effects/motion-blur.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 198,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "tilt-shift",
+  "name": "Tilt shift",
+  "category": "Blur",
+  "sort": 31,
+  "file": "effects/tilt-shift.json.gz",
+  "thumb": "effects/tilt-shift.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 235,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "spin-blur",
+  "name": "Spin blur",
+  "category": "Blur",
+  "sort": 32,
+  "file": "effects/spin-blur.json.gz",
+  "thumb": "effects/spin-blur.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 268,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "focus",
+  "name": "Focus",
+  "category": "Blur",
+  "sort": 33,
+  "file": "effects/focus.json.gz",
+  "thumb": "effects/focus.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 197,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "posterize",
+  "name": "Posterize",
+  "category": "Artistic",
+  "sort": 34,
+  "file": "effects/posterize.json.gz",
+  "thumb": "effects/posterize.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 186,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "toon",
+  "name": "Cartoon",
+  "category": "Artistic",
+  "sort": 35,
+  "file": "effects/toon.json.gz",
+  "thumb": "effects/toon.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 236,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "thermal",
+  "name": "Thermal",
+  "category": "Artistic",
+  "sort": 36,
+  "file": "effects/thermal.json.gz",
+  "thumb": "effects/thermal.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 259,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "night-vision",
+  "name": "Night vision",
+  "category": "Artistic",
+  "sort": 37,
+  "file": "effects/night-vision.json.gz",
+  "thumb": "effects/night-vision.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 317,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "x-ray",
+  "name": "X-ray",
+  "category": "Artistic",
+  "sort": 38,
+  "file": "effects/x-ray.json.gz",
+  "thumb": "effects/x-ray.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 197,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "duotone",
+  "name": "Duotone",
+  "category": "Artistic",
+  "sort": 39,
+  "file": "effects/duotone.json.gz",
+  "thumb": "effects/duotone.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 214,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "emboss",
+  "name": "Emboss",
+  "category": "Artistic",
+  "sort": 40,
+  "file": "effects/emboss.json.gz",
+  "thumb": "effects/emboss.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 215,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "pencil",
+  "name": "Colour pencil",
+  "category": "Artistic",
+  "sort": 41,
+  "file": "effects/pencil.json.gz",
+  "thumb": "effects/pencil.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 262,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "watercolor",
+  "name": "Watercolour",
+  "category": "Artistic",
+  "sort": 42,
+  "file": "effects/watercolor.json.gz",
+  "thumb": "effects/watercolor.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 293,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "strobe",
+  "name": "Strobe",
+  "category": "Party",
+  "sort": 43,
+  "file": "effects/strobe.json.gz",
+  "thumb": "effects/strobe.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 195,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "rainbow",
+  "name": "Rainbow",
+  "category": "Party",
+  "sort": 44,
+  "file": "effects/rainbow.json.gz",
+  "thumb": "effects/rainbow.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 182,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "disco",
+  "name": "Disco",
+  "category": "Party",
+  "sort": 45,
+  "file": "effects/disco.json.gz",
+  "thumb": "effects/disco.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 359,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "heartbeat",
+  "name": "Heartbeat",
+  "category": "Party",
+  "sort": 46,
+  "file": "effects/heartbeat.json.gz",
+  "thumb": "effects/heartbeat.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 262,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "split-3",
+  "name": "Split 3",
+  "category": "Party",
+  "sort": 47,
+  "file": "effects/split-3.json.gz",
+  "thumb": "effects/split-3.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 191,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "split-4",
+  "name": "Split 4",
+  "category": "Party",
+  "sort": 48,
+  "file": "effects/split-4.json.gz",
+  "thumb": "effects/split-4.webp",
+  "meta": {
+   "moving": false
+  },
+  "size": 169,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "rgb-shake",
+  "name": "RGB shake",
+  "category": "Party",
+  "sort": 49,
+  "file": "effects/rgb-shake.json.gz",
+  "thumb": "effects/rgb-shake.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 237,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "snow",
+  "name": "Snow",
+  "category": "Weather",
+  "sort": 50,
+  "file": "effects/snow.json.gz",
+  "thumb": "effects/snow.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 376,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "rain",
+  "name": "Rain",
+  "category": "Weather",
+  "sort": 51,
+  "file": "effects/rain.json.gz",
+  "thumb": "effects/rain.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 339,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "bokeh",
+  "name": "Bokeh",
+  "category": "Weather",
+  "sort": 52,
+  "file": "effects/bokeh.json.gz",
+  "thumb": "effects/bokeh.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 382,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "fireflies",
+  "name": "Fireflies",
+  "category": "Weather",
+  "sort": 53,
+  "file": "effects/fireflies.json.gz",
+  "thumb": "effects/fireflies.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 338,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "stars",
+  "name": "Stars",
+  "category": "Weather",
+  "sort": 54,
+  "file": "effects/stars.json.gz",
+  "thumb": "effects/stars.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 310,
+  "version": 2
+ },
+ {
+  "kind": "effects",
+  "id": "confetti",
+  "name": "Confetti",
+  "category": "Weather",
+  "sort": 55,
+  "file": "effects/confetti.json.gz",
+  "thumb": "effects/confetti.webp",
+  "meta": {
+   "moving": true
+  },
+  "size": 361,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "vivid",
+  "name": "Vivid",
+  "category": "Life",
+  "sort": 0,
+  "file": "filters/vivid.bin.gz",
+  "thumb": "filters/vivid.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 77182,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "clean",
+  "name": "Clean",
+  "category": "Life",
+  "sort": 1,
+  "file": "filters/clean.bin.gz",
+  "thumb": "filters/clean.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 93152,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "warm",
+  "name": "Warm",
+  "category": "Life",
+  "sort": 2,
+  "file": "filters/warm.bin.gz",
+  "thumb": "filters/warm.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 69193,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "cool",
+  "name": "Cool",
+  "category": "Life",
+  "sort": 3,
+  "file": "filters/cool.bin.gz",
+  "thumb": "filters/cool.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 67055,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "food",
+  "name": "Food",
+  "category": "Life",
+  "sort": 4,
+  "file": "filters/food.bin.gz",
+  "thumb": "filters/food.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 85906,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "forest",
+  "name": "Forest",
+  "category": "Life",
+  "sort": 5,
+  "file": "filters/forest.bin.gz",
+  "thumb": "filters/forest.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 96336,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "pastel",
+  "name": "Pastel",
+  "category": "Life",
+  "sort": 6,
+  "file": "filters/pastel.bin.gz",
+  "thumb": "filters/pastel.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 100832,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "golden",
+  "name": "Golden hour",
+  "category": "Life",
+  "sort": 7,
+  "file": "filters/golden.bin.gz",
+  "thumb": "filters/golden.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 60462,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "kodak-gold",
+  "name": "Gold 200",
+  "category": "Film",
+  "sort": 8,
+  "file": "filters/kodak-gold.bin.gz",
+  "thumb": "filters/kodak-gold.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 86445,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "portra",
+  "name": "Portra",
+  "category": "Film",
+  "sort": 9,
+  "file": "filters/portra.bin.gz",
+  "thumb": "filters/portra.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 103319,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "superia",
+  "name": "Superia",
+  "category": "Film",
+  "sort": 10,
+  "file": "filters/superia.bin.gz",
+  "thumb": "filters/superia.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 94539,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "ektachrome",
+  "name": "Ektachrome",
+  "category": "Film",
+  "sort": 11,
+  "file": "filters/ektachrome.bin.gz",
+  "thumb": "filters/ektachrome.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 82012,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "cinestill",
+  "name": "Cinestill",
+  "category": "Film",
+  "sort": 12,
+  "file": "filters/cinestill.bin.gz",
+  "thumb": "filters/cinestill.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 98070,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "film",
+  "name": "Film",
+  "category": "Film",
+  "sort": 13,
+  "file": "filters/film.bin.gz",
+  "thumb": "filters/film.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 102444,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "fade",
+  "name": "Faded",
+  "category": "Film",
+  "sort": 14,
+  "file": "filters/fade.bin.gz",
+  "thumb": "filters/fade.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 67421,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "teal-orange",
+  "name": "Teal & Orange",
+  "category": "Cinematic",
+  "sort": 15,
+  "file": "filters/teal-orange.bin.gz",
+  "thumb": "filters/teal-orange.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 101472,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "blockbuster",
+  "name": "Blockbuster",
+  "category": "Cinematic",
+  "sort": 16,
+  "file": "filters/blockbuster.bin.gz",
+  "thumb": "filters/blockbuster.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 91785,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "bleach",
+  "name": "Bleach bypass",
+  "category": "Cinematic",
+  "sort": 17,
+  "file": "filters/bleach.bin.gz",
+  "thumb": "filters/bleach.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 107198,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "matrix",
+  "name": "Matrix",
+  "category": "Cinematic",
+  "sort": 18,
+  "file": "filters/matrix.bin.gz",
+  "thumb": "filters/matrix.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 104620,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "nordic",
+  "name": "Nordic",
+  "category": "Cinematic",
+  "sort": 19,
+  "file": "filters/nordic.bin.gz",
+  "thumb": "filters/nordic.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 103812,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "cine-warm",
+  "name": "Cinema warm",
+  "category": "Cinematic",
+  "sort": 20,
+  "file": "filters/cine-warm.bin.gz",
+  "thumb": "filters/cine-warm.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 97081,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "cine-cool",
+  "name": "Cinema cool",
+  "category": "Cinematic",
+  "sort": 21,
+  "file": "filters/cine-cool.bin.gz",
+  "thumb": "filters/cine-cool.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 102622,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "moody",
+  "name": "Moody",
+  "category": "Cinematic",
+  "sort": 22,
+  "file": "filters/moody.bin.gz",
+  "thumb": "filters/moody.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 104775,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "vintage",
+  "name": "Vintage",
+  "category": "Retro",
+  "sort": 23,
+  "file": "filters/vintage.bin.gz",
+  "thumb": "filters/vintage.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 9309,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "polaroid",
+  "name": "Polaroid",
+  "category": "Retro",
+  "sort": 24,
+  "file": "filters/polaroid.bin.gz",
+  "thumb": "filters/polaroid.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 101488,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "70s",
+  "name": "70s",
+  "category": "Retro",
+  "sort": 25,
+  "file": "filters/70s.bin.gz",
+  "thumb": "filters/70s.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 100801,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "80s",
+  "name": "80s VHS",
+  "category": "Retro",
+  "sort": 26,
+  "file": "filters/80s.bin.gz",
+  "thumb": "filters/80s.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 94761,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "cyber",
+  "name": "Cyber",
+  "category": "Retro",
+  "sort": 27,
+  "file": "filters/cyber.bin.gz",
+  "thumb": "filters/cyber.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 103308,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "desert",
+  "name": "Desert",
+  "category": "Retro",
+  "sort": 28,
+  "file": "filters/desert.bin.gz",
+  "thumb": "filters/desert.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 97194,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "bw",
+  "name": "B&W",
+  "category": "B&W",
+  "sort": 29,
+  "file": "filters/bw.bin.gz",
+  "thumb": "filters/bw.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 7479,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "noir",
+  "name": "Noir",
+  "category": "B&W",
+  "sort": 30,
+  "file": "filters/noir.bin.gz",
+  "thumb": "filters/noir.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 7664,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "high-key",
+  "name": "High key",
+  "category": "B&W",
+  "sort": 31,
+  "file": "filters/high-key.bin.gz",
+  "thumb": "filters/high-key.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 7154,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "sepia",
+  "name": "Sepia",
+  "category": "B&W",
+  "sort": 32,
+  "file": "filters/sepia.bin.gz",
+  "thumb": "filters/sepia.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 9819,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "selenium",
+  "name": "Selenium",
+  "category": "B&W",
+  "sort": 33,
+  "file": "filters/selenium.bin.gz",
+  "thumb": "filters/selenium.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 9404,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "cyanotype",
+  "name": "Cyanotype",
+  "category": "B&W",
+  "sort": 34,
+  "file": "filters/cyanotype.bin.gz",
+  "thumb": "filters/cyanotype.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 9896,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "dreamy",
+  "name": "Dreamy",
+  "category": "Mood",
+  "sort": 35,
+  "file": "filters/dreamy.bin.gz",
+  "thumb": "filters/dreamy.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 102970,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "night",
+  "name": "Night",
+  "category": "Mood",
+  "sort": 36,
+  "file": "filters/night.bin.gz",
+  "thumb": "filters/night.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 102857,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "sunset",
+  "name": "Sunset",
+  "category": "Mood",
+  "sort": 37,
+  "file": "filters/sunset.bin.gz",
+  "thumb": "filters/sunset.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 87566,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "amber",
+  "name": "Amber",
+  "category": "Mood",
+  "sort": 38,
+  "file": "filters/amber.bin.gz",
+  "thumb": "filters/amber.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 103862,
+  "version": 2
+ },
+ {
+  "kind": "filters",
+  "id": "lavender",
+  "name": "Lavender",
+  "category": "Mood",
+  "sort": 39,
+  "file": "filters/lavender.bin.gz",
+  "thumb": "filters/lavender.webp",
+  "meta": {
+   "size": 33
+  },
+  "size": 103549,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "AdvancedMosaic",
+  "name": "Advanced Mosaic",
+  "category": "All",
+  "sort": 0,
+  "file": "transitions/AdvancedMosaic.json.gz",
+  "thumb": "transitions/AdvancedMosaic.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 492,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "BlockDissolve",
+  "name": "Block Dissolve",
+  "category": "All",
+  "sort": 1,
+  "file": "transitions/BlockDissolve.json.gz",
+  "thumb": "transitions/BlockDissolve.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 398,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "BookFlip",
+  "name": "Book Flip",
+  "category": "All",
+  "sort": 2,
+  "file": "transitions/BookFlip.json.gz",
+  "thumb": "transitions/BookFlip.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 455,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Bounce",
+  "name": "Bounce",
+  "category": "Popular",
+  "sort": 3,
+  "file": "transitions/Bounce.json.gz",
+  "thumb": "transitions/Bounce.webp",
+  "meta": {
+   "popular": 19
+  },
+  "size": 549,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "BowTieHorizontal",
+  "name": "Bow Tie Horizontal",
+  "category": "All",
+  "sort": 4,
+  "file": "transitions/BowTieHorizontal.json.gz",
+  "thumb": "transitions/BowTieHorizontal.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 866,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "BowTieVertical",
+  "name": "Bow Tie Vertical",
+  "category": "All",
+  "sort": 5,
+  "file": "transitions/BowTieVertical.json.gz",
+  "thumb": "transitions/BowTieVertical.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 811,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "BowTieWithParameter",
+  "name": "Bow Tie With Parameter",
+  "category": "All",
+  "sort": 6,
+  "file": "transitions/BowTieWithParameter.json.gz",
+  "thumb": "transitions/BowTieWithParameter.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 744,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Box",
+  "name": "Box",
+  "category": "All",
+  "sort": 7,
+  "file": "transitions/Box.json.gz",
+  "thumb": "transitions/Box.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 597,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "ButterflyWaveScrawler",
+  "name": "Butterfly Wave Scrawler",
+  "category": "All",
+  "sort": 8,
+  "file": "transitions/ButterflyWaveScrawler.json.gz",
+  "thumb": "transitions/ButterflyWaveScrawler.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 675,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "CircleCrop",
+  "name": "Circle Crop",
+  "category": "All",
+  "sort": 9,
+  "file": "transitions/CircleCrop.json.gz",
+  "thumb": "transitions/CircleCrop.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 491,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "ColourDistance",
+  "name": "Colour Distance",
+  "category": "All",
+  "sort": 10,
+  "file": "transitions/ColourDistance.json.gz",
+  "thumb": "transitions/ColourDistance.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 372,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "CrazyParametricFun",
+  "name": "Crazy Parametric Fun",
+  "category": "All",
+  "sort": 11,
+  "file": "transitions/CrazyParametricFun.json.gz",
+  "thumb": "transitions/CrazyParametricFun.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 465,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "CrossZoom",
+  "name": "Cross Zoom",
+  "category": "Popular",
+  "sort": 12,
+  "file": "transitions/CrossZoom.json.gz",
+  "thumb": "transitions/CrossZoom.webp",
+  "meta": {
+   "popular": 3
+  },
+  "size": 1087,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "DefocusBlur",
+  "name": "Defocus Blur",
+  "category": "All",
+  "sort": 13,
+  "file": "transitions/DefocusBlur.json.gz",
+  "thumb": "transitions/DefocusBlur.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 662,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Directional",
+  "name": "Directional",
+  "category": "All",
+  "sort": 14,
+  "file": "transitions/Directional.json.gz",
+  "thumb": "transitions/Directional.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 341,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "DirectionalScaled",
+  "name": "Directional Scaled",
+  "category": "All",
+  "sort": 15,
+  "file": "transitions/DirectionalScaled.json.gz",
+  "thumb": "transitions/DirectionalScaled.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 573,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "DoomScreenTransition",
+  "name": "Doom Screen Transition",
+  "category": "All",
+  "sort": 16,
+  "file": "transitions/DoomScreenTransition.json.gz",
+  "thumb": "transitions/DoomScreenTransition.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 931,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Dreamy",
+  "name": "Dreamy",
+  "category": "Popular",
+  "sort": 17,
+  "file": "transitions/Dreamy.json.gz",
+  "thumb": "transitions/Dreamy.webp",
+  "meta": {
+   "popular": 2
+  },
+  "size": 336,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "DreamyZoom",
+  "name": "Dreamy Zoom",
+  "category": "Popular",
+  "sort": 18,
+  "file": "transitions/DreamyZoom.json.gz",
+  "thumb": "transitions/DreamyZoom.webp",
+  "meta": {
+   "popular": 25
+  },
+  "size": 703,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Drop_Zone_Flicker",
+  "name": "Drop Zone Flicker",
+  "category": "All",
+  "sort": 19,
+  "file": "transitions/Drop_Zone_Flicker.json.gz",
+  "thumb": "transitions/Drop_Zone_Flicker.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 1662,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "EdgeTransition",
+  "name": "Edge Transition",
+  "category": "All",
+  "sort": 20,
+  "file": "transitions/EdgeTransition.json.gz",
+  "thumb": "transitions/EdgeTransition.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 659,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "FilmBurn",
+  "name": "Film Burn",
+  "category": "All",
+  "sort": 21,
+  "file": "transitions/FilmBurn.json.gz",
+  "thumb": "transitions/FilmBurn.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 1044,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Fold",
+  "name": "Fold",
+  "category": "All",
+  "sort": 22,
+  "file": "transitions/Fold.json.gz",
+  "thumb": "transitions/Fold.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 332,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "GlitchDisplace",
+  "name": "Glitch Displace",
+  "category": "All",
+  "sort": 23,
+  "file": "transitions/GlitchDisplace.json.gz",
+  "thumb": "transitions/GlitchDisplace.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 1038,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "GlitchMemories",
+  "name": "Glitch Memories",
+  "category": "Popular",
+  "sort": 24,
+  "file": "transitions/GlitchMemories.json.gz",
+  "thumb": "transitions/GlitchMemories.webp",
+  "meta": {
+   "popular": 14
+  },
+  "size": 446,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "GridFlip",
+  "name": "Grid Flip",
+  "category": "All",
+  "sort": 25,
+  "file": "transitions/GridFlip.json.gz",
+  "thumb": "transitions/GridFlip.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 967,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "HSVfade",
+  "name": "HSVfade",
+  "category": "All",
+  "sort": 26,
+  "file": "transitions/HSVfade.json.gz",
+  "thumb": "transitions/HSVfade.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 602,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "HorizontalClose",
+  "name": "Horizontal Close",
+  "category": "All",
+  "sort": 27,
+  "file": "transitions/HorizontalClose.json.gz",
+  "thumb": "transitions/HorizontalClose.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 301,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "HorizontalOpen",
+  "name": "Horizontal Open",
+  "category": "All",
+  "sort": 28,
+  "file": "transitions/HorizontalOpen.json.gz",
+  "thumb": "transitions/HorizontalOpen.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 311,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "InvertedPageCurl",
+  "name": "Inverted Page Curl",
+  "category": "All",
+  "sort": 29,
+  "file": "transitions/InvertedPageCurl.json.gz",
+  "thumb": "transitions/InvertedPageCurl.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 2705,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "LeftRight",
+  "name": "Left Right",
+  "category": "All",
+  "sort": 30,
+  "file": "transitions/LeftRight.json.gz",
+  "thumb": "transitions/LeftRight.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 462,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "LinearBlur",
+  "name": "Linear Blur",
+  "category": "Popular",
+  "sort": 31,
+  "file": "transitions/LinearBlur.json.gz",
+  "thumb": "transitions/LinearBlur.webp",
+  "meta": {
+   "popular": 12
+  },
+  "size": 466,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Mosaic",
+  "name": "Mosaic",
+  "category": "All",
+  "sort": 32,
+  "file": "transitions/Mosaic.json.gz",
+  "thumb": "transitions/Mosaic.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 731,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Overexposure",
+  "name": "Overexposure",
+  "category": "All",
+  "sort": 33,
+  "file": "transitions/Overexposure.json.gz",
+  "thumb": "transitions/Overexposure.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 426,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "PolkaDotsCurtain",
+  "name": "Polka Dots Curtain",
+  "category": "All",
+  "sort": 34,
+  "file": "transitions/PolkaDotsCurtain.json.gz",
+  "thumb": "transitions/PolkaDotsCurtain.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 401,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "PuzzleRight",
+  "name": "Puzzle Right",
+  "category": "All",
+  "sort": 35,
+  "file": "transitions/PuzzleRight.json.gz",
+  "thumb": "transitions/PuzzleRight.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 883,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Radial",
+  "name": "Radial",
+  "category": "Popular",
+  "sort": 36,
+  "file": "transitions/Radial.json.gz",
+  "thumb": "transitions/Radial.webp",
+  "meta": {
+   "popular": 16
+  },
+  "size": 396,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Rectangle",
+  "name": "Rectangle",
+  "category": "All",
+  "sort": 37,
+  "file": "transitions/Rectangle.json.gz",
+  "thumb": "transitions/Rectangle.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 446,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "RectangleCrop",
+  "name": "Rectangle Crop",
+  "category": "All",
+  "sort": 38,
+  "file": "transitions/RectangleCrop.json.gz",
+  "thumb": "transitions/RectangleCrop.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 445,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Revolve_Left",
+  "name": "Revolve Left",
+  "category": "All",
+  "sort": 39,
+  "file": "transitions/Revolve_Left.json.gz",
+  "thumb": "transitions/Revolve_Left.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 1114,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Rolls",
+  "name": "Rolls",
+  "category": "All",
+  "sort": 40,
+  "file": "transitions/Rolls.json.gz",
+  "thumb": "transitions/Rolls.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 756,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "RotateScaleVanish",
+  "name": "Rotate Scale Vanish",
+  "category": "All",
+  "sort": 41,
+  "file": "transitions/RotateScaleVanish.json.gz",
+  "thumb": "transitions/RotateScaleVanish.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 773,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "SimpleFlip",
+  "name": "Simple Flip",
+  "category": "All",
+  "sort": 42,
+  "file": "transitions/SimpleFlip.json.gz",
+  "thumb": "transitions/SimpleFlip.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 365,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "SimpleZoom",
+  "name": "Simple Zoom",
+  "category": "Popular",
+  "sort": 43,
+  "file": "transitions/SimpleZoom.json.gz",
+  "thumb": "transitions/SimpleZoom.webp",
+  "meta": {
+   "popular": 11
+  },
+  "size": 371,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "SimpleZoomOut",
+  "name": "Simple Zoom Out",
+  "category": "All",
+  "sort": 44,
+  "file": "transitions/SimpleZoomOut.json.gz",
+  "thumb": "transitions/SimpleZoomOut.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 413,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Slides",
+  "name": "Slides",
+  "category": "Popular",
+  "sort": 45,
+  "file": "transitions/Slides.json.gz",
+  "thumb": "transitions/Slides.webp",
+  "meta": {
+   "popular": 24
+  },
+  "size": 696,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "StarWipe",
+  "name": "Star Wipe",
+  "category": "Popular",
+  "sort": 46,
+  "file": "transitions/StarWipe.json.gz",
+  "thumb": "transitions/StarWipe.webp",
+  "meta": {
+   "popular": 23
+  },
+  "size": 716,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "StaticFade",
+  "name": "Static Fade",
+  "category": "All",
+  "sort": 47,
+  "file": "transitions/StaticFade.json.gz",
+  "thumb": "transitions/StaticFade.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 641,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "StereoViewer",
+  "name": "Stereo Viewer",
+  "category": "All",
+  "sort": 48,
+  "file": "transitions/StereoViewer.json.gz",
+  "thumb": "transitions/StereoViewer.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 2933,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "StripDatamoshGlitch",
+  "name": "Strip Datamosh Glitch",
+  "category": "All",
+  "sort": 49,
+  "file": "transitions/StripDatamoshGlitch.json.gz",
+  "thumb": "transitions/StripDatamoshGlitch.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 2138,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "Swirl",
+  "name": "Swirl",
+  "category": "Popular",
+  "sort": 50,
+  "file": "transitions/Swirl.json.gz",
+  "thumb": "transitions/Swirl.webp",
+  "meta": {
+   "popular": 13
+  },
+  "size": 528,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "TVStatic",
+  "name": "TVStatic",
+  "category": "All",
+  "sort": 51,
+  "file": "transitions/TVStatic.json.gz",
+  "thumb": "transitions/TVStatic.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 523,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "TilesWave",
+  "name": "Tiles Wave",
+  "category": "All",
+  "sort": 52,
+  "file": "transitions/TilesWave.json.gz",
+  "thumb": "transitions/TilesWave.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 760,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "TopBottom",
+  "name": "Top Bottom",
+  "category": "All",
+  "sort": 53,
+  "file": "transitions/TopBottom.json.gz",
+  "thumb": "transitions/TopBottom.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 455,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "VerticalClose",
+  "name": "Vertical Close",
+  "category": "All",
+  "sort": 54,
+  "file": "transitions/VerticalClose.json.gz",
+  "thumb": "transitions/VerticalClose.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 300,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "VerticalOpen",
+  "name": "Vertical Open",
+  "category": "All",
+  "sort": 55,
+  "file": "transitions/VerticalOpen.json.gz",
+  "thumb": "transitions/VerticalOpen.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 307,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "WaterDrop",
+  "name": "Water Drop",
+  "category": "All",
+  "sort": 56,
+  "file": "transitions/WaterDrop.json.gz",
+  "thumb": "transitions/WaterDrop.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 402,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "ZoomInCircles",
+  "name": "Zoom In Circles",
+  "category": "All",
+  "sort": 57,
+  "file": "transitions/ZoomInCircles.json.gz",
+  "thumb": "transitions/ZoomInCircles.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 665,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "ZoomLeftWipe",
+  "name": "Zoom Left Wipe",
+  "category": "All",
+  "sort": 58,
+  "file": "transitions/ZoomLeftWipe.json.gz",
+  "thumb": "transitions/ZoomLeftWipe.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 468,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "ZoomRigthWipe",
+  "name": "Zoom Right Wipe",
+  "category": "All",
+  "sort": 59,
+  "file": "transitions/ZoomRigthWipe.json.gz",
+  "thumb": "transitions/ZoomRigthWipe.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 469,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "angular",
+  "name": "Angular",
+  "category": "All",
+  "sort": 60,
+  "file": "transitions/angular.json.gz",
+  "thumb": "transitions/angular.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 425,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "burn",
+  "name": "Burn",
+  "category": "Popular",
+  "sort": 61,
+  "file": "transitions/burn.json.gz",
+  "thumb": "transitions/burn.webp",
+  "meta": {
+   "popular": 21
+  },
+  "size": 300,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "burn0",
+  "name": "Burn0",
+  "category": "All",
+  "sort": 62,
+  "file": "transitions/burn0.json.gz",
+  "thumb": "transitions/burn0.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 754,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "cannabisleaf",
+  "name": "Cannabisleaf",
+  "category": "All",
+  "sort": 63,
+  "file": "transitions/cannabisleaf.json.gz",
+  "thumb": "transitions/cannabisleaf.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 428,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "chessboard",
+  "name": "Chessboard",
+  "category": "All",
+  "sort": 64,
+  "file": "transitions/chessboard.json.gz",
+  "thumb": "transitions/chessboard.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 434,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "circle",
+  "name": "Circle",
+  "category": "All",
+  "sort": 65,
+  "file": "transitions/circle.json.gz",
+  "thumb": "transitions/circle.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 414,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "circleopen",
+  "name": "Circleopen",
+  "category": "Popular",
+  "sort": 66,
+  "file": "transitions/circleopen.json.gz",
+  "thumb": "transitions/circleopen.webp",
+  "meta": {
+   "popular": 9
+  },
+  "size": 417,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "colorphase",
+  "name": "Colorphase",
+  "category": "Popular",
+  "sort": 67,
+  "file": "transitions/colorphase.json.gz",
+  "thumb": "transitions/colorphase.webp",
+  "meta": {
+   "popular": 27
+  },
+  "size": 384,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "coord-from-in",
+  "name": "Coord From In",
+  "category": "All",
+  "sort": 68,
+  "file": "transitions/coord-from-in.json.gz",
+  "thumb": "transitions/coord-from-in.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 301,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "crosshatch",
+  "name": "Crosshatch",
+  "category": "All",
+  "sort": 69,
+  "file": "transitions/crosshatch.json.gz",
+  "thumb": "transitions/crosshatch.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 518,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "crosswarp",
+  "name": "Crosswarp",
+  "category": "All",
+  "sort": 70,
+  "file": "transitions/crosswarp.json.gz",
+  "thumb": "transitions/crosswarp.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 319,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "cube",
+  "name": "Cube",
+  "category": "Popular",
+  "sort": 71,
+  "file": "transitions/cube.json.gz",
+  "thumb": "transitions/cube.webp",
+  "meta": {
+   "popular": 10
+  },
+  "size": 854,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "directional-easing",
+  "name": "Directional Easing",
+  "category": "All",
+  "sort": 72,
+  "file": "transitions/directional-easing.json.gz",
+  "thumb": "transitions/directional-easing.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 362,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "directionalwarp",
+  "name": "Directionalwarp",
+  "category": "Popular",
+  "sort": 73,
+  "file": "transitions/directionalwarp.json.gz",
+  "thumb": "transitions/directionalwarp.webp",
+  "meta": {
+   "popular": 4
+  },
+  "size": 459,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "directionalwipe",
+  "name": "Directionalwipe",
+  "category": "All",
+  "sort": 74,
+  "file": "transitions/directionalwipe.json.gz",
+  "thumb": "transitions/directionalwipe.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 479,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "displacement",
+  "name": "Displacement",
+  "category": "All",
+  "sort": 75,
+  "file": "transitions/displacement.json.gz",
+  "thumb": "transitions/displacement.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 442,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "dissolve",
+  "name": "Dissolve",
+  "category": "All",
+  "sort": 76,
+  "file": "transitions/dissolve.json.gz",
+  "thumb": "transitions/dissolve.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 948,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "doorway",
+  "name": "Doorway",
+  "category": "Popular",
+  "sort": 77,
+  "file": "transitions/doorway.json.gz",
+  "thumb": "transitions/doorway.webp",
+  "meta": {
+   "popular": 18
+  },
+  "size": 680,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "fade",
+  "name": "Fade",
+  "category": "Popular",
+  "sort": 78,
+  "file": "transitions/fade.json.gz",
+  "thumb": "transitions/fade.webp",
+  "meta": {
+   "popular": 0
+  },
+  "size": 246,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "fadecolor",
+  "name": "Fadecolor",
+  "category": "Popular",
+  "sort": 79,
+  "file": "transitions/fadecolor.json.gz",
+  "thumb": "transitions/fadecolor.webp",
+  "meta": {
+   "popular": 1
+  },
+  "size": 390,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "fadegrayscale",
+  "name": "Fadegrayscale",
+  "category": "All",
+  "sort": 80,
+  "file": "transitions/fadegrayscale.json.gz",
+  "thumb": "transitions/fadegrayscale.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 426,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "flyeye",
+  "name": "Flyeye",
+  "category": "All",
+  "sort": 81,
+  "file": "transitions/flyeye.json.gz",
+  "thumb": "transitions/flyeye.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 393,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "fragment",
+  "name": "Fragment",
+  "category": "All",
+  "sort": 82,
+  "file": "transitions/fragment.json.gz",
+  "thumb": "transitions/fragment.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 684,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "heart",
+  "name": "Heart",
+  "category": "All",
+  "sort": 83,
+  "file": "transitions/heart.json.gz",
+  "thumb": "transitions/heart.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 344,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "hexagonalize",
+  "name": "Hexagonalize",
+  "category": "All",
+  "sort": 84,
+  "file": "transitions/hexagonalize.json.gz",
+  "thumb": "transitions/hexagonalize.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 795,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "kaleidoscope",
+  "name": "Kaleidoscope",
+  "category": "All",
+  "sort": 85,
+  "file": "transitions/kaleidoscope.json.gz",
+  "thumb": "transitions/kaleidoscope.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 474,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "luma",
+  "name": "Luma",
+  "category": "All",
+  "sort": 86,
+  "file": "transitions/luma.json.gz",
+  "thumb": "transitions/luma.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 264,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "luminance_melt",
+  "name": "Luminance Melt",
+  "category": "All",
+  "sort": 87,
+  "file": "transitions/luminance_melt.json.gz",
+  "thumb": "transitions/luminance_melt.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 1967,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "morph",
+  "name": "Morph",
+  "category": "Popular",
+  "sort": 88,
+  "file": "transitions/morph.json.gz",
+  "thumb": "transitions/morph.webp",
+  "meta": {
+   "popular": 26
+  },
+  "size": 359,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "mosaic_transition",
+  "name": "Mosaic Transition",
+  "category": "All",
+  "sort": 89,
+  "file": "transitions/mosaic_transition.json.gz",
+  "thumb": "transitions/mosaic_transition.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 384,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "multiply_blend",
+  "name": "Multiply Blend",
+  "category": "All",
+  "sort": 90,
+  "file": "transitions/multiply_blend.json.gz",
+  "thumb": "transitions/multiply_blend.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 318,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "old_tv_lost_signal",
+  "name": "Old Tv Lost Signal",
+  "category": "All",
+  "sort": 91,
+  "file": "transitions/old_tv_lost_signal.json.gz",
+  "thumb": "transitions/old_tv_lost_signal.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 635,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "parametric_glitch",
+  "name": "Parametric Glitch",
+  "category": "All",
+  "sort": 92,
+  "file": "transitions/parametric_glitch.json.gz",
+  "thumb": "transitions/parametric_glitch.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 483,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "perlin",
+  "name": "Perlin",
+  "category": "All",
+  "sort": 93,
+  "file": "transitions/perlin.json.gz",
+  "thumb": "transitions/perlin.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 892,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "pinwheel",
+  "name": "Pinwheel",
+  "category": "All",
+  "sort": 94,
+  "file": "transitions/pinwheel.json.gz",
+  "thumb": "transitions/pinwheel.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 382,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "pixelize",
+  "name": "Pixelize",
+  "category": "Popular",
+  "sort": 95,
+  "file": "transitions/pixelize.json.gz",
+  "thumb": "transitions/pixelize.webp",
+  "meta": {
+   "popular": 15
+  },
+  "size": 523,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "polar_function",
+  "name": "Polar Function",
+  "category": "All",
+  "sort": 96,
+  "file": "transitions/polar_function.json.gz",
+  "thumb": "transitions/polar_function.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 442,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "powerKaleido",
+  "name": "Power Kaleido",
+  "category": "All",
+  "sort": 97,
+  "file": "transitions/powerKaleido.json.gz",
+  "thumb": "transitions/powerKaleido.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 873,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "randomNoisex",
+  "name": "Random Noisex",
+  "category": "All",
+  "sort": 98,
+  "file": "transitions/randomNoisex.json.gz",
+  "thumb": "transitions/randomNoisex.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 353,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "randomsquares",
+  "name": "Randomsquares",
+  "category": "All",
+  "sort": 99,
+  "file": "transitions/randomsquares.json.gz",
+  "thumb": "transitions/randomsquares.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 403,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "ripple",
+  "name": "Ripple",
+  "category": "Popular",
+  "sort": 100,
+  "file": "transitions/ripple.json.gz",
+  "thumb": "transitions/ripple.webp",
+  "meta": {
+   "popular": 17
+  },
+  "size": 390,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "rotateTransition",
+  "name": "Rotate Transition",
+  "category": "All",
+  "sort": 101,
+  "file": "transitions/rotateTransition.json.gz",
+  "thumb": "transitions/rotateTransition.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 343,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "rotate_scale_fade",
+  "name": "Rotate Scale Fade",
+  "category": "All",
+  "sort": 102,
+  "file": "transitions/rotate_scale_fade.json.gz",
+  "thumb": "transitions/rotate_scale_fade.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 608,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "scale-in",
+  "name": "Scale In",
+  "category": "All",
+  "sort": 103,
+  "file": "transitions/scale-in.json.gz",
+  "thumb": "transitions/scale-in.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 295,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "splitSlideInHorizontal",
+  "name": "Split Slide In Horizontal",
+  "category": "All",
+  "sort": 104,
+  "file": "transitions/splitSlideInHorizontal.json.gz",
+  "thumb": "transitions/splitSlideInHorizontal.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 444,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "splitSlideInOutHorizontal",
+  "name": "Split Slide In Out Horizontal",
+  "category": "All",
+  "sort": 105,
+  "file": "transitions/splitSlideInOutHorizontal.json.gz",
+  "thumb": "transitions/splitSlideInOutHorizontal.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 437,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "splitSlideInOutVertical",
+  "name": "Split Slide In Out Vertical",
+  "category": "All",
+  "sort": 106,
+  "file": "transitions/splitSlideInOutVertical.json.gz",
+  "thumb": "transitions/splitSlideInOutVertical.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 440,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "splitSlideInVertical",
+  "name": "Split Slide In Vertical",
+  "category": "All",
+  "sort": 107,
+  "file": "transitions/splitSlideInVertical.json.gz",
+  "thumb": "transitions/splitSlideInVertical.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 429,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "splitSlideOutHorizontal",
+  "name": "Split Slide Out Horizontal",
+  "category": "All",
+  "sort": 108,
+  "file": "transitions/splitSlideOutHorizontal.json.gz",
+  "thumb": "transitions/splitSlideOutHorizontal.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 419,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "splitSlideOutVertical",
+  "name": "Split Slide Out Vertical",
+  "category": "All",
+  "sort": 109,
+  "file": "transitions/splitSlideOutVertical.json.gz",
+  "thumb": "transitions/splitSlideOutVertical.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 417,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "squareswire",
+  "name": "Squareswire",
+  "category": "All",
+  "sort": 110,
+  "file": "transitions/squareswire.json.gz",
+  "thumb": "transitions/squareswire.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 522,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "squeeze",
+  "name": "Squeeze",
+  "category": "Popular",
+  "sort": 111,
+  "file": "transitions/squeeze.json.gz",
+  "thumb": "transitions/squeeze.webp",
+  "meta": {
+   "popular": 22
+  },
+  "size": 384,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "static_wipe",
+  "name": "Static Wipe",
+  "category": "All",
+  "sort": 112,
+  "file": "transitions/static_wipe.json.gz",
+  "thumb": "transitions/static_wipe.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 576,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "swap",
+  "name": "Swap",
+  "category": "All",
+  "sort": 113,
+  "file": "transitions/swap.json.gz",
+  "thumb": "transitions/swap.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 698,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "tangentMotionBlur",
+  "name": "Tangent Motion Blur",
+  "category": "All",
+  "sort": 114,
+  "file": "transitions/tangentMotionBlur.json.gz",
+  "thumb": "transitions/tangentMotionBlur.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 1405,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "undulatingBurnOut",
+  "name": "Undulating Burn Out",
+  "category": "All",
+  "sort": 115,
+  "file": "transitions/undulatingBurnOut.json.gz",
+  "thumb": "transitions/undulatingBurnOut.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 824,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "wind",
+  "name": "Wind",
+  "category": "All",
+  "sort": 116,
+  "file": "transitions/wind.json.gz",
+  "thumb": "transitions/wind.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 454,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "windowblinds",
+  "name": "Windowblinds",
+  "category": "All",
+  "sort": 117,
+  "file": "transitions/windowblinds.json.gz",
+  "thumb": "transitions/windowblinds.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 321,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "windowslice",
+  "name": "Windowslice",
+  "category": "Popular",
+  "sort": 118,
+  "file": "transitions/windowslice.json.gz",
+  "thumb": "transitions/windowslice.webp",
+  "meta": {
+   "popular": 20
+  },
+  "size": 340,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "wipeDown",
+  "name": "Wipe Down",
+  "category": "Popular",
+  "sort": 119,
+  "file": "transitions/wipeDown.json.gz",
+  "thumb": "transitions/wipeDown.webp",
+  "meta": {
+   "popular": 8
+  },
+  "size": 284,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "wipeLeft",
+  "name": "Wipe Left",
+  "category": "Popular",
+  "sort": 120,
+  "file": "transitions/wipeLeft.json.gz",
+  "thumb": "transitions/wipeLeft.webp",
+  "meta": {
+   "popular": 5
+  },
+  "size": 287,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "wipeRight",
+  "name": "Wipe Right",
+  "category": "Popular",
+  "sort": 121,
+  "file": "transitions/wipeRight.json.gz",
+  "thumb": "transitions/wipeRight.webp",
+  "meta": {
+   "popular": 6
+  },
+  "size": 285,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "wipeUp",
+  "name": "Wipe Up",
+  "category": "Popular",
+  "sort": 122,
+  "file": "transitions/wipeUp.json.gz",
+  "thumb": "transitions/wipeUp.webp",
+  "meta": {
+   "popular": 7
+  },
+  "size": 285,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "x_axis_translation",
+  "name": "X Axis Translation",
+  "category": "All",
+  "sort": 123,
+  "file": "transitions/x_axis_translation.json.gz",
+  "thumb": "transitions/x_axis_translation.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 309,
+  "version": 2
+ },
+ {
+  "kind": "transitions",
+  "id": "zoomInOut",
+  "name": "Zoom In Out",
+  "category": "All",
+  "sort": 124,
+  "file": "transitions/zoomInOut.json.gz",
+  "thumb": "transitions/zoomInOut.webp",
+  "meta": {
+   "popular": -1
+  },
+  "size": 360,
+  "version": 2
+ },
+ {
+  "kind": "animations",
+  "id": "in-fade-in",
+  "name": "Fade in",
+  "category": "In",
+  "sort": 0,
+  "file": "animations/in-fade-in.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "o": 0
+    },
+    {
+     "t": 1,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-zoom-in",
+  "name": "Zoom in",
+  "category": "In",
+  "sort": 1,
+  "file": "animations/in-zoom-in.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "s": 0.4,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-zoom-out",
+  "name": "Zoom out",
+  "category": "In",
+  "sort": 2,
+  "file": "animations/in-zoom-out.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "s": 1.6,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-slide-left",
+  "name": "Slide left",
+  "category": "In",
+  "sort": 3,
+  "file": "animations/in-slide-left.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "x": 0.6,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-slide-right",
+  "name": "Slide right",
+  "category": "In",
+  "sort": 4,
+  "file": "animations/in-slide-right.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "x": -0.6,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-slide-up",
+  "name": "Slide up",
+  "category": "In",
+  "sort": 5,
+  "file": "animations/in-slide-up.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "y": 0.5,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-slide-down",
+  "name": "Slide down",
+  "category": "In",
+  "sort": 6,
+  "file": "animations/in-slide-down.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "y": -0.5,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-rotate",
+  "name": "Rotate",
+  "category": "In",
+  "sort": 7,
+  "file": "animations/in-rotate.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "keys": [
+    {
+     "t": 0,
+     "r": -90,
+     "s": 0.5,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-spin",
+  "name": "Spin",
+  "category": "In",
+  "sort": 8,
+  "file": "animations/in-spin.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.7,
+   "keys": [
+    {
+     "t": 0,
+     "r": -360,
+     "s": 0.2,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-bounce",
+  "name": "Bounce in",
+  "category": "In",
+  "sort": 9,
+  "file": "animations/in-bounce.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.7,
+   "keys": [
+    {
+     "t": 0,
+     "s": 0.3,
+     "o": 0
+    },
+    {
+     "t": 0.6,
+     "s": 1.12,
+     "e": "out"
+    },
+    {
+     "t": 0.8,
+     "s": 0.95,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-pop-up",
+  "name": "Pop up",
+  "category": "In",
+  "sort": 10,
+  "file": "animations/in-pop-up.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.45,
+   "keys": [
+    {
+     "t": 0,
+     "s": 0.6,
+     "y": 0.08,
+     "o": 0
+    },
+    {
+     "t": 1,
+     "e": "back"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-drop",
+  "name": "Drop",
+  "category": "In",
+  "sort": 11,
+  "file": "animations/in-drop.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.8,
+   "keys": [
+    {
+     "t": 0,
+     "y": -0.7
+    },
+    {
+     "t": 1,
+     "e": "bounce"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-rise",
+  "name": "Rise",
+  "category": "In",
+  "sort": 12,
+  "file": "animations/in-rise.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.7,
+   "keys": [
+    {
+     "t": 0,
+     "y": 0.3,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-blur-in",
+  "name": "Blur in",
+  "category": "In",
+  "sort": 13,
+  "file": "animations/in-blur-in.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "keys": [
+    {
+     "t": 0,
+     "b": 1.5,
+     "s": 1.1,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-swing-in",
+  "name": "Swing in",
+  "category": "In",
+  "sort": 14,
+  "file": "animations/in-swing-in.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.7,
+   "keys": [
+    {
+     "t": 0,
+     "r": 25,
+     "x": -0.15,
+     "o": 0
+    },
+    {
+     "t": 0.6,
+     "r": -8,
+     "x": 0
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-shake-in",
+  "name": "Shake",
+  "category": "In",
+  "sort": 15,
+  "file": "animations/in-shake-in.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "keys": [
+    {
+     "t": 0,
+     "x": -0.06
+    },
+    {
+     "t": 0.2,
+     "x": 0.05,
+     "e": "inout"
+    },
+    {
+     "t": 0.4,
+     "x": -0.04,
+     "e": "inout"
+    },
+    {
+     "t": 0.6,
+     "x": 0.03,
+     "e": "inout"
+    },
+    {
+     "t": 0.8,
+     "x": -0.015,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-flip",
+  "name": "Flip",
+  "category": "In",
+  "sort": 16,
+  "file": "animations/in-flip.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "sx": 0
+    },
+    {
+     "t": 1,
+     "e": "back"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-stretch",
+  "name": "Stretch",
+  "category": "In",
+  "sort": 17,
+  "file": "animations/in-stretch.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "keys": [
+    {
+     "t": 0,
+     "sx": 1.6,
+     "sy": 0.4,
+     "o": 0
+    },
+    {
+     "t": 0.6,
+     "sx": 0.9,
+     "sy": 1.1
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-squeeze",
+  "name": "Squeeze",
+  "category": "In",
+  "sort": 18,
+  "file": "animations/in-squeeze.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.55,
+   "keys": [
+    {
+     "t": 0,
+     "sx": 0.2,
+     "sy": 1.4,
+     "o": 0
+    },
+    {
+     "t": 1,
+     "e": "back"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-zoom-blur",
+  "name": "Zoom blur",
+  "category": "In",
+  "sort": 19,
+  "file": "animations/in-zoom-blur.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0,
+     "s": 1.8,
+     "b": 1.4,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-tilt-in",
+  "name": "Tilt in",
+  "category": "In",
+  "sort": 20,
+  "file": "animations/in-tilt-in.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "keys": [
+    {
+     "t": 0,
+     "r": -20,
+     "y": 0.2,
+     "o": 0
+    },
+    {
+     "t": 1,
+     "e": "back"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-elastic",
+  "name": "Elastic",
+  "category": "In",
+  "sort": 21,
+  "file": "animations/in-elastic.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.9,
+   "keys": [
+    {
+     "t": 0,
+     "s": 0.2
+    },
+    {
+     "t": 1,
+     "e": "elastic"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-rush-in",
+  "name": "Rush in",
+  "category": "In",
+  "sort": 22,
+  "file": "animations/in-rush-in.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.55,
+   "keys": [
+    {
+     "t": 0,
+     "x": 1,
+     "b": 1.2
+    },
+    {
+     "t": 0.7,
+     "x": -0.03,
+     "b": 0
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "in-fall",
+  "name": "Fall",
+  "category": "In",
+  "sort": 23,
+  "file": "animations/in-fall.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.7,
+   "keys": [
+    {
+     "t": 0,
+     "y": -0.6,
+     "r": 30,
+     "o": 0
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-fade",
+  "name": "Fade out",
+  "category": "Out",
+  "sort": 1024,
+  "file": "animations/out-fade.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "o": 0,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-zoom-in",
+  "name": "Zoom in",
+  "category": "Out",
+  "sort": 1025,
+  "file": "animations/out-zoom-in.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "s": 1.6,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-zoom-out",
+  "name": "Zoom out",
+  "category": "Out",
+  "sort": 1026,
+  "file": "animations/out-zoom-out.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "s": 0.4,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-slide-left",
+  "name": "Slide left",
+  "category": "Out",
+  "sort": 1027,
+  "file": "animations/out-slide-left.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "x": -0.6,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-slide-right",
+  "name": "Slide right",
+  "category": "Out",
+  "sort": 1028,
+  "file": "animations/out-slide-right.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "x": 0.6,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-slide-up",
+  "name": "Slide up",
+  "category": "Out",
+  "sort": 1029,
+  "file": "animations/out-slide-up.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "y": -0.5,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-slide-down",
+  "name": "Slide down",
+  "category": "Out",
+  "sort": 1030,
+  "file": "animations/out-slide-down.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "y": 0.5,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-rotate",
+  "name": "Rotate",
+  "category": "Out",
+  "sort": 1031,
+  "file": "animations/out-rotate.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "r": 90,
+     "s": 0.5,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-spin",
+  "name": "Spin",
+  "category": "Out",
+  "sort": 1032,
+  "file": "animations/out-spin.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.7,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "r": 360,
+     "s": 0.2,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-blur",
+  "name": "Blur out",
+  "category": "Out",
+  "sort": 1033,
+  "file": "animations/out-blur.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "b": 1.5,
+     "s": 1.1,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-pop",
+  "name": "Pop out",
+  "category": "Out",
+  "sort": 1034,
+  "file": "animations/out-pop.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.45,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.35,
+     "s": 1.1,
+     "e": "out"
+    },
+    {
+     "t": 1,
+     "s": 0,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-sink",
+  "name": "Sink",
+  "category": "Out",
+  "sort": 1035,
+  "file": "animations/out-sink.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.7,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "y": 0.3,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-fall-away",
+  "name": "Fall away",
+  "category": "Out",
+  "sort": 1036,
+  "file": "animations/out-fall-away.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.8,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "y": 0.8,
+     "r": 20,
+     "o": 0,
+     "e": "backin"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-flip",
+  "name": "Flip",
+  "category": "Out",
+  "sort": 1037,
+  "file": "animations/out-flip.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "sx": 0,
+     "e": "backin"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-squeeze",
+  "name": "Squeeze",
+  "category": "Out",
+  "sort": 1038,
+  "file": "animations/out-squeeze.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.55,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "sx": 0.2,
+     "sy": 1.4,
+     "o": 0,
+     "e": "backin"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-zoom-blur",
+  "name": "Zoom blur",
+  "category": "Out",
+  "sort": 1039,
+  "file": "animations/out-zoom-blur.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "s": 1.8,
+     "b": 1.4,
+     "o": 0,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-tilt",
+  "name": "Tilt out",
+  "category": "Out",
+  "sort": 1040,
+  "file": "animations/out-tilt.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "r": 20,
+     "y": 0.2,
+     "o": 0,
+     "e": "backin"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-rush",
+  "name": "Rush out",
+  "category": "Out",
+  "sort": 1041,
+  "file": "animations/out-rush.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.55,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.3,
+     "x": 0.03,
+     "e": "out"
+    },
+    {
+     "t": 1,
+     "x": -1,
+     "b": 1.2,
+     "e": "in"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "out-shrink",
+  "name": "Shrink",
+  "category": "Out",
+  "sort": 1042,
+  "file": "animations/out-shrink.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "s": 0,
+     "e": "backin"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-zoom-slow",
+  "name": "Zoom slow",
+  "category": "Combo",
+  "sort": 2043,
+  "file": "animations/combo-zoom-slow.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 4,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "s": 1.18,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-pull-back",
+  "name": "Pull back",
+  "category": "Combo",
+  "sort": 2044,
+  "file": "animations/combo-pull-back.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 4,
+   "keys": [
+    {
+     "t": 0,
+     "s": 1.2
+    },
+    {
+     "t": 1,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-pan-left",
+  "name": "Pan left",
+  "category": "Combo",
+  "sort": 2045,
+  "file": "animations/combo-pan-left.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 4,
+   "keys": [
+    {
+     "t": 0,
+     "s": 1.15,
+     "x": 0.05
+    },
+    {
+     "t": 1,
+     "s": 1.15,
+     "x": -0.05,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-pan-right",
+  "name": "Pan right",
+  "category": "Combo",
+  "sort": 2046,
+  "file": "animations/combo-pan-right.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 4,
+   "keys": [
+    {
+     "t": 0,
+     "s": 1.15,
+     "x": -0.05
+    },
+    {
+     "t": 1,
+     "s": 1.15,
+     "x": 0.05,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-pan-up",
+  "name": "Pan up",
+  "category": "Combo",
+  "sort": 2047,
+  "file": "animations/combo-pan-up.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 4,
+   "keys": [
+    {
+     "t": 0,
+     "s": 1.15,
+     "y": 0.05
+    },
+    {
+     "t": 1,
+     "s": 1.15,
+     "y": -0.05,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-drift",
+  "name": "Drift",
+  "category": "Combo",
+  "sort": 2048,
+  "file": "animations/combo-drift.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 4,
+   "keys": [
+    {
+     "t": 0,
+     "s": 1.1,
+     "x": -0.03,
+     "y": 0.02
+    },
+    {
+     "t": 1,
+     "s": 1.18,
+     "x": 0.03,
+     "y": -0.02,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-zoom-in-and-out",
+  "name": "Zoom in & out",
+  "category": "Combo",
+  "sort": 2049,
+  "file": "animations/combo-zoom-in-and-out.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 3,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.5,
+     "s": 1.15,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-spin-in-out",
+  "name": "Spin in & out",
+  "category": "Combo",
+  "sort": 2050,
+  "file": "animations/combo-spin-in-out.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 3,
+   "keys": [
+    {
+     "t": 0,
+     "s": 0,
+     "r": -180
+    },
+    {
+     "t": 0.25,
+     "e": "back"
+    },
+    {
+     "t": 0.75
+    },
+    {
+     "t": 1,
+     "s": 0,
+     "r": 180,
+     "e": "backin"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-punch-zoom",
+  "name": "Punch zoom",
+  "category": "Combo",
+  "sort": 2051,
+  "file": "animations/combo-punch-zoom.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.6,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0,
+     "s": 1.1
+    },
+    {
+     "t": 0.45,
+     "e": "out"
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-pulse",
+  "name": "Pulse",
+  "category": "Combo",
+  "sort": 2052,
+  "file": "animations/combo-pulse.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.8,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.5,
+     "s": 1.06,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-heartbeat",
+  "name": "Heartbeat",
+  "category": "Combo",
+  "sort": 2053,
+  "file": "animations/combo-heartbeat.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 1,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.12,
+     "s": 1.08
+    },
+    {
+     "t": 0.24,
+     "e": "inout"
+    },
+    {
+     "t": 0.36,
+     "s": 1.06
+    },
+    {
+     "t": 0.55,
+     "e": "inout"
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-wobble",
+  "name": "Wobble",
+  "category": "Combo",
+  "sort": 2054,
+  "file": "animations/combo-wobble.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 1.2,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.25,
+     "r": 4,
+     "e": "inout"
+    },
+    {
+     "t": 0.75,
+     "r": -4,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-swing",
+  "name": "Swing",
+  "category": "Combo",
+  "sort": 2055,
+  "file": "animations/combo-swing.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 1.6,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0,
+     "r": -6
+    },
+    {
+     "t": 0.5,
+     "r": 6,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "r": -6,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-float",
+  "name": "Float",
+  "category": "Combo",
+  "sort": 2056,
+  "file": "animations/combo-float.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 2,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.5,
+     "y": -0.02,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-shake",
+  "name": "Shake",
+  "category": "Combo",
+  "sort": 2057,
+  "file": "animations/combo-shake.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.5,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.15,
+     "x": 0.012,
+     "y": -0.008
+    },
+    {
+     "t": 0.35,
+     "x": -0.01,
+     "y": 0.01
+    },
+    {
+     "t": 0.55,
+     "x": 0.008,
+     "y": 0.006
+    },
+    {
+     "t": 0.75,
+     "x": -0.012,
+     "y": -0.006
+    },
+    {
+     "t": 1
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-jelly",
+  "name": "Jelly",
+  "category": "Combo",
+  "sort": 2058,
+  "file": "animations/combo-jelly.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 1,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.3,
+     "sx": 1.08,
+     "sy": 0.93,
+     "e": "inout"
+    },
+    {
+     "t": 0.55,
+     "sx": 0.95,
+     "sy": 1.06,
+     "e": "inout"
+    },
+    {
+     "t": 0.8,
+     "sx": 1.02,
+     "sy": 0.98,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-rock",
+  "name": "Rock",
+  "category": "Combo",
+  "sort": 2059,
+  "file": "animations/combo-rock.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 2,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.25,
+     "r": 3,
+     "x": 0.015,
+     "e": "inout"
+    },
+    {
+     "t": 0.75,
+     "r": -3,
+     "x": -0.015,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-breathe",
+  "name": "Breathe",
+  "category": "Combo",
+  "sort": 2060,
+  "file": "animations/combo-breathe.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 3,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 0.5,
+     "s": 1.04,
+     "e": "inout"
+    },
+    {
+     "t": 1,
+     "e": "inout"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-rotate-loop",
+  "name": "Rotate",
+  "category": "Combo",
+  "sort": 2061,
+  "file": "animations/combo-rotate-loop.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 4,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0
+    },
+    {
+     "t": 1,
+     "r": 360,
+     "e": "linear"
+    }
+   ]
+  }
+ },
+ {
+  "kind": "animations",
+  "id": "combo-bounce-loop",
+  "name": "Bounce",
+  "category": "Combo",
+  "sort": 2062,
+  "file": "animations/combo-bounce-loop.json.gz",
+  "thumb": null,
+  "version": 1,
+  "meta": {
+   "dur": 0.9,
+   "loop": true,
+   "keys": [
+    {
+     "t": 0,
+     "sx": 1.04,
+     "sy": 0.96
+    },
+    {
+     "t": 0.45,
+     "y": -0.04,
+     "sx": 0.98,
+     "sy": 1.03,
+     "e": "out"
+    },
+    {
+     "t": 0.9,
+     "sx": 1.04,
+     "sy": 0.96,
+     "e": "in"
+    },
+    {
+     "t": 1,
+     "sx": 1.04,
+     "sy": 0.96
+    }
+   ]
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "golden-hour",
+  "name": "Golden hour",
+  "category": "Cinematic",
+  "sort": 0,
+  "file": "templates/golden-hour.json.gz",
+  "thumb": "templates/golden-hour.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 6,
+   "duration": 13.44,
+   "featured": true,
+   "preview": "templates/golden-hour.mp4",
+   "photos": 6,
+   "clips": 0,
+   "music": {
+    "title": "Wonders",
+    "artist": "Seth_Makes_Sounds",
+    "license": "cc0",
+    "source": "https://freesound.org/s/814843/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "dance-night",
+  "name": "Dance night",
+  "category": "Trending",
+  "sort": 1,
+  "file": "templates/dance-night.json.gz",
+  "thumb": "templates/dance-night.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 15,
+   "featured": true,
+   "preview": "templates/dance-night.mp4",
+   "photos": 0,
+   "clips": 4,
+   "music": {
+    "title": "Neon City",
+    "artist": "szegvari",
+    "license": "cc0",
+    "source": "https://freesound.org/s/593792/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "city-walk",
+  "name": "City walk",
+  "category": "Vlog",
+  "sort": 2,
+  "file": "templates/city-walk.json.gz",
+  "thumb": "templates/city-walk.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 14,
+   "featured": false,
+   "preview": "templates/city-walk.mp4",
+   "photos": 3,
+   "clips": 2,
+   "music": {
+    "title": "Smoke",
+    "artist": "Cloud-10",
+    "license": "cc0",
+    "source": "https://freesound.org/s/634685/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "glow-up",
+  "name": "Glow up",
+  "category": "Beauty",
+  "sort": 3,
+  "file": "templates/glow-up.json.gz",
+  "thumb": "templates/glow-up.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 16.71,
+   "featured": false,
+   "preview": "templates/glow-up.mp4",
+   "photos": 3,
+   "clips": 2,
+   "music": {
+    "title": "Bubblegum Pop Song",
+    "artist": "Seth_Makes_Sounds",
+    "license": "cc0",
+    "source": "https://freesound.org/s/686610/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "monochrome",
+  "name": "Monochrome",
+  "category": "Retro",
+  "sort": 4,
+  "file": "templates/monochrome.json.gz",
+  "thumb": "templates/monochrome.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 6,
+   "duration": 15,
+   "featured": false,
+   "preview": "templates/monochrome.mp4",
+   "photos": 6,
+   "clips": 0,
+   "music": {
+    "title": "Soft slow piano",
+    "artist": "jcmbo369",
+    "license": "cc0",
+    "source": "https://freesound.org/s/819108/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "soft-love",
+  "name": "Soft love",
+  "category": "Love",
+  "sort": 5,
+  "file": "templates/soft-love.json.gz",
+  "thumb": "templates/soft-love.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 15,
+   "featured": false,
+   "preview": "templates/soft-love.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "OpusKey Piano",
+    "artist": "Bigvegie",
+    "license": "cc0",
+    "source": "https://freesound.org/s/584095/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "beach-days",
+  "name": "Beach days",
+  "category": "Travel",
+  "sort": 6,
+  "file": "templates/beach-days.json.gz",
+  "thumb": "templates/beach-days.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 10,
+   "featured": true,
+   "preview": "templates/beach-days.mp4",
+   "photos": 3,
+   "clips": 1,
+   "music": {
+    "title": "Beach Dance",
+    "artist": "szegvari",
+    "license": "cc0",
+    "source": "https://freesound.org/s/607304/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "portrait-reel",
+  "name": "Portrait reel",
+  "category": "Trending",
+  "sort": 7,
+  "file": "templates/portrait-reel.json.gz",
+  "thumb": "templates/portrait-reel.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 24,
+   "duration": 12.48,
+   "featured": true,
+   "preview": "templates/portrait-reel.mp4",
+   "photos": 24,
+   "clips": 0,
+   "music": {
+    "title": "Sahara Dance",
+    "artist": "szegvari",
+    "license": "cc0",
+    "source": "https://freesound.org/s/593834/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "smile",
+  "name": "Smile",
+  "category": "Vlog",
+  "sort": 8,
+  "file": "templates/smile.json.gz",
+  "thumb": "templates/smile.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 12.24,
+   "featured": false,
+   "preview": "templates/smile.mp4",
+   "photos": 0,
+   "clips": 4,
+   "music": {
+    "title": "Rabbit Bop",
+    "artist": "code_box",
+    "license": "cc0",
+    "source": "https://freesound.org/s/575759/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "fashion-week",
+  "name": "Fashion week",
+  "category": "Fashion",
+  "sort": 9,
+  "file": "templates/fashion-week.json.gz",
+  "thumb": "templates/fashion-week.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 7,
+   "duration": 13.37,
+   "featured": true,
+   "preview": "templates/fashion-week.mp4",
+   "photos": 7,
+   "clips": 0,
+   "music": {
+    "title": "European Fashion Background",
+    "artist": "LilMati",
+    "license": "cc0",
+    "source": "https://freesound.org/s/500268/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "afro-beauty",
+  "name": "Afro beauty",
+  "category": "Beauty",
+  "sort": 10,
+  "file": "templates/afro-beauty.json.gz",
+  "thumb": "templates/afro-beauty.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 7,
+   "duration": 21.26,
+   "featured": true,
+   "preview": "templates/afro-beauty.mp4",
+   "photos": 5,
+   "clips": 2,
+   "music": {
+    "title": "Kemet",
+    "artist": "kontraamusic",
+    "license": "cc0",
+    "source": "https://freesound.org/s/788623/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "bookish",
+  "name": "Bookish",
+  "category": "Vlog",
+  "sort": 11,
+  "file": "templates/bookish.json.gz",
+  "thumb": "templates/bookish.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 12.74,
+   "featured": false,
+   "preview": "templates/bookish.mp4",
+   "photos": 3,
+   "clips": 1,
+   "music": {
+    "title": "In The Clouds",
+    "artist": "deadrobotmusic",
+    "license": "cc0",
+    "source": "https://freesound.org/s/699063/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "night-out",
+  "name": "Night out",
+  "category": "Celebration",
+  "sort": 12,
+  "file": "templates/night-out.json.gz",
+  "thumb": "templates/night-out.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 13.57,
+   "featured": false,
+   "preview": "templates/night-out.mp4",
+   "photos": 2,
+   "clips": 3,
+   "music": {
+    "title": "New York Club",
+    "artist": "szegvari",
+    "license": "cc0",
+    "source": "https://freesound.org/s/607298/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "retro-film",
+  "name": "Retro film",
+  "category": "Retro",
+  "sort": 13,
+  "file": "templates/retro-film.json.gz",
+  "thumb": "templates/retro-film.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 6,
+   "duration": 15.18,
+   "featured": false,
+   "preview": "templates/retro-film.mp4",
+   "photos": 6,
+   "clips": 0,
+   "music": {
+    "title": "Synthwave Loop",
+    "artist": "LulSayer",
+    "license": "cc0",
+    "source": "https://freesound.org/s/699241/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "birthday",
+  "name": "Birthday",
+  "category": "Celebration",
+  "sort": 14,
+  "file": "templates/birthday.json.gz",
+  "thumb": "templates/birthday.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 13.63,
+   "featured": true,
+   "preview": "templates/birthday.mp4",
+   "photos": 3,
+   "clips": 2,
+   "music": {
+    "title": "Arcade Aroma",
+    "artist": "Touda",
+    "license": "cc0",
+    "source": "https://freesound.org/s/614130/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "brand-intro",
+  "name": "Brand intro",
+  "category": "Business",
+  "sort": 15,
+  "file": "templates/brand-intro.json.gz",
+  "thumb": "templates/brand-intro.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 10.9,
+   "featured": false,
+   "preview": "templates/brand-intro.mp4",
+   "photos": 2,
+   "clips": 2,
+   "music": {
+    "title": "Tropicorp Advertisement",
+    "artist": "code_box",
+    "license": "cc0",
+    "source": "https://freesound.org/s/561190/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "main-character",
+  "name": "Main character",
+  "category": "Cinematic",
+  "sort": 16,
+  "file": "templates/main-character.json.gz",
+  "thumb": "templates/main-character.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 12,
+   "featured": true,
+   "preview": "templates/main-character.mp4",
+   "photos": 0,
+   "clips": 4,
+   "music": {
+    "title": "Above The Sky",
+    "artist": "MusicByMisterbates",
+    "license": "cc0",
+    "source": "https://freesound.org/s/716385/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "slow-days",
+  "name": "Slow days",
+  "category": "Vlog",
+  "sort": 17,
+  "file": "templates/slow-days.json.gz",
+  "thumb": "templates/slow-days.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 12,
+   "featured": false,
+   "preview": "templates/slow-days.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "1990s acoustic guitar tune",
+    "artist": "Johnmode",
+    "license": "cc0",
+    "source": "https://freesound.org/s/827095/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "vhs-tape",
+  "name": "VHS tape",
+  "category": "Retro",
+  "sort": 18,
+  "file": "templates/vhs-tape.json.gz",
+  "thumb": "templates/vhs-tape.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 15.26,
+   "featured": true,
+   "preview": "templates/vhs-tape.mp4",
+   "photos": 3,
+   "clips": 2,
+   "music": {
+    "title": "Retrowave 90s",
+    "artist": "szegvari",
+    "license": "cc0",
+    "source": "https://freesound.org/s/623421/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "glitch-pop",
+  "name": "Glitch pop",
+  "category": "Trending",
+  "sort": 19,
+  "file": "templates/glitch-pop.json.gz",
+  "thumb": "templates/glitch-pop.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 13.72,
+   "featured": true,
+   "preview": "templates/glitch-pop.mp4",
+   "photos": 0,
+   "clips": 4,
+   "music": {
+    "title": "Dark Time",
+    "artist": "tenxsound",
+    "license": "cc0",
+    "source": "https://freesound.org/s/703568/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "dreamscape",
+  "name": "Dreamscape",
+  "category": "Cinematic",
+  "sort": 20,
+  "file": "templates/dreamscape.json.gz",
+  "thumb": "templates/dreamscape.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 17.15,
+   "featured": false,
+   "preview": "templates/dreamscape.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "Cinematic Ambient",
+    "artist": "BassmanJourney",
+    "license": "cc0",
+    "source": "https://freesound.org/s/632109/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "comic-strip",
+  "name": "Comic strip",
+  "category": "Trending",
+  "sort": 21,
+  "file": "templates/comic-strip.json.gz",
+  "thumb": "templates/comic-strip.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 12.75,
+   "featured": false,
+   "preview": "templates/comic-strip.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "Easy Hip-Hop Beat",
+    "artist": "Teacoma",
+    "license": "cc0",
+    "source": "https://freesound.org/s/435872/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "sketchbook",
+  "name": "Sketchbook",
+  "category": "Retro",
+  "sort": 22,
+  "file": "templates/sketchbook.json.gz",
+  "thumb": "templates/sketchbook.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 12.5,
+   "featured": false,
+   "preview": "templates/sketchbook.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "Acoustic guitar melody",
+    "artist": "Garuda1982",
+    "license": "cc0",
+    "source": "https://freesound.org/s/462723/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "neon-nights",
+  "name": "Neon nights",
+  "category": "Celebration",
+  "sort": 23,
+  "file": "templates/neon-nights.json.gz",
+  "thumb": "templates/neon-nights.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 14,
+   "featured": true,
+   "preview": "templates/neon-nights.mp4",
+   "photos": 3,
+   "clips": 2,
+   "music": {
+    "title": "Synthwave",
+    "artist": "Wax_vibe",
+    "license": "cc0",
+    "source": "https://freesound.org/s/550337/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "winter-mood",
+  "name": "Winter mood",
+  "category": "Travel",
+  "sort": 24,
+  "file": "templates/winter-mood.json.gz",
+  "thumb": "templates/winter-mood.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 15.8,
+   "featured": false,
+   "preview": "templates/winter-mood.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "MorningDue Piano",
+    "artist": "Bigvegie",
+    "license": "cc0",
+    "source": "https://freesound.org/s/582038/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "rainy-day",
+  "name": "Rainy day",
+  "category": "Vlog",
+  "sort": 25,
+  "file": "templates/rainy-day.json.gz",
+  "thumb": "templates/rainy-day.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 17.69,
+   "featured": false,
+   "preview": "templates/rainy-day.mp4",
+   "photos": 3,
+   "clips": 2,
+   "music": {
+    "title": "Lofi Vinyl E-Piano",
+    "artist": "holizna",
+    "license": "cc0",
+    "source": "https://freesound.org/s/629176/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "party-mode",
+  "name": "Party mode",
+  "category": "Celebration",
+  "sort": 26,
+  "file": "templates/party-mode.json.gz",
+  "thumb": "templates/party-mode.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 17.42,
+   "featured": false,
+   "preview": "templates/party-mode.mp4",
+   "photos": 1,
+   "clips": 4,
+   "music": {
+    "title": "Dance Pharao",
+    "artist": "szegvari",
+    "license": "cc0",
+    "source": "https://freesound.org/s/607299/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "heartbeat",
+  "name": "Heartbeat",
+  "category": "Love",
+  "sort": 27,
+  "file": "templates/heartbeat.json.gz",
+  "thumb": "templates/heartbeat.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 15,
+   "featured": false,
+   "preview": "templates/heartbeat.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "Timeflow",
+    "artist": "Bigvegie",
+    "license": "cc0",
+    "source": "https://freesound.org/s/560894/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "split-screen",
+  "name": "Split screen",
+  "category": "Trending",
+  "sort": 28,
+  "file": "templates/split-screen.json.gz",
+  "thumb": "templates/split-screen.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 16,
+   "featured": false,
+   "preview": "templates/split-screen.mp4",
+   "photos": 2,
+   "clips": 3,
+   "music": {
+    "title": "Deep House",
+    "artist": "Johnnie_Holiday",
+    "license": "cc0",
+    "source": "https://freesound.org/s/564794/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "starry-night",
+  "name": "Starry night",
+  "category": "Cinematic",
+  "sort": 29,
+  "file": "templates/starry-night.json.gz",
+  "thumb": "templates/starry-night.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 15,
+   "featured": false,
+   "preview": "templates/starry-night.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "Cinematic Dramatic Buildup",
+    "artist": "BurghRecords",
+    "license": "cc0",
+    "source": "https://freesound.org/s/456102/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "film-noir",
+  "name": "Film noir",
+  "category": "Cinematic",
+  "sort": 30,
+  "file": "templates/film-noir.json.gz",
+  "thumb": "templates/film-noir.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 17.15,
+   "featured": false,
+   "preview": "templates/film-noir.mp4",
+   "photos": 4,
+   "clips": 1,
+   "music": {
+    "title": "Jazz Chords Gm",
+    "artist": "nicpressley",
+    "license": "cc0",
+    "source": "https://freesound.org/s/770969/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "hype-reel",
+  "name": "Hype reel",
+  "category": "Trending",
+  "sort": 31,
+  "file": "templates/hype-reel.json.gz",
+  "thumb": "templates/hype-reel.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 14.05,
+   "featured": true,
+   "preview": "templates/hype-reel.mp4",
+   "photos": 0,
+   "clips": 5,
+   "music": {
+    "title": "Hybrid Action Music",
+    "artist": "Magmi.Soundtracks",
+    "license": "cc0",
+    "source": "https://freesound.org/s/507747/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "lofi-study",
+  "name": "Lo-fi study",
+  "category": "Vlog",
+  "sort": 32,
+  "file": "templates/lofi-study.json.gz",
+  "thumb": "templates/lofi-study.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 18.37,
+   "featured": false,
+   "preview": "templates/lofi-study.mp4",
+   "photos": 3,
+   "clips": 1,
+   "music": {
+    "title": "Lofi Hip Hop Loop",
+    "artist": "TheWandermiles",
+    "license": "cc0",
+    "source": "https://freesound.org/s/708776/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "eight-bit",
+  "name": "8-bit",
+  "category": "Retro",
+  "sort": 33,
+  "file": "templates/eight-bit.json.gz",
+  "thumb": "templates/eight-bit.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 10,
+   "featured": false,
+   "preview": "templates/eight-bit.mp4",
+   "photos": 5,
+   "clips": 0,
+   "music": {
+    "title": "8 bit game loop",
+    "artist": "josefpres",
+    "license": "cc0",
+    "source": "https://freesound.org/s/656141/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "scanner",
+  "name": "Scanner",
+  "category": "Trending",
+  "sort": 34,
+  "file": "templates/scanner.json.gz",
+  "thumb": "templates/scanner.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 4,
+   "duration": 12,
+   "featured": false,
+   "preview": "templates/scanner.mp4",
+   "photos": 3,
+   "clips": 1,
+   "music": {
+    "title": "Cosmic dark synthwave",
+    "artist": "Projecteur",
+    "license": "cc0",
+    "source": "https://freesound.org/s/615546/"
+   }
+  }
+ },
+ {
+  "kind": "templates",
+  "id": "summer-glow",
+  "name": "Summer glow",
+  "category": "Travel",
+  "sort": 35,
+  "file": "templates/summer-glow.json.gz",
+  "thumb": "templates/summer-glow.webp",
+  "version": 5,
+  "meta": {
+   "ratio": "9:16",
+   "slots": 5,
+   "duration": 16.01,
+   "featured": false,
+   "preview": "templates/summer-glow.mp4",
+   "photos": 4,
+   "clips": 1,
+   "music": {
+    "title": "Simple relaxing guitar loop",
+    "artist": "Kodack",
+    "license": "cc0",
+    "source": "https://freesound.org/s/395037/"
+   }
+  }
+ }
+]

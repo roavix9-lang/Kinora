@@ -1,19 +1,26 @@
 import './styles.css';
-import { deleteSelected, deleteSide, duplicateSelected, splitAtPlayhead, toggleMarker } from './actions';
+import {
+  copyAttributes, copySelected, cutSelected, deleteSelected, deleteSide, duplicateSelected, extractAudio, pasteAttributes, pasteClip, recoverAudio,
+  splitAtPlayhead, toggleDisabled, toggleMarker,
+} from './actions';
 
 import { Player } from './engine/player';
 import { store } from './store';
-import { drag, h, icon, toast } from './ui/dom';
+import { h, icon, toast } from './ui/dom';
 import { openExportDialog } from './ui/exportDialog';
 import { importOnly } from './ui/importer';
 import { mountInspector } from './ui/inspector';
 import { mountLeftPanel } from './ui/leftpanel';
 import { mountPreview } from './ui/preview';
 import { initAssets, onAssetsChanged } from './engine/assets';
-import { initPersistence } from './engine/persist';
+import { flushSave, initPersistence } from './engine/persist';
+import { go, parseRoute } from './router';
+import { mountHome } from './ui/home';
+import { initIsolate } from './engine/isolate';
+import { ensureTemplateMedia } from './engine/sampleMedia';
 import { initLibraryPreview } from './ui/libraryPreview';
 import { mountTimeline } from './ui/timeline';
-import { dspBackend, initDsp } from './wasm/dsp';
+import { initDsp } from './wasm/dsp';
 
 function unsupported(): string | null {
   if (!('VideoDecoder' in window) || !('VideoEncoder' in window)) return 'This browser lacks WebCodecs. Use a recent Chrome, Edge, or Safari 17+ / Firefox 130+.';
@@ -23,6 +30,12 @@ function unsupported(): string | null {
 
 async function boot() {
   const app = document.getElementById('app')!;
+  const route = parseRoute();
+  // Home and Templates are their own light pages; the editor only boots for a project.
+  if (route.page !== 'edit') {
+    mountHome(app, route.page);
+    return;
+  }
   const problem = unsupported();
   if (problem) {
     app.append(h('div.fatal', null, h('div.logo-mark', null, icon('logo', 28)), h('h1', null, 'Kinora needs a newer browser'), h('p', null, problem)));
@@ -38,7 +51,7 @@ async function boot() {
   nameEl.addEventListener('change', () => { store.projectTitle = nameEl.value.trim() || 'Untitled project'; store.emit('view'); });
   store.on('view', () => { if (document.activeElement !== nameEl) nameEl.value = store.projectTitle; });
   const savedAt = h('span.save-state');
-  const stamp = () => { savedAt.textContent = `Edited ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })} · local only`; };
+  const stamp = () => { savedAt.textContent = `Edited ${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}`; };
   stamp();
   store.on('project', stamp);
 
@@ -50,13 +63,12 @@ async function boot() {
   };
   const topbar = h('header.topbar', null,
     h('div.tb-left', null,
-      h('div.brand', null, h('div.logo-mark', null, icon('logo', 16)), h('span', null, 'Kinora')),
+      h('button.brand', { type: 'button', title: 'Back to Home', 'aria-label': 'Back to Home', onclick: () => void flushSave().then(() => go({ page: 'home' })) }, h('div.logo-mark', null, icon('logo', 16)), h('span', null, 'Kinora')),
       h('button.icon-btn.drawer-btn.drawer-left', { title: 'Media panel', 'aria-label': 'Toggle media panel', onclick: () => toggleDrawer('show-left') }, icon('panelL')),
       savedAt,
     ),
     h('div.tb-center', null, nameEl),
     h('div.tb-right', null,
-      h('span.engine-pill', { title: `Decode/encode: WebCodecs · Audio DSP: ${dspBackend()} · Compositor: WebGL2` }, h('i'), 'WebCodecs · ', dspBackend() === 'WebAssembly' ? 'WASM' : 'JS'),
       h('button.icon-btn.drawer-btn.drawer-right', { title: 'Properties panel', 'aria-label': 'Toggle properties panel', onclick: () => toggleDrawer('show-right') }, icon('panelR')),
       h('button.export-btn', { onclick: () => openExportDialog(player) }, icon('upload', 16), h('span', null, 'Export')),
     ),
@@ -67,30 +79,38 @@ async function boot() {
   const previewEl = h('section.preview.card', { 'aria-label': 'Player' });
   const inspector = h('aside.inspector.card', { 'aria-label': 'Properties' });
   const timelineEl = h('section.timeline', { 'aria-label': 'Timeline' });
-  const splitter = h('div.h-splitter', { title: 'Drag to resize', role: 'separator' });
+  // Plain gap between the player area and the timeline (its height is automatic).
+  const splitter = h('div.h-splitter', { 'aria-hidden': 'true' });
   const scrim = h('div.scrim', { onclick: () => body.classList.remove('show-left', 'show-right') });
   const workspace = h('div.workspace', null, panel, previewEl, inspector, scrim);
   app.append(topbar, workspace, splitter, timelineEl);
   // Selecting a clip on a narrow screen opens the properties drawer automatically.
   store.on('select', () => { if (store.selectedId && window.innerWidth < 1100 && body.classList.contains('show-left')) body.classList.remove('show-left'); });
 
-  // The upper area's height is automatic (sized so the video fills the player width);
-  // dragging the splitter overrides it, double-click returns to automatic.
+  // The upper area's height is automatic (sized so the video fills the player width).
   try { localStorage.removeItem('kinora.timelineH'); } catch { /* storage unavailable */ }
-  splitter.addEventListener('pointerdown', (e) => {
-    const startH = workspace.getBoundingClientRect().height;
-    drag(e, (_dx, dy) => {
-      store.workH = Math.min(window.innerHeight - 34 - 12 - 170, Math.max(260, startH + dy));
-      store.emit('view');
-    });
-  });
-  splitter.addEventListener('dblclick', () => { store.workH = null; store.emit('view'); toast('Player height: automatic'); });
 
   // Library assets come from Cloudflare (D1 catalog, R2 files); downloaded ones load from the
   // browser cache, so this works offline. Redraw once they're registered.
   void initAssets().then(() => player.invalidate());
   // Restore the last session (timelines + media) and keep saving it.
-  void initPersistence();
+  // Open this project (and keep saving it); covers for Home come from the player.
+  // Panels stay hidden until the project is back, so an empty editor doesn't flash first.
+  document.body.classList.add('restoring');
+  void initPersistence(route.id, () => {
+    try {
+      player.draw(store.currentTime);
+      const k = Math.min(1, 320 / Math.max(canvas.width, canvas.height));
+      const c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(canvas.width * k));
+      c.height = Math.max(1, Math.round(canvas.height * k));
+      c.getContext('2d')!.drawImage(canvas, 0, 0, c.width, c.height);
+      return store.project.tracks.some((t) => t.clips.length) ? c.toDataURL('image/webp', 0.7) : null;
+    } catch { return null; }
+  }).finally(() => document.body.classList.remove('restoring'));
+  initIsolate();
+  // Template songs and samples aren't saved with the project; fetch them again (offline cache first).
+  store.on('project', () => ensureTemplateMedia(store.project));
   onAssetsChanged(() => player.invalidate());
   mountLeftPanel(panel, player);
   mountPreview(previewEl, canvas, player);
@@ -115,6 +135,13 @@ async function boot() {
     const fps = store.project.fps;
     let handled = true;
     if (k === ' ') player.toggle();
+    else if (mod && e.shiftKey && k === 'c') copyAttributes();
+    else if (mod && e.shiftKey && k === 'v') pasteAttributes();
+    else if (mod && !e.shiftKey && k === 'c') copySelected();
+    else if (mod && !e.shiftKey && k === 'x') cutSelected();
+    else if (mod && !e.shiftKey && k === 'v') pasteClip();
+    else if (e.ctrlKey && e.shiftKey && k === 's') { const c = store.selected; if (c) (c.extractedTo ? recoverAudio(c) : extractAudio(c)); }
+    else if (!mod && !e.shiftKey && k === 'v') { if (store.selected) toggleDisabled(store.selected); }
     else if (mod && k === 'z' && !e.shiftKey) store.undo();
     else if ((mod && k === 'z' && e.shiftKey) || (mod && k === 'y')) store.redo();
     else if ((mod && k === 'b') || (!mod && k === 's')) splitAtPlayhead();
@@ -151,5 +178,8 @@ async function boot() {
     });
   }
 }
+
+// Page changes from the browser's back / forward buttons.
+window.addEventListener('hashchange', () => { const r = parseRoute(); if ((r.page === 'edit') !== !!document.querySelector('.topbar')) location.reload(); });
 
 void boot();

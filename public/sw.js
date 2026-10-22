@@ -44,6 +44,10 @@ self.addEventListener('fetch', (e) => {
     else e.respondWith(cacheFirst(req, APP));
     return;
   }
+  // The voice-isolation engine's runtime files (pinned version, never change).
+  if (url.hostname === 'cdn.jsdelivr.net' && url.pathname.startsWith('/npm/onnxruntime-web@')) { e.respondWith(cacheFirst(req, RUNTIME)); return; }
+  // Video previews stream with range requests: leave those to the browser (the CDN caches them).
+  if (req.headers.has('range')) return;
   if (url.pathname.startsWith('/a/')) { e.respondWith(cacheFirst(req, RUNTIME)); return; }
   if (url.pathname.startsWith('/catalog')) { e.respondWith(networkFirst(req, RUNTIME)); return; }
 });

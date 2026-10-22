@@ -5,6 +5,7 @@ import { store } from '../store';
 import { MediaItem, MediaKind, uid } from '../types';
 import { toast } from '../ui/dom';
 import { computePeaks, toMono } from '../wasm/dsp';
+import { dropAnalysis, restoreAnalysis, saveAnalysis } from './mediaCache';
 
 export interface Demuxed {
   input: Input;
@@ -83,20 +84,32 @@ export async function importFiles(files: Iterable<File>, restore?: Partial<Media
     const saved = restore?.[n++];
     const kind = kindOf(file);
     // "Copy media to project": keep our own copy of the bytes instead of a reference to the file on disk.
-    if (kind && store.copyMedia) file = new File([await file.arrayBuffer()], file.name, { type: file.type, lastModified: file.lastModified });
+    // (Restored files are copies already; skipping this also registers them without waiting.)
+    if (kind && store.copyMedia && !saved) file = new File([await file.arrayBuffer()], file.name, { type: file.type, lastModified: file.lastModified });
     if (!kind) continue;
     const item: MediaItem = {
       id: uid('med'), kind, name: file.name, file, duration: kind === 'image' ? IMAGE_DEFAULT_DURATION : 0,
       width: 0, height: 0, rotation: 0, hasAudio: false, hasVideo: kind !== 'audio', codec: '', fps: 0,
       thumbs: [], thumbInterval: 1, peaksPerSecond: PEAKS_PER_SECOND, status: 'loading',
-      ...(saved ? { id: saved.id!, name: saved.name ?? file.name, folderId: saved.folderId, deleted: saved.deleted } : {}),
+      ...(saved ? { id: saved.id!, name: saved.name ?? file.name, folderId: saved.folderId, deleted: saved.deleted, library: saved.library } : {}),
     };
     store.media.set(item.id, item);
     items.push(item);
   }
   store.emit('media');
-  // Probe sequentially so one big 4K file does not starve the others of decoder slots.
-  for (const item of items) {
+  // Files seen before (e.g. reopening a project) come back from the saved analysis at once.
+  const fresh: MediaItem[] = [];
+  await Promise.all(items.map(async (item) => {
+    if (await restoreAnalysis(item) && await openTracks(item)) {
+      item.status = 'ready';
+      store.emit('media', 'project');
+    } else {
+      item.thumbs = [];
+      fresh.push(item);
+    }
+  }));
+  // Probe the rest sequentially so one big 4K file does not starve the others of decoder slots.
+  for (const item of fresh) {
     try {
       if (item.kind === 'image') await probeImage(item);
       else await probeAV(item);
@@ -107,6 +120,7 @@ export async function importFiles(files: Iterable<File>, restore?: Partial<Media
       item.error = err instanceof Error ? err.message : String(err);
     }
     store.emit('media', 'project');
+    void saveAnalysis(item);
   }
   return items;
 }
@@ -121,6 +135,7 @@ export async function relinkMedia(item: MediaItem, file: File): Promise<boolean>
   demuxed.get(item.id)?.input.dispose();
   demuxed.delete(item.id);
   fallbackAudio.delete(item.id);
+  void dropAnalysis(item);
   Object.assign(item, {
     kind, name: file.name, file, duration: kind === 'image' ? IMAGE_DEFAULT_DURATION : 0, width: 0, height: 0, rotation: 0,
     hasAudio: false, hasVideo: kind !== 'audio', codec: '', fps: 0, thumbs: [], thumbInterval: 1,
@@ -131,6 +146,7 @@ export async function relinkMedia(item: MediaItem, file: File): Promise<boolean>
     if (kind === 'image') await probeImage(item);
     else await probeAV(item);
     item.status = 'ready';
+    void saveAnalysis(item);
   } catch (err) {
     item.status = 'error';
     item.error = err instanceof Error ? err.message : String(err);
@@ -165,6 +181,27 @@ async function probeImage(item: MediaItem) {
   item.poster = await resized(640);
   item.thumbs = [await resized(320)];
   item.thumbInterval = Infinity;
+}
+
+/**
+ * Opens a file's tracks for playback without decoding anything (used with a saved analysis).
+ * False when it needs the full probe (e.g. audio only the Web Audio fallback can decode).
+ */
+async function openTracks(item: MediaItem): Promise<boolean> {
+  try {
+    const input = new Input({ source: new BlobSource(item.file), formats: ALL_FORMATS });
+    if (!(await input.canRead())) return false;
+    const video = await input.getPrimaryVideoTrack();
+    const audio = await input.getPrimaryAudioTrack();
+    const videoOk = !!video && (await video.canDecode());
+    const audioOk = !!audio && (await audio.canDecode());
+    if (item.hasAudio && !audioOk) return false;
+    if (item.hasVideo && !videoOk) return false;
+    demuxed.set(item.id, { input, video: videoOk ? video : null, audio: audioOk ? audio : null });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 async function probeAV(item: MediaItem) {

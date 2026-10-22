@@ -1,10 +1,10 @@
 import { addLookLayer, addSticker, addTemplateToTimeline, addText, applyCrossTransition } from '../actions';
 import { TEXT_PRESETS } from '../catalog';
 import { Player } from '../engine/player';
-import { loadSamples, sampleMedia } from '../engine/sampleMedia';
+import { addTemplateMusic, loadSamples, loadTemplateMedia, loadTemplateSamples, sampleMedia, slotSample } from '../engine/sampleMedia';
 import { STICKERS, StickerDef } from '../stickers';
 import { newProject, store } from '../store';
-import { buildTemplateProject, TEMPLATES, TemplateDef } from '../templates';
+import { buildTemplateProject, templateDuration, TEMPLATES, TemplateDef } from '../templates';
 import { Clip, defaultText, makeClip, MediaItem, Project, TextStyle } from '../types';
 
 // Library preview, as in CapCut: clicking an item in the left panel shows it in the player
@@ -145,8 +145,10 @@ export async function previewTransition(name: string, el: HTMLElement) {
 }
 
 export async function previewTemplate(t: TemplateDef, el: HTMLElement) {
-  await loadSamples();
-  open(`template:${t.id}`, buildTemplateProject(t, t.slots.map((_, i) => sampleMedia(i))), el, { autoplay: true });
+  await Promise.all([loadSamples(), loadTemplateSamples(t), t.music ? loadTemplateMedia(t.music.file) : null]);
+  const p = buildTemplateProject(t, t.slots.map((_, i) => slotSample(t, i)));
+  addTemplateMusic(p, t, 0, templateDuration(t));
+  open(`template:${t.id}`, p, el, { autoplay: true });
 }
 
 // ---- drag to the timeline -------------------------------------------------------------

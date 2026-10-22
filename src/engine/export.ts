@@ -7,7 +7,8 @@ import { Clip, clipEnd, hasSound, Project } from '../types';
 import { mixInto, MixJob } from '../wasm/dsp';
 import { Compositor } from './compositor';
 import { FrameReader } from './frames';
-import { audioBuffers, hasAudioSource } from './media';
+import { hasAudioSource } from './media';
+import { clipAudioBuffers } from './isolate';
 import { buildLayers, videoRequests } from './scene';
 
 export interface ExportOptions {
@@ -197,7 +198,7 @@ async function renderAudio(clips: Clip[], duration: number, source: AudioBufferS
       const srcB = c.in + (e - c.start) * c.speed;
       const chunks: AudioBuffer[] = [];
       let firstTs = -1;
-      for await (const wb of audioBuffers(c.mediaId!, srcA, srcB + 0.05)) {
+      for await (const wb of clipAudioBuffers(c, srcA, srcB + 0.05)) {
         if (firstTs < 0) firstTs = wb.timestamp;
         chunks.push(wb.buffer);
       }

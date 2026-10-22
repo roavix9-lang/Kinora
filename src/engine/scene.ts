@@ -14,7 +14,7 @@ export function visibleClips(p: Project, t: number): { clip: Clip; track: Track 
     const track = p.tracks[i];
     if (track.kind === 'audio' || track.hidden) continue;
     for (const clip of track.clips) {
-      if (t >= clip.start && t < clip.start + clip.duration) out.push({ clip, track });
+      if (!clip.disabled && t >= clip.start && t < clip.start + clip.duration) out.push({ clip, track });
     }
   }
   return out;

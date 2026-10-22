@@ -2,8 +2,21 @@ import { h } from './dom';
 import { closePopover } from './select';
 
 export type MenuItem =
-  | { label: string; onSelect?: () => void; disabled?: boolean; badge?: string; title?: string; danger?: boolean }
+  | {
+    label: string; onSelect?: () => void; disabled?: boolean; badge?: string; title?: string; danger?: boolean;
+    /** Keys as tokens: 'mod' (⌘ / Ctrl), 'shift', 'alt', 'ctrl', 'del', or a letter. */
+    shortcut?: string[];
+    submenu?: MenuItem[];
+    /** Radio-style choice: shows a ✓ (items in that menu get room for it). */
+    checked?: boolean;
+  }
   | 'separator';
+
+const IS_MAC = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+const KEY_MAC: Record<string, string> = { mod: '⌘', shift: '⇧', alt: '⌥', ctrl: '⌃', del: '⌫' };
+const KEY_WIN: Record<string, string> = { mod: 'Ctrl', shift: 'Shift', alt: 'Alt', ctrl: 'Ctrl', del: 'Del' };
+/** Shortcut keys as this platform writes them (⌘ ⇧ C on a Mac, Ctrl Shift C on Windows). */
+export const keyCaps = (keys: string[]) => keys.map((k) => (IS_MAC ? KEY_MAC : KEY_WIN)[k] ?? k.toUpperCase());
 
 let current: { el: HTMLElement; close: () => void } | null = null;
 
@@ -15,16 +28,38 @@ export function showContextMenu(x: number, y: number, items: MenuItem[]) {
   closePopover();
   const buttons: HTMLButtonElement[] = [];
   const menu = h('div.ctx-menu', { role: 'menu' });
-  for (const it of items) {
-    if (it === 'separator') { menu.append(h('div.ctx-sep', { role: 'separator' })); continue; }
+  let sub: HTMLElement | null = null;
+  const closeSub = () => { sub?.remove(); sub = null; };
+  const openSub = (b: HTMLElement, list: MenuItem[]) => {
+    closeSub();
+    sub = h('div.ctx-menu.ctx-sub', { role: 'menu' });
+    for (const it of list) addItem(sub, it, false);
+    document.body.append(sub);
+    const br = b.getBoundingClientRect(), sr = sub.getBoundingClientRect();
+    const right = br.right + 2 + sr.width < window.innerWidth - 8;
+    sub.style.left = `${right ? br.right + 2 : br.left - sr.width - 2}px`;
+    sub.style.top = `${Math.max(8, Math.min(br.top - 4, window.innerHeight - sr.height - 8))}px`;
+  };
+  function addItem(into: HTMLElement, it: MenuItem, top: boolean) {
+    if (it === 'separator') { into.append(h('div.ctx-sep', { role: 'separator' })); return; }
+    const right = it.submenu
+      ? h('span.ctx-more', null, '›')
+      : it.shortcut ? h('span.ctx-keys', null, ...keyCaps(it.shortcut).map((k) => h('kbd', null, k))) : null;
     const b = h(`button.ctx-item${it.danger ? '.danger' : ''}`, {
       type: 'button', role: 'menuitem', title: it.title, 'aria-disabled': it.disabled ? 'true' : undefined,
-      onclick: () => { if (it.disabled) return; close(); it.onSelect?.(); },
-    }, h('span', null, it.label), it.badge ? h('span.ctx-badge', null, it.badge) : null) as HTMLButtonElement;
+      'aria-haspopup': it.submenu ? 'menu' : undefined,
+      onclick: () => {
+        if (it.disabled) return;
+        if (it.submenu) { openSub(b, it.submenu); return; }
+        close(); it.onSelect?.();
+      },
+      onmouseenter: () => { if (top) { if (it.submenu && !it.disabled) openSub(b, it.submenu); else closeSub(); } },
+    }, it.checked !== undefined ? h('span.ctx-check', null, it.checked ? '✓' : '') : null, h('span', null, it.label), it.badge ? h('span.ctx-badge', null, it.badge) : null, right) as HTMLButtonElement;
     if (it.disabled) b.classList.add('disabled');
-    buttons.push(b);
-    menu.append(b);
+    if (top) buttons.push(b);
+    into.append(b);
   }
+  for (const it of items) addItem(menu, it, true);
   document.body.append(menu);
   const r = menu.getBoundingClientRect();
   menu.style.left = `${Math.max(8, Math.min(x, window.innerWidth - r.width - 8))}px`;
@@ -42,8 +77,9 @@ export function showContextMenu(x: number, y: number, items: MenuItem[]) {
     else if (e.key === 'ArrowDown') { e.preventDefault(); move(1); }
     else if (e.key === 'ArrowUp') { e.preventDefault(); move(-1); }
   };
-  const onDown = (e: PointerEvent) => { if (!menu.contains(e.target as Node)) close(); };
+  const onDown = (e: PointerEvent) => { if (!menu.contains(e.target as Node) && !sub?.contains(e.target as Node)) close(); };
   function close() {
+    closeSub();
     menu.remove();
     window.removeEventListener('keydown', onKey, true);
     window.removeEventListener('pointerdown', onDown, true);

@@ -1,6 +1,6 @@
 import { addLookLayer, addMediaToTimeline, addSticker, addText, applyCrossTransition, updateClip } from '../actions';
 import { libDrag, previewLook, previewMedia, previewSticker, previewText, previewTransition } from './libraryPreview';
-import { allEffects, TEXT_PRESETS } from '../catalog';
+import { allEffects, TEXT_CATEGORIES, TEXT_PRESETS } from '../catalog';
 import { FX_CATEGORIES } from '../engine/fxlib';
 import { importCube, LUT_CATEGORIES, lutList, removeCustomLut } from '../engine/luts';
 import { STICKER_CATEGORIES, stickerDataUrl, STICKERS } from '../stickers';
@@ -12,7 +12,8 @@ import { clear, fmtTime, h, icon, toast } from './dom';
 import { importOnly, pickFiles } from './importer';
 import { TEMPLATE_CATEGORIES } from '../templates';
 import { captionsTab } from './captionsPanel';
-import { templatesTab } from './templatesPanel';
+import { openCreateTemplate, templatesTab } from './templatesPanel';
+import { audioCategories, audioLibrary } from './audioPanel';
 import { mediaMenu, MediaMenuHooks, renameMedia } from './mediaMenu';
 import { animateEffect, lookPreview } from './lookPreview';
 import { SAMPLE_H, SAMPLE_W } from './sampleImages';
@@ -34,14 +35,14 @@ const TABS = [
 /** Sub-navigation entries per tab (the left column inside the panel, as in CapCut). */
 const SUBNAV: Record<string, string[]> = {
   media: ['All', 'Videos', 'Photos'],
-  audio: ['Imported'],
-  text: ['Add text', 'Templates'],
+  audio: ['Yours', 'Favorites'],
+  text: ['Add text', ...TEXT_CATEGORIES],
   stickers: ['All', ...STICKER_CATEGORIES],
   effects: ['All', 'Basic', ...FX_CATEGORIES],
   transitions: ['All', 'Popular'],
   captions: ['Auto captions', 'Templates', 'Auto lyrics', 'Add captions'],
   filters: ['All', ...LUT_CATEGORIES, 'Custom'],
-  templates: ['For You', ...TEMPLATE_CATEGORIES, 'Favorites'],
+  templates: ['For You', 'Yours', ...TEMPLATE_CATEGORIES, 'Favorites'],
 };
 
 const sub: Record<string, string> = {};
@@ -83,23 +84,48 @@ export function mountLeftPanel(panel: HTMLElement, player: Player) {
 
   function renderSubnav() {
     clear(subnav);
+    // The list scrolls; a footer (Templates › Create template) stays fixed below it.
+    const list = h('div.lp-sub-list');
+    let foot: HTMLElement | null = null;
     const tab = store.leftTab;
     if (tab === 'media' || tab === 'audio') {
-      subnav.append(h('button.lp-import', { onclick: async () => importOnly(await pickFiles()) }, icon('upload', 14), 'Import'));
+      list.append(h('button.lp-import', { onclick: async () => importOnly(await pickFiles()) }, icon('upload', 14), 'Import'));
     }
     if (tab === 'filters') {
-      subnav.append(h('button.lp-import', {
+      list.append(h('button.lp-import', {
         title: 'Import a .cube LUT file',
         onclick: () => importLuts(() => { sub.filters = 'Custom'; renderSubnav(); renderContent(); }),
       }, icon('upload', 14), 'Import LUT'));
     }
     for (const s of SUBNAV[tab]) {
-      subnav.append(h(`button.lp-sub${subOf(tab) === s ? '.active' : ''}`, {
+      list.append(h(`button.lp-sub${subOf(tab) === s ? '.active' : ''}`, {
         onclick: () => { sub[tab] = s; renderContent(); renderSubnav(); },
       }, s));
     }
-    if (tab === 'media') for (const f of store.folders) subnav.append(folderEntry(f));
+    if (tab === 'media') for (const f of store.folders) list.append(folderEntry(f));
+    if (tab === 'templates') {
+      // Pinned to the bottom of the column; the categories scroll above it.
+      foot = h('div.lp-sub-foot', null, h('button.lp-import.lp-create', {
+        title: 'Save this timeline as a template',
+        onclick: () => void openCreateTemplate(player, () => { sub.templates = 'Yours'; renderSubnav(); renderContent(); }),
+      }, icon('plus', 11), 'Create template'));
+    }
+    if (tab === 'audio') {
+      // Library sections (CapCut): Music and Sound effects, each with its categories.
+      for (const [kind, label] of [['music', 'Music'], ['sounds', 'Sound effects']] as const) {
+        const cats = audioCategories(kind);
+        if (!cats.length) continue;
+        list.append(h('div.lp-sub-group', null, label));
+        for (const c of cats) {
+          const key = `${kind}:${c}`;
+          list.append(h(`button.lp-sub.lp-sub-child${subOf('audio') === key ? '.active' : ''}`, { onclick: () => { sub.audio = key; renderContent(); renderSubnav(); } }, c));
+        }
+      }
+    }
+    subnav.append(list);
+    if (foot) subnav.append(foot);
   }
+
 
   function folderEntry(f: { id: string; name: string }) {
     const key = FOLDER + f.id;
@@ -142,7 +168,7 @@ export function mountLeftPanel(panel: HTMLElement, player: Player) {
     clear(content);
     switch (store.leftTab) {
       case 'media': mediaTab(content); break;
-      case 'audio': audioTab(content); break;
+      case 'audio': subOf('audio') === 'Yours' ? audioTab(content) : audioLibrary(content, subOf('audio'), renderContent); break;
       case 'text': textTab(content); break;
       case 'stickers': stickerTab(content); break;
       case 'effects': lookTab(content, 'effect'); break;
@@ -164,7 +190,10 @@ export function mountLeftPanel(panel: HTMLElement, player: Player) {
   });
   renderAgain = renderContent;
   // Catalog loaded / an item downloaded: refresh the library tabs (↓ becomes +).
-  onAssetsChanged(() => { if (['stickers', 'effects', 'filters', 'transitions', 'templates'].includes(store.leftTab)) renderContent(); });
+  onAssetsChanged(() => {
+    if (['stickers', 'effects', 'filters', 'transitions', 'templates', 'audio'].includes(store.leftTab)) renderContent();
+    if (store.leftTab === 'audio') renderSubnav();
+  });
   const onClipChange = () => {
     if (['effects', 'filters', 'transitions', 'media'].includes(store.leftTab)) renderContent();
     // The caption list re-renders on edits, except while the user is typing in it.
@@ -341,17 +370,23 @@ function renameInput(value: string, cls: string, done: (v: string) => void) {
 }
 
 function textTab(body: HTMLElement) {
+  // "Add text" is CapCut's single "Default text" box; each category shows its own styles.
   if (subOf('text') === 'Add text') {
-    const card = h('div.add-text-card', { role: 'button', tabIndex: 0, draggable: true, onclick: () => previewText({}, 'Text', card) },
-      h('span.add-text-sample', null, 'Default text'),
-      h('button.add-text-plus', { type: 'button', title: 'Add to timeline', onclick: (e: Event) => { e.stopPropagation(); addText({}, 'Text'); } }, icon('plus', 14)));
-    libDrag(card, { kind: 'text', id: '' });
-    card.dataset.pkey = 'text:Text';
-    body.append(card);
-    body.append(h('p.hint', null, 'Adds a text layer at the playhead. Edit the words and style in the panel on the right.'));
+    const tile: HTMLElement = h('div.preset.default-text', {
+      role: 'button', tabIndex: 0, title: 'Default text',
+      onclick: () => previewText({}, 'Text', tile),
+      onkeydown: (e: KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); addText({}, 'Text'); } },
+    }, h('span', null, 'Default text'),
+    h('button.card-add', { title: 'Add to timeline', onclick: (e: Event) => { e.stopPropagation(); addText({}, 'Text'); } }, icon('plus', 14)));
+    libDrag(tile, { kind: 'text', id: '' });
+    tile.dataset.pkey = 'text:Text';
+    body.append(h('div.preset-grid', null, tile));
+    return;
   }
+  const cat = subOf('text');
   const grid = h('div.preset-grid');
   for (const [i, p] of TEXT_PRESETS.entries()) {
+    if (p.category !== cat) continue;
     const addBtn = h('button.card-add', {
       title: 'Add to timeline',
       onclick: (e: Event) => { e.stopPropagation(); addText(p.style, p.name); },

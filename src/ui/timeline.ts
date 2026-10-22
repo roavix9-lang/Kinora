@@ -1,15 +1,22 @@
-import { addMediaToTimeline, deleteSelected, deleteSide, toggleMarker, duplicateSelected, replaceTemplateSlot, sourceDuration, splitAtPlayhead, updateClip } from '../actions';
+import {
+  addMediaToTimeline, copyAttributes, copySelected, cutSelected, deleteSelected, deleteSide, duplicateSelected, extractAudio, hasAttributes,
+  pasteAttributes, recoverAudio, replaceClipMedia, replaceTemplateSlot, sourceDuration, splitAtPlayhead, toggleDisabled, toggleMarker, updateClip,
+} from '../actions';
 import { displayName } from '../engine/gltransitions';
 import { trackTransitions } from '../engine/scene';
 import { nestedProject, placeholdersLeft } from '../engine/templateClips';
 import { mediaStill, openSlotPicker } from './slotPicker';
 import { stickerById, stickerDataUrl } from '../stickers';
-import { thumbAt } from '../engine/media';
+import { relinkMedia, thumbAt } from '../engine/media';
 import { Player } from '../engine/player';
 import { store } from '../store';
-import { Clip, clipEnd, Track, TrackKind, uid } from '../types';
+import { Clip, clipEnd, MediaItem, Track, TrackKind, uid } from '../types';
 import { clear, drag, fmtTime, h, icon, toast } from './dom';
-import { importAndAdd } from './importer';
+import { importAndAdd, pickFiles } from './importer';
+import { MenuItem, onContextMenu } from './contextmenu';
+import { openExportDialog } from './exportDialog';
+import { saveAdjustPreset } from './adjustPanel';
+import { isolateProgress, setIsolate } from '../engine/isolate';
 import { dropLibItem } from './libraryPreview';
 
 const RULER_H = 22;
@@ -81,14 +88,59 @@ export function mountTimeline(root: HTMLElement, player: Player) {
   const content = h('div.tl-content', null, rows, playhead, snapLine);
   const scroller = h('div.tl-scroll', null, h('div.tl-ruler-wrap', null, ruler), content);
   const empty = h('div.tl-empty', null, icon('film', 22), h('span', null, 'Drag media here to start creating'));
-  const body = h('div.tl-body', null, h('div.tl-headers-wrap', null, h('div.tl-corner'), headers), scroller, empty);
+  const headersWrap = h('div.tl-headers-wrap', null, h('div.tl-corner'), headers);
+  // Phones (CapCut mobile): the playhead stays fixed in the middle and the tracks scroll under it.
+  const centreLine = h('div.tl-centre-line', null, h('div.tl-playhead-cap'));
+  const body = h('div.tl-body', null, headersWrap, scroller, empty, centreLine);
   root.append(toolbar, body);
+
+  // ---- centred playhead (small screens) ----------------------------------------
+  // The track headers move inside the scroll area, to the left of 00:00, so they scroll away
+  // with the clips. Scrolling sideways scrubs; playing scrolls the tracks under the line.
+
+  const phone = matchMedia('(max-width: 760px)');
+  let centred = false;
+  /** Space before the headers so 00:00 can sit under the centre line. */
+  let lead = 0;
+  const HEADERS_W = 128;
+  /** Where time 0 is inside the scroll area (lead + headers). */
+  const timeOrigin = () => (centred ? lead + HEADERS_W : 0);
+  let settingScroll = false;
+
+  function applyMode() {
+    centred = phone.matches;
+    body.classList.toggle('centred', centred);
+    if (centred && headersWrap.parentElement !== scroller) scroller.prepend(headersWrap);
+    if (!centred && headersWrap.parentElement !== body) body.prepend(headersWrap);
+    if (!centred) { content.style.marginLeft = ''; content.style.marginRight = ''; headersWrap.style.left = ''; headers.style.transform = ''; }
+    schedule();
+  }
+  phone.addEventListener('change', applyMode);
+
+  /** Puts the current time under the centre line. */
+  function syncScroll() {
+    if (!centred) return;
+    const want = Math.max(0, store.currentTime * store.zoom + timeOrigin() - scroller.clientWidth / 2);
+    if (Math.abs(scroller.scrollLeft - want) < 0.5) return;
+    settingScroll = true;
+    scroller.scrollLeft = want;
+  }
+
+  scroller.addEventListener('scroll', () => {
+    if (!centred) return;
+    if (settingScroll) { settingScroll = false; return; }
+    // The user scrolled: the time under the centre line is the new playhead time.
+    if (store.playing) player.pause();
+    const t = (scroller.scrollLeft + scroller.clientWidth / 2 - timeOrigin()) / store.zoom;
+    player.seek(Math.max(0, Math.min(store.duration, t)));
+  });
 
   // ---- zoom --------------------------------------------------------------------
 
   function setZoom(z: number, anchorX?: number) {
     const old = store.zoom;
     z = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, z));
+    if (centred) { store.zoom = z; render(); store.emit('view'); return; }
     const ax = anchorX ?? (store.currentTime * old - scroller.scrollLeft);
     const tAtAnchor = (scroller.scrollLeft + ax) / old;
     store.zoom = z;
@@ -100,6 +152,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
   /** Zoom so the whole timeline (a 2 min video = 2 min) fills the visible width. */
   function fitZoom() {
     const d = Math.max(store.duration, 1);
+    if (centred) { setZoom((scroller.clientWidth / 2 - 12) / d); return; }
     setZoom((scroller.clientWidth - 24) / d);
     scroller.scrollLeft = 0;
   }
@@ -126,13 +179,14 @@ export function mountTimeline(root: HTMLElement, player: Player) {
     const dpr = window.devicePixelRatio || 1;
     const w = content.offsetWidth;
     const viewW = scroller.clientWidth;
-    const x0 = scroller.scrollLeft;
+    // x0: the time-axis pixel at the left edge of the view (the headers sit before 00:00 on phones).
+    const x0 = scroller.scrollLeft - timeOrigin();
     // Only rasterise the visible slice; the canvas is positioned with sticky offset.
     ruler.width = Math.max(1, viewW * dpr);
     ruler.height = RULER_H * dpr;
     ruler.style.width = `${viewW}px`;
-    ruler.style.transform = `translateX(${x0}px)`;
-    (ruler.parentElement as HTMLElement).style.width = `${w}px`;
+    ruler.style.transform = `translateX(${scroller.scrollLeft}px)`;
+    (ruler.parentElement as HTMLElement).style.width = `${w + timeOrigin() + (centred ? viewW / 2 : 0)}px`;
     const ctx = ruler.getContext('2d')!;
     ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, viewW, RULER_H);
@@ -153,6 +207,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
     for (let i = iStart; i <= iEnd; i++) {
       const t = Math.round(i * minor * 1000) / 1000;
       const x = Math.round(t * z - x0) + 0.5;
+      if (t < 0) continue;
       const isMajor = i % perMajor === 0;
       ctx.moveTo(x, isMajor ? 0 : 15);
       ctx.lineTo(x, RULER_H);
@@ -173,7 +228,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
 
   scroller.addEventListener('scroll', () => {
     drawRuler();
-    headers.style.transform = `translateY(${-scroller.scrollTop}px)`;
+    if (!centred) headers.style.transform = `translateY(${-scroller.scrollTop}px)`;
   });
 
   const seekFromEvent = (ev: PointerEvent) => {
@@ -449,7 +504,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
 
   function drawClipCanvas(cv: HTMLCanvasElement, clip: Clip, w: number, hgt: number) {
     const m = clip.mediaId ? store.media.get(clip.mediaId) : undefined;
-    const key = `${clip.in}|${clip.duration}|${clip.speed}|${w}|${hgt}|${m?.thumbs.length}|${!!m?.peaks}|${clip.volume}`;
+    const key = `${clip.in}|${clip.duration}|${clip.speed}|${w}|${hgt}|${m?.thumbs.length}|${!!m?.peaks}|${clip.volume}|${clip.extractedTo ?? ''}`;
     if (clipCanvasCache.get(cv) === key) return;
     clipCanvasCache.set(cv, key);
     const dpr = window.devicePixelRatio || 1;
@@ -461,7 +516,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
     ctx.scale(dpr, dpr);
     if (!m) return;
     // A video's waveform gets its own strip under the thumbnails (CapCut), so it never covers the picture.
-    const waveH = clip.type === 'video' && m.peaks ? Math.round(hgt * 0.3) : 0;
+    const waveH = clip.type === 'video' && m.peaks && !clip.extractedTo ? Math.round(hgt * 0.3) : 0;
     const picH = hgt - waveH;
     if ((clip.type === 'video' || clip.type === 'image') && m.thumbs.length) {
       const first = m.thumbs[0];
@@ -472,13 +527,15 @@ export function mountTimeline(root: HTMLElement, player: Player) {
         if (bmp) ctx.drawImage(bmp, x, 0, tw, picH);
       }
     }
-    if (m.peaks && (clip.type === 'audio' || clip.type === 'video')) {
+    if (m.peaks && (clip.type === 'audio' || (clip.type === 'video' && !clip.extractedTo))) {
       const isAudio = clip.type === 'audio';
       const band = isAudio ? hgt - 14 : waveH - 3;
       const baseY = hgt - 1;
       if (!isAudio) { ctx.fillStyle = 'rgba(0,0,0,0.45)'; ctx.fillRect(0, picH, vw, waveH); }
       const wave = isAudio ? 'rgba(160, 255, 210, 0.85)' : 'rgba(140, 230, 255, 0.9)';
       const vol = Math.min(1.5, clip.volume);
+      // Peak value (0..1 on the scaled peaks) where the real level reaches about -1 dBFS.
+      const redAt = 0.89 / Math.max(1e-6, (m.peakScale ?? 1) * clip.volume);
       for (let x = 0; x < vw; x++) {
         const src = clip.in + (x / store.zoom) * clip.speed;
         const i0 = Math.floor(src * m.peaksPerSecond);
@@ -486,10 +543,19 @@ export function mountTimeline(root: HTMLElement, player: Player) {
         let v = 0;
         for (let i = i0; i < i1 && i < m.peaks.length; i++) v = Math.max(v, m.peaks[i]);
         const bh = Math.max(1, Math.min(1, v * vol) * band);
-        // Peaks near full scale (clipping risk, measured on the real level) show red, as in CapCut.
-        ctx.fillStyle = v * (m.peakScale ?? 1) * clip.volume >= 0.89 ? '#ff4d4f' : wave;
-        if (isAudio) ctx.fillRect(x, 12 + (band - bh) / 2, 1, bh);
-        else ctx.fillRect(x, baseY - bh, 1, bh);
+        // Only the tip above the loud level (≈ -1 dBFS, real level) is red, as in CapCut.
+        const hot = Math.min(bh, Math.max(0, (v - redAt) * vol * band));
+        const cool = bh - hot;
+        if (isAudio) {
+          const top = 12 + (band - bh) / 2;
+          ctx.fillStyle = wave;
+          ctx.fillRect(x, top + hot / 2, 1, cool);
+          if (hot > 0) { ctx.fillStyle = '#ff4d4f'; ctx.fillRect(x, top, 1, hot / 2); ctx.fillRect(x, top + bh - hot / 2, 1, hot / 2); }
+        } else {
+          ctx.fillStyle = wave;
+          ctx.fillRect(x, baseY - cool, 1, cool);
+          if (hot > 0) { ctx.fillStyle = '#ff4d4f'; ctx.fillRect(x, baseY - bh, 1, hot); }
+        }
       }
     }
   }
@@ -500,7 +566,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
     const m = clip.mediaId ? store.media.get(clip.mediaId) : undefined;
     const el = h(`div.clip.t-${clip.type}`, {
       'data-id': clip.id,
-      class: `${selected ? 'selected' : ''} ${track.locked ? 'locked' : ''}`,
+      class: `${selected ? 'selected' : ''} ${track.locked ? 'locked' : ''} ${clip.disabled ? 'disabled' : ''}`,
       // 1px inset each side leaves a visible 2px gap between back-to-back clips.
       style: { left: `${clip.start * store.zoom + 1}px`, width: `${Math.max(2, w - 2)}px`, height: `${hgt - 6}px` },
     });
@@ -553,7 +619,91 @@ export function mountTimeline(root: HTMLElement, player: Player) {
     el.append(hl, hr);
     el.addEventListener('pointerdown', (e) => { if (e.button === 0) startMove(e as PointerEvent, clip, track); });
     el.addEventListener('dblclick', () => player.seek(clip.start));
+    onContextMenu(el, () => { if (store.selectedId !== clip.id) store.select(clip.id); return clipMenu(clip, el); });
     return el;
+  }
+
+  /** Right-click menu on a timeline clip (CapCut's list; unavailable items are greyed out). */
+  /** Items CapCut leaves out of an audio clip's menu. */
+  const VIDEO_ONLY = new Set(['Edit', 'Extract audio', 'Recover audio', 'Export selected clips', 'Trim clip', 'Replace clip', 'Edit effects', 'Show variable speed animation', 'Render']);
+
+  function clipMenu(clip: Clip, el: HTMLElement): MenuItem[] {
+    const items = fullClipMenu(clip, el);
+    if (clip.type !== 'audio') return items;
+    const kept = items.filter((it) => it === 'separator' || !VIDEO_ONLY.has(it.label));
+    // Tidy separators left next to each other.
+    return kept.filter((it, i) => !(it === 'separator' && (i === 0 || kept[i - 1] === 'separator' || i === kept.length - 1)));
+  }
+
+  function fullClipMenu(clip: Clip, el: HTMLElement): MenuItem[] {
+    const m = clip.mediaId ? store.media.get(clip.mediaId) : undefined;
+    const visual = clip.type === 'video' || clip.type === 'image';
+    const tr = clip.start < store.currentTime && store.currentTime < clipEnd(clip);
+    return [
+      { label: 'Copy', shortcut: ['mod', 'c'], onSelect: copySelected },
+      { label: 'Cut', shortcut: ['mod', 'x'], onSelect: cutSelected },
+      { label: 'Copy attributes', shortcut: ['mod', 'shift', 'c'], onSelect: copyAttributes },
+      { label: 'Paste attributes', shortcut: ['mod', 'shift', 'v'], disabled: !hasAttributes(), onSelect: pasteAttributes },
+      { label: 'Delete', shortcut: ['del'], onSelect: () => deleteSelected() },
+      'separator',
+      {
+        label: 'Edit', submenu: [
+          { label: 'Split', shortcut: ['mod', 'b'], disabled: !tr, onSelect: splitAtPlayhead },
+          { label: 'Delete left', shortcut: ['q'], disabled: !tr, onSelect: () => deleteSide('left') },
+          { label: 'Delete right', shortcut: ['w'], disabled: !tr, onSelect: () => deleteSide('right') },
+          { label: 'Duplicate', shortcut: ['mod', 'd'], onSelect: duplicateSelected },
+          { label: 'Mirror', disabled: clip.type === 'audio', onSelect: () => updateClip(clip.id, (x) => { x.transform.flipX = !x.transform.flipX; }) },
+          { label: 'Rotate 90°', disabled: clip.type === 'audio', onSelect: () => updateClip(clip.id, (x) => { x.transform.rotation = ((x.transform.rotation + 90 + 180) % 360) - 180; }) },
+        ],
+      },
+      {
+        label: isolateProgress(clip.mediaId ?? '') !== undefined ? `Isolate voice (${Math.round((isolateProgress(clip.mediaId!) ?? 0) * 100)}%)` : 'Isolate voice',
+        disabled: !(clip.type === 'video' || clip.type === 'audio') || !m || (clip.type === 'video' && !m.hasAudio),
+        submenu: [
+          { label: "Don't isolate voice", checked: !clip.isolate, onSelect: () => setIsolate(clip.id, undefined) },
+          { label: 'Remove vocal', checked: clip.isolate === 'remove', onSelect: () => setIsolate(clip.id, 'remove') },
+          { label: 'Keep vocal', checked: clip.isolate === 'keep', onSelect: () => setIsolate(clip.id, 'keep') },
+        ],
+      },
+      clip.extractedTo
+        ? { label: 'Recover audio', shortcut: ['shift', 'ctrl', 's'], onSelect: () => recoverAudio(clip) }
+        : { label: 'Extract audio', shortcut: ['shift', 'ctrl', 's'], disabled: clip.type !== 'video' || !m?.hasAudio, onSelect: () => extractAudio(clip) },
+      { label: 'Sync video and audio', disabled: true, title: 'Select a video and an audio clip to sync' },
+      'separator',
+      { label: 'Create compound clip (subproject)', shortcut: ['alt', 'g'], disabled: true, title: 'Select two or more clips' },
+      { label: 'Save preset', disabled: !visual, onSelect: () => saveAdjustPreset(clip) },
+      { label: 'Group', disabled: true, title: 'Select two or more clips' },
+      { label: 'Ungroup', disabled: true },
+      'separator',
+      { label: 'Export selected clips', onSelect: () => exportClip(clip) },
+      { label: clip.disabled ? 'Activate clip' : 'Deactivate clip', shortcut: ['v'], onSelect: () => toggleDisabled(clip) },
+      { label: 'Trim clip', disabled: true },
+      { label: 'Replace clip', disabled: !visual && clip.type !== 'audio', onSelect: () => openSlotPicker(el, (pick) => replaceClipMedia(clip, pick)) },
+      { label: 'Link to media', disabled: m?.status !== 'error', onSelect: () => void relink(m!) },
+      { label: 'Open file location', disabled: !m, onSelect: () => { store.leftTab = 'media'; store.mediaSelectedId = m!.id; store.emit('view', 'media'); } },
+      'separator',
+      { label: 'Edit effects', disabled: !clip.effect || clip.effect.id === 'none', onSelect: () => { store.leftTab = 'effects'; store.emit('view'); } },
+      { label: 'Show variable speed animation', disabled: true },
+      {
+        label: 'Range', submenu: [
+          { label: 'Play clip', onSelect: () => player.playRange(clip.start, clipEnd(clip)) },
+          { label: 'Zoom to clip', onSelect: () => { setZoom((scroller.clientWidth - 80) / Math.max(0.2, clip.duration)); scroller.scrollLeft = Math.max(0, clip.start * store.zoom - 40); } },
+        ],
+      },
+      { label: 'Render', submenu: [{ label: 'Render clip', disabled: true, title: 'Kinora plays edits live, so nothing needs pre-rendering' }] },
+    ];
+  }
+
+  async function relink(m: MediaItem) {
+    const [file] = await pickFiles();
+    if (file && await relinkMedia(m, file)) { store.emit('media', 'project'); toast(`Linked “${m.name}”`, 'ok'); }
+  }
+
+  /** Exports just this clip: a copy of the timeline holding only it, starting at 0. */
+  function exportClip(clip: Clip) {
+    const p = structuredClone(store.project);
+    for (const t of p.tracks) t.clips = t.clips.filter((c) => c.id === clip.id).map((c) => ({ ...c, start: 0 }));
+    openExportDialog(player, p);
   }
 
   function header(track: Track, hgt: number) {
@@ -575,7 +725,17 @@ export function mountTimeline(root: HTMLElement, player: Player) {
     clear(rows);
     clear(headers);
     const viewW = scroller.clientWidth || 800;
-    const width = Math.max(viewW, (store.duration + Math.max(30, viewW / store.zoom * 0.5)) * store.zoom);
+    const width = centred
+      ? Math.max(1, store.duration * store.zoom)
+      : Math.max(viewW, (store.duration + Math.max(30, viewW / store.zoom * 0.5)) * store.zoom);
+    if (centred) {
+      lead = Math.max(0, viewW / 2 - HEADERS_W);
+      content.style.marginLeft = `${timeOrigin()}px`;
+      // Room after the end so the last frame can reach the centre line.
+      content.style.marginRight = `${viewW / 2}px`;
+      headersWrap.style.left = `${lead}px`;
+      centreLine.style.left = `${viewW / 2}px`;
+    }
     content.style.width = `${width}px`;
     rows.style.width = `${width}px`;
     let total = 0;
@@ -631,6 +791,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
   }
 
   function positionPlayhead() {
+    if (centred) { syncScroll(); return; }
     const x = store.currentTime * store.zoom;
     playhead.style.transform = `translateX(${x}px)`;
     if (store.playing) {
@@ -647,6 +808,7 @@ export function mountTimeline(root: HTMLElement, player: Player) {
   store.on('view', schedule);
   store.on('time', positionPlayhead);
   new ResizeObserver(schedule).observe(scroller);
+  applyMode();
   render();
 
   return { fitZoom, setZoom };

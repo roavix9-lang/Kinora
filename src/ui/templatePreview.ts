@@ -1,16 +1,18 @@
+import { assetUrl, CatalogItem } from '../engine/assets';
 import { Compositor } from '../engine/compositor';
 import { buildLayers } from '../engine/scene';
 import { buildTemplateProject, TemplateDef, templateDuration } from '../templates';
-import { loadSamples, onSamplesReady, sampleMedia, samplesReady } from '../engine/sampleMedia';
+import { loadSamples, loadTemplateSamples, onSamplesReady, samplesReady, slotSample } from '../engine/sampleMedia';
 import { Project } from '../types';
 
 // Template thumbnails and live previews, rendered with the real compositor using the two
 // bundled sample photos (registered as hidden media so the renderer can find them).
 
-/** Template filled with the sample photos (alternating), for previews. */
-function sampleProject(t: TemplateDef): Project | null {
+/** Template filled with its samples (bundled photos until those arrive), for previews. */
+function sampleMediaFor(t: TemplateDef) {
   if (!samplesReady()) { void loadSamples(); return null; }
-  return buildTemplateProject(t, t.slots.map((_, i) => sampleMedia(i)));
+  void loadTemplateSamples(t);
+  return t.slots.map((_, i) => slotSample(t, i));
 }
 
 const renderers = new Map<string, { comp: Compositor; canvas: HTMLCanvasElement }>();
@@ -35,16 +37,17 @@ function renderer(w: number, h: number) {
   return r;
 }
 
-const projects = new Map<string, Project>();
+const projects = new Map<string, { key: string; project: Project }>();
 function projectFor(t: TemplateDef) {
-  let p = projects.get(t.id);
-  if (!p) {
-    const built = sampleProject(t);
-    if (!built) return null;
-    p = built;
-    projects.set(t.id, p);
+  const media = sampleMediaFor(t);
+  if (!media) return null;
+  const key = media.map((m) => m?.id ?? '-').join('|');
+  let hit = projects.get(t.id);
+  if (!hit || hit.key !== key) {
+    hit = { key, project: buildTemplateProject(t, media) };
+    projects.set(t.id, hit);
   }
-  return p;
+  return hit.project;
 }
 
 function drawFrame(t: TemplateDef, time: number, w: number, h: number): HTMLCanvasElement | null {
@@ -86,6 +89,30 @@ export function playTemplate(target: HTMLCanvasElement, t: TemplateDef): () => v
   };
   tick();
   return () => cancelAnimationFrame(raf);
+}
+
+/**
+ * Hover preview from the template's pre-rendered video (picture and song), or null when it has
+ * none (templates people made themselves play live instead). Sound needs one earlier click on
+ * the page (browser rule); until then it plays muted.
+ */
+export function previewVideo(item: CatalogItem, className: string) {
+  const key = (item.meta as { preview?: string }).preview;
+  if (!key) return null;
+  const el = document.createElement('video');
+  el.className = className;
+  el.loop = true;
+  el.playsInline = true;
+  el.preload = 'none';
+  return {
+    el,
+    play() {
+      if (!el.src) el.src = `${assetUrl(key)}?v=${item.version}`;
+      el.muted = false;
+      el.play().catch(() => { el.muted = true; void el.play().catch(() => {}); });
+    },
+    stop() { el.pause(); el.currentTime = 0; },
+  };
 }
 
 /** Drop cached covers (e.g. after web fonts finish loading). */

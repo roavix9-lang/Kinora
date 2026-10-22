@@ -1,16 +1,18 @@
-import { previousAdjacent, replaceTemplateSlot, resolveOverlap, setSpeed, updateClip } from '../actions';
+import { extractAudio, previousAdjacent, recoverAudio, replaceTemplateSlot, resolveOverlap, setSpeed, updateClip } from '../actions';
 import { nestedProject, placeholdersLeft, templateDef } from '../engine/templateClips';
 import { mediaStill, openSlotPicker } from './slotPicker';
 import { ADJUST_TABS, adjustContent, adjustFooter } from './adjustPanel';
 import { displayName, transitions } from '../engine/gltransitions';
 import { allEffects, FONTS, TRANSITIONS } from '../catalog';
+import { catalogOf, download, isDownloaded, isDownloading } from '../engine/assets';
+import { AnimKey, cssKeyframes } from '../engine/anims';
 import { lutList } from '../engine/luts';
 import { lookPreview } from './lookPreview';
 import { baseSize } from '../engine/layout';
 import { Player } from '../engine/player';
 import { stickerById, stickerDataUrl } from '../stickers';
 import { store } from '../store';
-import { Clip, defaultChroma, defaultText, defaultTransform, makeClip } from '../types';
+import { Clip, defaultChroma, TextStyle, defaultText, defaultTransform } from '../types';
 import { clear, fmtTime, h, icon, toast } from './dom';
 import { detailsPanel } from './projectSettings';
 import { Option } from './select';
@@ -18,7 +20,43 @@ import { PCT, RAW, colorCtl, live, row, section, selectRow, slider, toggle, valu
 
 
 const activeTab: Record<string, string> = {};
+let presetsOpen = false;
+
+/** The look fields a preset style sets; "none" puts them back to plain white text. */
+const PLAIN_LOOK: Partial<TextStyle> = { color: '#ffffff', strokeColor: '#000000', strokeWidth: 0, background: '', shadow: false, shadowColor: undefined, shadowBlur: undefined, shadowX: undefined, shadowY: undefined };
+const L = (name: string, style: Partial<TextStyle>, css: string, bg?: string) => ({ name, style, css, bg });
+const glow = (c: string) => ({ shadow: true, shadowColor: c, shadowBlur: 0.35, shadowX: 0, shadowY: 0 });
+const drop = (c: string, d: number, blur = 0) => ({ shadow: true, shadowColor: c, shadowBlur: blur, shadowX: d, shadowY: d });
+const TEXT_LOOKS = [
+  L('None', {}, ''),
+  L('Black outline', { strokeColor: '#000000', strokeWidth: 12 }, 'color:#fff;-webkit-text-stroke:2px #000;paint-order:stroke'),
+  L('Outline + shadow', { strokeColor: '#000000', strokeWidth: 8, ...drop('#000000', 0.06) }, 'color:#fff;-webkit-text-stroke:1.5px #000;paint-order:stroke;text-shadow:2px 2px 0 #000'),
+  L('Drop shadow', drop('#000000', 0.06), 'color:#fff;text-shadow:2px 2px 0 #000'),
+  L('Soft shadow', glow('rgba(0,0,0,0.9)'), 'color:#fff;text-shadow:0 0 6px #000,0 0 6px #000'),
+  L('Yellow', { color: '#e6ff00', strokeColor: '#000000', strokeWidth: 12 }, 'color:#e6ff00;-webkit-text-stroke:2px #000;paint-order:stroke'),
+  L('Red', { color: '#ff2a2a', strokeColor: '#ffffff', strokeWidth: 12 }, 'color:#ff2a2a;-webkit-text-stroke:2px #fff;paint-order:stroke'),
+  L('Orange', { color: '#ff8a00', strokeColor: '#ffffff', strokeWidth: 12 }, 'color:#ff8a00;-webkit-text-stroke:2px #fff;paint-order:stroke'),
+  L('Blue', { color: '#1e90ff', strokeColor: '#ffffff', strokeWidth: 12 }, 'color:#1e90ff;-webkit-text-stroke:2px #fff;paint-order:stroke'),
+  L('Green', { color: '#22e51a', strokeColor: '#000000', strokeWidth: 12 }, 'color:#22e51a;-webkit-text-stroke:2px #000;paint-order:stroke'),
+  L('Black on grey', { color: '#000000', background: '#9b9b9b' }, 'color:#000', '#9b9b9b'),
+  L('White on grey', { color: '#ffffff', background: '#a3a3a3' }, 'color:#fff', '#a3a3a3'),
+  L('Black on yellow', { color: '#000000', background: '#ffd400' }, 'color:#000', '#ffd400'),
+  L('White on purple', { color: '#ffffff', background: '#8000ff' }, 'color:#fff', '#8000ff'),
+  L('Purple on white', { color: '#8000ff', background: '#ffffff' }, 'color:#8000ff', '#ffffff'),
+  L('Black on white', { color: '#000000', background: '#ffffff' }, 'color:#000', '#ffffff'),
+  L('White on black', { color: '#ffffff', background: '#000000' }, 'color:#fff', '#000000'),
+  L('Green on black', { color: '#22e51a', background: '#000000' }, 'color:#22e51a', '#000000'),
+  L('Green 3D', { color: '#000000', ...drop('#22e51a', 0.06) }, 'color:#000;text-shadow:2px 2px 0 #22e51a'),
+  L('Yellow 3D', { color: '#ffd400', ...drop('#e11d1d', 0.06) }, 'color:#ffd400;text-shadow:2px 2px 0 #e11d1d'),
+  L('Pink glow', { color: '#ffffff', ...glow('#ff2d78') }, 'color:#fff;text-shadow:0 0 6px #ff2d78,0 0 10px #ff2d78'),
+  L('Yellow glow', { color: '#ffffff', ...glow('#ffd400') }, 'color:#fff;text-shadow:0 0 6px #ffd400,0 0 10px #ffd400'),
+  L('Green glow', { color: '#ffffff', ...glow('#22e51a') }, 'color:#fff;text-shadow:0 0 6px #22e51a,0 0 10px #22e51a'),
+];
+const lookMatches = (s: TextStyle, p: Partial<TextStyle>) =>
+  (Object.keys(PLAIN_LOOK) as (keyof TextStyle)[]).every((k) => (k in p ? p[k] : PLAIN_LOOK[k]) === s[k]);
 const activeSub: Record<string, string> = {};
+/** What the animation catalog row carries for the tile previews. */
+interface AnimMeta { dur: number; loop?: boolean; keys: AnimKey[] }
 
 export function mountInspector(root: HTMLElement, player: Player) {
   /** The player shows the mask frame only while Adjust › Mask is open. */
@@ -72,7 +110,7 @@ export function mountInspector(root: HTMLElement, player: Player) {
     if (tab === 'Video' || tab === 'Photo') return ['Basic', 'Remove BG', 'Effects'];
     if (tab === 'Text') return ['Basic', 'Transform', 'Effects'];
     if (tab === 'Sticker') return ['Basic', 'Effects'];
-    if (tab === 'Animation') return ['In', 'Out'];
+    if (tab === 'Animation') return ['In', 'Out', 'Combo'];
     if (tab === 'Adjust') return ADJUST_TABS;
     return [];
   }
@@ -97,7 +135,7 @@ export function mountInspector(root: HTMLElement, player: Player) {
       case 'Template': return [templateSection(c), transformSection(c)];
       case 'Effect': return [layerLookSection(c, 'effect')];
       case 'Filter': return [layerLookSection(c, 'filter')];
-      case 'Animation': return [animationSection(c, subTab === 'Out' ? 'transitionOut' : 'transitionIn')];
+      case 'Animation': return [animationSection(c, subTab === 'Combo' ? 'combo' : subTab === 'Out' ? 'transitionOut' : 'transitionIn')];
     }
     return [];
   }
@@ -249,21 +287,10 @@ export function mountInspector(root: HTMLElement, player: Player) {
       toggle('Mute', c.muted, (val) => updateClip(c.id, (x) => { x.muted = val; })),
       slider('Fade in', c.fadeIn, 0, maxFade, 0.05, RAW(1, 's'), fi.input, fi.end, 0),
       slider('Fade out', c.fadeOut, 0, maxFade, 0.05, RAW(1, 's'), fo.input, fo.end, 0),
-      c.type === 'video' ? h('button.wide-btn', { type: 'button', onclick: () => extractAudio(c) }, icon('audio', 14), 'Extract audio') : null,
+      c.type === 'video' ? (c.extractedTo
+        ? h('button.wide-btn', { type: 'button', onclick: () => recoverAudio(c) }, icon('audio', 14), 'Recover audio')
+        : h('button.wide-btn', { type: 'button', onclick: () => extractAudio(c) }, icon('audio', 14), 'Extract audio')) : null,
     );
-  }
-
-  function extractAudio(c: Clip) {
-    const a = makeClip('audio', {
-      mediaId: c.mediaId, name: `${c.name} (audio)`, start: c.start, duration: c.duration, in: c.in, speed: c.speed,
-      volume: c.volume, fadeIn: c.fadeIn, fadeOut: c.fadeOut,
-    });
-    store.commit((p) => {
-      const found = store.findClip(c.id);
-      if (found) found.clip.muted = true;
-      store.placeClip(p, a);
-    });
-    toast('Audio extracted to its own track', 'ok');
   }
 
   function speedSection(c: Clip) {
@@ -280,30 +307,92 @@ export function mountInspector(root: HTMLElement, player: Player) {
     );
   }
 
-  function animationSection(c: Clip, key: 'transitionIn' | 'transitionOut') {
-    const tr = c[key];
-    const maxDur = Math.max(0.2, Math.min(5, c.duration));
-    const d = live(c.id, (x, v) => { x[key] = { ...x[key], duration: v }; });
-    const grid = h('div.anim-grid', null, TRANSITIONS.map((t) =>
-      h(`button.anim${tr.type === t.id ? '.active' : ''}`, {
-        type: 'button',
-        onclick: () => {
-          const dur = tr.duration || 0.5;
-          updateClip(c.id, (x) => { x[key] = { duration: dur, type: t.id }; });
-          // Play the animated part once so the pick is visible right away (CapCut does this).
-          if (t.id === 'none') return;
-          const pad = 0.4;
-          if (key === 'transitionIn') player.playRange(c.start, Math.min(c.start + c.duration, c.start + dur + pad));
-          else player.playRange(Math.max(c.start, c.start + c.duration - dur - pad), c.start + c.duration);
+  /**
+   * Animation › In / Out / Combo (CapCut): the animation library from R2. Tiles move on hover;
+   * ones not downloaded yet show the arrow and download on first use. Combo replaces In / Out.
+   */
+  function clearAnim(x: Clip, key: 'transitionIn' | 'transitionOut' | 'combo') {
+    if (key === 'combo') x.combo = undefined; else x[key] = { type: 'none', duration: 0.5 };
+  }
+
+  function animationSection(c: Clip, key: 'transitionIn' | 'transitionOut' | 'combo') {
+    const kind = key === 'combo' ? 'combo' : key === 'transitionOut' ? 'out' : 'in';
+    const tr = c[key] ?? { type: 'none', duration: 0.5 };
+    const lib = catalogOf('animations').filter((a) => a.category.toLowerCase() === kind);
+    // Offline before the library ever loaded: the basic built-in ones still work.
+    const items: { id: string; name: string; meta?: AnimMeta }[] = lib.length
+      ? lib.map((a) => ({ id: a.id, name: a.name, meta: a.meta as unknown as AnimMeta }))
+      : key === 'combo' ? [] : TRANSITIONS.filter((t) => t.id !== 'none');
+    const maxDur = Math.max(0.2, key === 'combo' ? c.duration : Math.min(5, c.duration));
+    const d = live(c.id, (x, v) => { x[key] = { ...(x[key] ?? tr), duration: v }; });
+    const apply = (id: string, dur: number) => {
+      updateClip(c.id, (x) => {
+        x[key] = { type: id, duration: Math.min(dur, maxDur) };
+        // CapCut: a combo takes over the whole clip, and picking In / Out drops the combo.
+        if (key === 'combo') { x.transitionIn = { type: 'none', duration: 0.5 }; x.transitionOut = { type: 'none', duration: 0.5 }; } else if (x.combo) x.combo = undefined;
+      });
+      // Play the animated part once so the pick is visible right away.
+      const pad = 0.4;
+      if (key === 'transitionOut') player.playRange(Math.max(c.start, c.start + c.duration - dur - pad), c.start + c.duration);
+      else player.playRange(c.start, Math.min(c.start + c.duration, c.start + (key === 'combo' ? Math.max(dur, 2) : dur + pad)));
+    };
+    const tile = (it: { id: string; name: string; meta?: AnimMeta }) => {
+      const fromLib = !!it.meta;
+      const have = !fromLib || isDownloaded('animations', it.id);
+      const busy = fromLib && isDownloading('animations', it.id);
+      const demo = h('div.anim-demo');
+      const sw = h('div.look-swatch.anim-sw', fromLib ? null : { 'data-tr': it.id }, fromLib ? demo : h('div.tr-demo'));
+      let run: Animation | null = null;
+      const btn = h(`button.anim${tr.type === it.id ? '.active' : ''}`, {
+        type: 'button', title: it.name,
+        onpointerenter: () => {
+          if (!it.meta?.keys) return;
+          run = demo.animate(cssKeyframes({ id: it.id, name: it.name, kind, dur: it.meta.dur, keys: it.meta.keys }), {
+            duration: Math.max(500, it.meta.dur * 1000), iterations: Infinity, endDelay: kind === 'combo' ? 0 : 350, direction: 'normal',
+          });
         },
-      }, h('div.look-swatch.tr', { 'data-tr': t.id }, h('div.tr-demo')), h('span', null, t.name))));
-    return section(`anim-${key}`, key === 'transitionIn' ? 'In animation' : 'Out animation', () => updateClip(c.id, (x) => { x[key] = { type: 'none', duration: 0.5 }; }),
+        onpointerleave: () => { run?.cancel(); run = null; },
+        onclick: async () => {
+          const dur = it.meta?.dur ?? (tr.type !== 'none' ? tr.duration : 0.5);
+          if (fromLib && !have) {
+            if (!(await download('animations', it.id))) { toast(`Couldn't download “${it.name}”. Check your connection.`, 'error'); return; }
+          }
+          apply(it.id, key === 'combo' && !it.meta?.loop ? c.duration : dur);
+        },
+      }, sw, h('span', null, it.name));
+      if (fromLib && !have) sw.append(h(`span.dl-btn.small${busy ? '.busy' : ''}`, { 'aria-hidden': 'true' }, busy ? h('div.spinner.small') : icon('download', 12)));
+      return btn;
+    };
+    const none = h(`button.anim${tr.type === 'none' ? '.active' : ''}`, { type: 'button', title: 'None', onclick: () => updateClip(c.id, (x) => { clearAnim(x, key); }) },
+      h('div.look-swatch.anim-sw', { 'data-tr': 'none' }, h('div.tr-demo')), h('span', null, 'None'));
+    const grid = h('div.anim-grid', null, none, items.map(tile));
+    const title = key === 'combo' ? 'Combo animation' : key === 'transitionIn' ? 'In animation' : 'Out animation';
+    return section(`anim-${key}`, title, () => updateClip(c.id, (x) => { clearAnim(x, key); }),
       grid,
+      !items.length ? h('p.hint', null, navigator.onLine ? 'Loading animations…' : 'Connect to the internet once to see the animation library.') : null,
       tr.type !== 'none' ? slider('Duration', tr.duration, 0.1, maxDur, 0.05, RAW(1, 's'), d.input, d.end, 0.5) : null,
     );
   }
 
   // ---- text / sticker --------------------------------------------------------------
+
+  /** Preset style grid (CapCut): one row until expanded. */
+  function presetStyles(c: Clip) {
+    const s = c.text!;
+    const current = TEXT_LOOKS.findIndex((p) => lookMatches(s, p.style));
+    const grid = h(`div.ps-grid${presetsOpen ? '.open' : ''}`, null, TEXT_LOOKS.map((p, i) =>
+      h(`button.ps-tile${(current === -1 ? 0 : current) === i ? '.on' : ''}`, {
+        type: 'button', title: p.name, style: p.bg ? { background: p.bg } : {},
+        onclick: () => updateClip(c.id, (x) => { Object.assign(x.text!, PLAIN_LOOK, p.style); }),
+      }, i === 0 ? icon('none', 22) : h('span', { style: p.css }, 'Aa'))));
+    const more = h('button.ps-more', {
+      type: 'button', title: presetsOpen ? 'Show less' : 'Show all styles', 'aria-expanded': presetsOpen,
+      onclick: () => { presetsOpen = !presetsOpen; render(); },
+    });
+    // Filled triangle like CapCut's, pointing up when expanded.
+    more.innerHTML = `<svg viewBox="0 0 16 10" width="11" height="7" fill="currentColor"><path d="${presetsOpen ? 'M8 1 15 9H1z' : 'M1 1h14L8 9z'}"/></svg>`;
+    return h('div.ps-wrap', null, h('div.ps-label', null, 'Preset style'), grid, more);
+  }
 
   function textSections(c: Clip): HTMLElement[] {
     const s = c.text!;
@@ -323,18 +412,29 @@ export function mountInspector(root: HTMLElement, player: Player) {
     const fmtBtn = (label: Node | string, title: string, on: boolean, fn: () => void) =>
       h(`button.fmt${on ? '.on' : ''}`, { type: 'button', title, 'aria-pressed': on, onclick: fn }, label);
     const fontOpts = FONTS.map((f) => ({ id: f, name: f, preview: h('span.font-prev', { style: { fontFamily: `"${f}"` } }, 'Aa') }));
+    // Alignment (CapCut): left / centre / right, then vertical text aligned top / middle / bottom.
+    const vIcon = (mode: 'top' | 'middle' | 'bottom') => {
+      const sp = document.createElement('span');
+      const ys = mode === 'top' ? [[4, 16], [4, 20], [4, 13]] : mode === 'middle' ? [[7, 17], [4, 20], [8, 16]] : [[8, 20], [4, 20], [11, 20]];
+      sp.innerHTML = `<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">${ys.map(([a, b], i) => `<path d="M${7 + i * 5} ${a}V${b}"/>`).join('')}</svg>`;
+      return sp.firstElementChild as SVGElement;
+    };
+    const alignRow = row('Alignment', h('div.fmt-row.align-row', null,
+      fmtBtn(icon('alignL', 15), 'Align left', !s.vertical && s.align === 'left', () => set((t) => { t.align = 'left'; t.vertical = undefined; })),
+      fmtBtn(icon('alignCH', 15), 'Center', !s.vertical && s.align === 'center', () => set((t) => { t.align = 'center'; t.vertical = undefined; })),
+      fmtBtn(icon('alignR', 15), 'Align right', !s.vertical && s.align === 'right', () => set((t) => { t.align = 'right'; t.vertical = undefined; })),
+      fmtBtn(vIcon('top'), 'Vertical, top', s.vertical === 'top', () => set((t) => { t.vertical = 'top'; })),
+      fmtBtn(vIcon('middle'), 'Vertical, middle', s.vertical === 'middle', () => set((t) => { t.vertical = 'middle'; })),
+      fmtBtn(vIcon('bottom'), 'Vertical, bottom', s.vertical === 'bottom', () => set((t) => { t.vertical = 'bottom'; })),
+    ));
     return [
-      section('text-content', 'Text', null, ta),
+      section('text-content', 'Text', null, ta, alignRow, presetStyles(c)),
       section('text-style', 'Style', () => set((t) => { const d = defaultText(); Object.assign(t, { ...d, content: t.content }); }),
         selectRow('Font', s.font, fontOpts, (v) => set((t) => { t.font = v; })),
         slider('Font size', s.size, 8, 400, 1, RAW(0), size.input, size.end, 96),
         row('Pattern', h('div.fmt-row', null,
           fmtBtn(h('b', null, 'B'), 'Bold', s.bold, () => set((t) => { t.bold = !t.bold; })),
           fmtBtn(h('i', null, 'I'), 'Italic', s.italic, () => set((t) => { t.italic = !t.italic; })),
-          h('span.align-sep'),
-          fmtBtn(icon('alignL', 15), 'Align left', s.align === 'left', () => set((t) => { t.align = 'left'; })),
-          fmtBtn(icon('alignCH', 15), 'Center', s.align === 'center', () => set((t) => { t.align = 'center'; })),
-          fmtBtn(icon('alignR', 15), 'Align right', s.align === 'right', () => set((t) => { t.align = 'right'; })),
         )),
         colorCtl('Color', s.color, (v) => set((t) => { t.color = v; })),
         slider('Character', s.letterSpacing, -10, 50, 1, RAW(0), ls.input, ls.end, 0),
@@ -384,7 +484,12 @@ export function mountInspector(root: HTMLElement, player: Player) {
   store.on('select', schedule);
   store.on('project', schedule);
   store.on('view', schedule);
-  root.addEventListener('focusout', () => setTimeout(schedule, 0));
+  // Focus moving into one of our dropdown lists isn't "done editing": rebuilding now would
+  // replace the dropdown's button and close the list straight away.
+  root.addEventListener('focusout', (e) => {
+    if ((e.relatedTarget as Element | null)?.closest?.('.popover, .ctx-menu')) return;
+    setTimeout(schedule, 0);
+  });
   root.addEventListener('change', (e) => { if ((e.target as HTMLInputElement).type === 'range') (e.target as HTMLElement).blur(); });
   render();
 }

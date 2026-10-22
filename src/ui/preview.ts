@@ -82,7 +82,8 @@ export function mountPreview(root: HTMLElement, canvas: HTMLCanvasElement, playe
     const menu = h('div.ratio-menu', { role: 'menu' },
       item('original', 'Original'), item('custom', 'Custom'),
       ...ASPECT_GROUPS.flatMap((g) => [h('div.ri-sep'), ...g.map((k) => item(k, k))]));
-    popover(ratioBtn, menu, { align: 'end' }).el.classList.add('ratio-pop');
+    // Big screens: drop down under the button (scrolls if the timeline leaves less room), as CapCut does.
+    popover(ratioBtn, menu, { align: 'end', preferBelow: matchMedia('(min-width: 761px)').matches ? 200 : undefined }).el.classList.add('ratio-pop');
   });
 
   function openCustomRatio() {

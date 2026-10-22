@@ -514,15 +514,18 @@ export function adjustFooter(c: Clip) {
     }, 'Apply to all'),
     h('button.adj-btn.primary', {
       type: 'button',
-      onclick: () => {
-        const list = loadPresets();
-        const name = `Preset ${list.length + 1}`;
-        list.push({ name, data: gradeOf(c) });
-        try { localStorage.setItem(PRESET_KEY, JSON.stringify(list)); } catch { toast('Could not save the preset', 'error'); return; }
-        toast(`Saved “${name}”. Apply it from Adjust › Basic › Presets.`, 'ok');
-        store.emit('view');
-      },
+      onclick: () => saveAdjustPreset(c),
     }, 'Save as preset'));
+}
+
+/** Saves the clip's look (Adjust settings) as a preset; also used by the timeline clip menu. */
+export function saveAdjustPreset(c: Clip) {
+  const list = loadPresets();
+  const name = `Preset ${list.length + 1}`;
+  list.push({ name, data: gradeOf(c) });
+  try { localStorage.setItem(PRESET_KEY, JSON.stringify(list)); } catch { toast('Could not save the preset', 'error'); return; }
+  toast(`Saved “${name}”. Apply it from Adjust › Basic › Presets.`, 'ok');
+  store.emit('view');
 }
 
 export function adjustContent(c: Clip, sub: string, rerender: () => void): HTMLElement[] {

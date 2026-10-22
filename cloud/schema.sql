@@ -13,3 +13,12 @@ CREATE TABLE IF NOT EXISTS assets (
   PRIMARY KEY (kind, id)
 );
 CREATE INDEX IF NOT EXISTS assets_kind_sort ON assets (kind, sort);
+
+-- User templates (Templates › Yours): owner = SHA-256 of the device's secret; NULL for the public library.
+ALTER TABLE assets ADD COLUMN owner TEXT;
+ALTER TABLE assets ADD COLUMN created INTEGER;
+CREATE INDEX IF NOT EXISTS assets_owner ON assets (owner, created);
+
+-- Template-creation counts per day, summed over 7 days for the weekly limit (Templates › Create template). key = 'dev:<owner hash>' or
+-- 'ip:<IP hash>'; day = UTC date. Rows only ever count up, so deleting doesn't refund.
+CREATE TABLE IF NOT EXISTS template_quota (key TEXT NOT NULL, day TEXT NOT NULL, n INTEGER NOT NULL DEFAULT 0, PRIMARY KEY (key, day));

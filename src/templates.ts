@@ -1,4 +1,5 @@
 import { newProject, sizeFor, store } from './store';
+import { ANIMS } from './engine/anims';
 import { defaultText, makeClip, MediaItem, Project, TextStyle, uid } from './types';
 
 // Built-in templates: a fixed edit (slot lengths, transitions, effects, a grade, titles,
@@ -6,12 +7,20 @@ import { defaultText, makeClip, MediaItem, Project, TextStyle, uid } from './typ
 
 export interface TemplateSlot {
   dur: number;
-  /** Clip effect (effects library / basic effects). */
+  /** Clip effect (effects library / basic effects) and its strength (default 0.7). */
   effect?: string;
+  effectAmt?: number;
   /** Intro animation for this clip (fade, zoom-in, slide-left, …). */
   anim?: string;
   /** GL transition into this slot (overrides the template default). */
   transition?: string;
+  /** Out animation, and a combo animation across the whole slot (Animation library ids). */
+  animOut?: string;
+  combo?: string;
+  /** Length of the in / out animations (default: the animation's own, at most half the slot). */
+  animDur?: number;
+  /** R2 key of the photo or clip this slot shows until the user replaces it. */
+  sample?: string;
 }
 
 export interface TemplateText {
@@ -38,12 +47,20 @@ export interface TemplateDef {
   filter?: string;
   filterAmt?: number;
   /** Effect layer over the whole edit (or a time range). */
-  effectLayer?: { id: string; amount?: number; start?: number; dur?: number };
+  effectLayer?: TemplateEffectLayer;
+  /** More effect layers stacked over the edit (e.g. stars + fireflies). */
+  effectLayers?: TemplateEffectLayer[];
   texts?: TemplateText[];
   stickers?: TemplateSticker[];
+  /** Song that comes with the template (R2 key); added as its own audio clip on use. */
+  music?: TemplateMusic;
 }
 
-export const TEMPLATE_CATEGORIES = ['Vlog', 'Travel', 'Trending', 'Celebration', 'Fitness', 'Food', 'Retro', 'Cinematic', 'Love', 'Business'];
+export interface TemplateEffectLayer { id: string; amount?: number; start?: number; dur?: number }
+
+export interface TemplateMusic { file: string; name: string; artist?: string; volume?: number; fadeOut?: number }
+
+export const TEMPLATE_CATEGORIES = ['Trending', 'Vlog', 'Travel', 'Love', 'Beauty', 'Fashion', 'Celebration', 'Retro', 'Cinematic', 'Business'];
 
 
 // The template library is served from R2 (see src/engine/assets.ts); downloaded templates register here.
@@ -81,8 +98,11 @@ export function buildTemplateProject(t: TemplateDef, media: (MediaItem | undefin
     const dur = isVideo ? Math.min(slot.dur, m.duration) : slot.dur;
     const clip = makeClip(isVideo ? 'video' : 'image', { mediaId: m.id, name: m.name, start: at, duration: dur });
     clip.transform.scale = coverScale(m, p);
-    if (slot.effect) clip.effect = { id: slot.effect, intensity: 0.7 };
-    if (slot.anim) clip.transitionIn = { type: slot.anim, duration: Math.min(0.5, dur / 2) };
+    if (slot.effect) clip.effect = { id: slot.effect, intensity: slot.effectAmt ?? 0.7 };
+    const animDur = (id: string) => Math.min(slot.animDur ?? ANIMS.get(id)?.dur ?? 0.5, dur / 2);
+    if (slot.anim) clip.transitionIn = { type: slot.anim, duration: animDur(slot.anim) };
+    if (slot.animOut) clip.transitionOut = { type: slot.animOut, duration: animDur(slot.animOut) };
+    if (slot.combo) clip.combo = { type: slot.combo, duration: ANIMS.get(slot.combo)?.loop ? ANIMS.get(slot.combo)!.dur : dur };
     const tr = slot.transition ?? t.transition;
     if (i > 0 && tr && main.clips.length) clip.crossIn = { type: tr, duration: Math.min(t.transitionDur ?? 0.5, dur * 0.8, prevDur * 0.8) };
     main.clips.push(clip);
@@ -102,10 +122,11 @@ export function buildTemplateProject(t: TemplateDef, media: (MediaItem | undefin
     c.filter = { id: t.filter, intensity: t.filterAmt ?? 1 };
     fxTrack().clips.push(c);
   }
-  if (t.effectLayer) {
-    const start = Math.min(t.effectLayer.start ?? 0, total - 0.1);
-    const c = makeClip('effect', { name: 'Effect', start, duration: Math.min(t.effectLayer.dur ?? total, total - start) });
-    c.effect = { id: t.effectLayer.id, intensity: t.effectLayer.amount ?? 0.7 };
+  for (const fx of [t.effectLayer, ...(t.effectLayers ?? [])]) {
+    if (!fx) continue;
+    const start = Math.min(fx.start ?? 0, total - 0.1);
+    const c = makeClip('effect', { name: 'Effect', start, duration: Math.min(fx.dur ?? total, total - start) });
+    c.effect = { id: fx.id, intensity: fx.amount ?? 0.7 };
     fxTrack().clips.push(c);
   }
   for (const tx of t.texts ?? []) {
@@ -115,8 +136,8 @@ export function buildTemplateProject(t: TemplateDef, media: (MediaItem | undefin
       text: defaultText({ ...tx.style, content: tx.content }),
     });
     c.transform.y = tx.y ?? 0;
-    if (tx.anim) c.transitionIn = { type: tx.anim, duration: 0.5 };
-    if (tx.animOut) c.transitionOut = { type: tx.animOut, duration: 0.4 };
+    if (tx.anim) c.transitionIn = { type: tx.anim, duration: Math.min(ANIMS.get(tx.anim)?.dur ?? 0.5, c.duration / 2) };
+    if (tx.animOut) c.transitionOut = { type: tx.animOut, duration: Math.min(ANIMS.get(tx.animOut)?.dur ?? 0.4, c.duration / 2) };
     store.placeClip(p, c);
   }
   for (const st of t.stickers ?? []) {

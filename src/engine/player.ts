@@ -2,6 +2,7 @@ import { store } from '../store';
 import { toast } from '../ui/dom';
 import { Clip, clipEnd, hasSound } from '../types';
 import { AudioEngine } from './audio';
+import { stemsReady } from './isolate';
 import { Compositor } from './compositor';
 import { FrameReader } from './frames';
 import { buildLayers } from './scene';
@@ -150,7 +151,7 @@ export class Player {
     for (const t of store.viewProject.tracks) {
       for (const c of t.clips) {
         if (!c.mediaId || c.type === 'image') continue;
-        parts.push(`${c.id}|${c.mediaId}|${c.start}|${c.duration}|${c.in}|${c.speed}|${c.muted ? 1 : 0}|${t.muted ? 1 : 0}`);
+        parts.push(`${c.id}|${c.mediaId}|${c.start}|${c.duration}|${c.in}|${c.speed}|${c.muted ? 1 : 0}|${t.muted ? 1 : 0}|${c.isolate ?? ''}${c.isolate && stemsReady(c.mediaId) ? '+' : ''}`);
       }
     }
     return parts.join(';');

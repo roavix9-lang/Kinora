@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.1",
+    "demucs-web": "1.0.2",
     "gl-transitions": "1.71.0",
-    "mediabunny": "1.61.6"
+    "mediabunny": "1.61.6",
+    "onnxruntime-web": "1.30.0"
   },
   "devDependencies": {
     "assemblyscript": "0.28.20",

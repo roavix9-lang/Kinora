@@ -1,3 +1,4 @@
+import { addTemplateMusic } from './engine/sampleMedia';
 import { nestedDuration } from './engine/templateClips';
 import { applyRatio, originalRatio, sizeFor, store } from './store';
 import { TemplateDef, templateDuration } from './templates';
@@ -214,6 +215,8 @@ export function addTemplateToTimeline(t: TemplateDef) {
     const main = p.tracks.find((tr) => tr.main)!;
     clip.start = store.mainTrackEnd();
     main.clips.push(clip);
+    // The template's song comes along on its own audio track (easy to swap or delete).
+    addTemplateMusic(p, t, clip.start, clip.duration);
   });
   // The slot strip stays closed until the user clicks “N clips to be replaced”.
   store.templateStripOpen = false;
@@ -285,4 +288,101 @@ export function toggleMarker() {
       p.markers = list.some((m) => Math.abs(m - t) < near) ? list.filter((m) => Math.abs(m - t) >= near) : [...list, t].sort((a, b) => a - b);
     }
   });
+}
+
+// ---- clip menu (CapCut right-click) --------------------------------------------------
+
+let clipboard: Clip | null = null;
+let attrClipboard: Partial<Clip> | null = null;
+export const hasClipboard = () => !!clipboard;
+export const hasAttributes = () => !!attrClipboard;
+
+export function copySelected() {
+  const c = store.selected;
+  if (!c) return;
+  clipboard = structuredClone(c);
+  toast('Copied', 'ok');
+}
+
+export function cutSelected() {
+  const c = store.selected;
+  if (!c) return;
+  clipboard = structuredClone(c);
+  deleteSelected();
+}
+
+/** Pastes the copied clip at the playhead (on a free track of the same kind). */
+export function pasteClip() {
+  if (!clipboard) return;
+  const c = { ...structuredClone(clipboard), id: uid('clip'), start: store.currentTime };
+  store.commit((p) => { store.placeClip(p, c); });
+  store.select(c.id);
+}
+
+const ATTRS = ['transform', 'adjust', 'adjustOn', 'lut', 'hsl', 'hslOn', 'curves', 'wheels', 'adjMask', 'filter', 'effect',
+  'chroma', 'speed', 'volume', 'fadeIn', 'fadeOut', 'transitionIn', 'transitionOut'] as const;
+
+/** Copy attributes: look, position, speed, volume and animations (not the media or timing). */
+export function copyAttributes() {
+  const c = store.selected;
+  if (!c) return;
+  attrClipboard = structuredClone(Object.fromEntries(ATTRS.map((k) => [k, c[k]])) as Partial<Clip>);
+  toast('Attributes copied', 'ok');
+}
+
+export function pasteAttributes() {
+  const c = store.selected;
+  if (!c || !attrClipboard) return;
+  const attrs = structuredClone(attrClipboard);
+  updateClip(c.id, (x) => {
+    const srcLen = x.duration * x.speed;
+    Object.assign(x, attrs);
+    // Keep the same source footage when the speed changes.
+    if (attrs.speed && x.type !== 'image') x.duration = srcLen / x.speed;
+  });
+  toast('Attributes pasted', 'ok');
+}
+
+/** Puts a video clip's sound on its own audio track and mutes the original. */
+export function extractAudio(c: Clip) {
+  if (c.type !== 'video' || !c.mediaId) return;
+  const a = makeClip('audio', {
+    mediaId: c.mediaId, name: `${c.name} (audio)`, start: c.start, duration: c.duration, in: c.in, speed: c.speed,
+    volume: c.volume, fadeIn: c.fadeIn, fadeOut: c.fadeOut,
+  });
+  store.commit((p) => {
+    const found = store.findClip(c.id);
+    if (found) { found.clip.muted = true; found.clip.extractedTo = a.id; }
+    store.placeClip(p, a);
+  });
+  toast('Audio extracted to its own track', 'ok');
+}
+
+/** Recover audio: puts the sound back on the video and removes the extracted audio clip. */
+export function recoverAudio(c: Clip) {
+  store.commit((p) => {
+    for (const t of p.tracks) t.clips = t.clips.filter((x) => x.id !== c.extractedTo);
+    const found = store.findClip(c.id);
+    if (found) { found.clip.muted = false; found.clip.extractedTo = undefined; }
+  });
+  toast('Audio recovered', 'ok');
+}
+
+export function toggleDisabled(c: Clip) {
+  updateClip(c.id, (x) => { x.disabled = !x.disabled; });
+  toast(c.disabled ? 'Clip activated' : 'Clip deactivated');
+}
+
+/** Replace clip: new media in the same spot and length (shorter media shortens the clip). */
+export function replaceClipMedia(c: Clip, m: MediaItem) {
+  if (m.status !== 'ready') { toast('Still processing…'); return; }
+  updateClip(c.id, (x) => {
+    x.mediaId = m.id;
+    x.name = m.name;
+    x.in = 0;
+    if (m.kind === 'image') x.type = 'image';
+    else if (m.kind === 'video') x.type = 'video';
+    if (m.kind !== 'image') x.duration = Math.min(x.duration, m.duration / x.speed);
+  });
+  toast(`Replaced with “${m.name}”`, 'ok');
 }

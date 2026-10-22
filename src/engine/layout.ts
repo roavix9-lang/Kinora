@@ -1,4 +1,5 @@
 import { Clip, MediaItem, Project, Transition } from '../types';
+import { ANIMS, AnimState, sampleAnim } from './anims';
 import { stickerSize } from './sticker';
 import { templateDef } from './templateClips';
 import { renderText } from './text';
@@ -66,6 +67,17 @@ function applyTransition(g: LayerGeom, tr: Transition, prog: number, isOut: bool
   }
 }
 
+/** Applies a library animation's state (see anims.ts) on top of the resting geometry. */
+function applyAnim(g: LayerGeom, a: AnimState, p: Project) {
+  g.w *= a.s * a.sx;
+  g.h *= a.s * a.sy;
+  g.cx += a.x * p.width;
+  g.cy += a.y * p.height;
+  g.rotation += (a.r * Math.PI) / 180;
+  g.opacity *= Math.max(0, Math.min(1, a.o));
+  g.blur += Math.max(0, a.b);
+}
+
 export function layerGeom(clip: Clip, media: MediaItem | undefined, p: Project, t: number, withAnimation = true): LayerGeom {
   const [bw, bh] = baseSize(clip, media, p);
   const tf = clip.transform;
@@ -86,9 +98,23 @@ export function layerGeom(clip: Clip, media: MediaItem | undefined, p: Project, 
   if (!withAnimation) return g;
 
   const ti = clip.transitionIn, to = clip.transitionOut;
-  if (ti.type !== 'none' && ti.duration > 0 && local < ti.duration) applyTransition(g, ti, Math.max(0, local / ti.duration), false, p);
+  if (ti.type !== 'none' && ti.duration > 0 && local < ti.duration) {
+    const lib = ANIMS.get(ti.type);
+    if (lib) applyAnim(g, sampleAnim(lib, Math.max(0, local / ti.duration)), p);
+    else applyTransition(g, ti, Math.max(0, local / ti.duration), false, p);
+  }
   const remain = clip.duration - local;
-  if (to.type !== 'none' && to.duration > 0 && remain < to.duration) applyTransition(g, to, Math.max(0, remain / to.duration), true, p);
+  if (to.type !== 'none' && to.duration > 0 && remain < to.duration) {
+    const lib = ANIMS.get(to.type);
+    if (lib) applyAnim(g, sampleAnim(lib, 1 - Math.max(0, remain / to.duration)), p);
+    else applyTransition(g, to, Math.max(0, remain / to.duration), true, p);
+  }
+  const co = clip.combo;
+  const combo = co && co.type !== 'none' && co.duration > 0 ? ANIMS.get(co.type) : undefined;
+  if (combo && local >= 0) {
+    const prog = combo.loop ? (local % co!.duration) / co!.duration : Math.min(1, local / co!.duration);
+    applyAnim(g, sampleAnim(combo, prog), p);
+  }
 
   const amt = clip.effect.intensity;
   if (clip.effect.id === 'shake') {
